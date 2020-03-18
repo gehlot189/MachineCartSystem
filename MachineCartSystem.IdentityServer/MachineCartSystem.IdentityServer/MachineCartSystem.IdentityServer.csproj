@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MachineCartSystem.Infrastructure\MachineCartSystem.Common\MachineCartSystem.Common.csproj" />
+    <ProjectReference Include="..\MachineCartSystem.IdentityServer.Service\MachineCartSystem.IdentityServer.Service.csproj" />
+  </ItemGroup>
+
+
+</Project>

@@ -1,0 +1,33 @@
+{
+  "GlobalConfiguration": {
+    "DownstreamScheme": "https",
+    "BaseUrl": "https://localhost",
+    "AuthenticationOptions": {
+      "AuthenticationProviderKey": "TestKey",
+      "AllowedScopes": []
+    },
+    "RouteClaimsRequirement": {
+      "UserType": "employee"
+    },
+    "RequestIdKey": null,
+    //"ServiceDiscoveryProvider": {
+    //  "Scheme": "https",
+    //  "Host": "localhost",
+    //  "Port": 5001
+    //  //"Type": "Consul"
+    //  //  "PollingInterval": 100
+    //},
+    "RateLimitOptions": {
+      "ClientWhitelist": [],
+      "EnableRateLimiting": true,
+      "Period": "1s",
+      "PeriodTimespan": 1,
+      "Limit": 1,
+      "DisableRateLimitHeaders": false,
+      "QuotaExceededMessage": "Customize Tips!",
+      "HttpStatusCode": 999,
+      "ClientIdHeader": "Test"
+    },
+    "RouteIsCaseSensitive": false
+  }
+}

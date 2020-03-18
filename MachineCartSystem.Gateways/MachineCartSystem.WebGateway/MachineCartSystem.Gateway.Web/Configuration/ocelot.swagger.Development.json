@@ -1,0 +1,35 @@
+{
+  "SwaggerEndPoints": [
+    {
+      "Key": "basket",
+      "Config": [
+        {
+          "Name": "Basket API",
+          "Version": "v1",
+          "Url": "https://localhost:2001/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "order",
+      "Config": [
+        {
+          "Name": "Order API",
+          "Version": "v1",
+          "Url": "https://localhost:2002/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "gateway",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "Gateway",
+          "Version": "v1",
+          "Url": "https://localhost:5001/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}

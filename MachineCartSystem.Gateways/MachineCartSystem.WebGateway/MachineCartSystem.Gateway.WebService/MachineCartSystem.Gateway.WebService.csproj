@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
+    <PackageReference Include="MMLib.SwaggerForOcelot" Version="2.6.0" />
+    <PackageReference Include="Ocelot" Version="16.0.1" />
+    <PackageReference Include="Ocelot.Cache.CacheManager" Version="16.0.1" />
+    <PackageReference Include="Ocelot.Provider.Consul" Version="16.0.1" />
+    <PackageReference Include="Ocelot.Provider.Kubernetes" Version="16.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extension\" />
+    <Folder Include="Http\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MachineCartSystem.Infrastructure\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
+  </ItemGroup>
+
+</Project>

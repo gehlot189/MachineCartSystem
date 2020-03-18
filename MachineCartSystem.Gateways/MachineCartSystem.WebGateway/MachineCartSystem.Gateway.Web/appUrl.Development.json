@@ -1,0 +1,6 @@
+{
+  "urls": {
+    "mc-basket": "http://localhost:55105",
+    "mc-catalog": "http://localhost:55101"
+  }
+}

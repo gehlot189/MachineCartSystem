@@ -1,0 +1,23 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Account",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2002
+        }
+      ],
+      "DownstreamHttpMethod": "Get",
+      "UpstreamPathTemplate": "/order-api/{everything}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHost": "localhost:5001",
+      "SwaggerKey": "order",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      },
+      "Key": "order"
+    }
+  ]
+}

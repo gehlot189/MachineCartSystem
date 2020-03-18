@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MachineCartSystem.Infrastructure\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
+    <ProjectReference Include="..\MachineCartSystem.Order.Service\MachineCartSystem.Order.Service.csproj" />
+  </ItemGroup>
+
+
+</Project>

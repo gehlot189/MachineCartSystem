@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MachineCartSystem.Gateway.WebService\MachineCartSystem.Gateway.WebService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\swagger-ui\custom.css" />
+  </ItemGroup>
+
+  <ProjectExtensions>
+    <VisualStudio><UserProperties /></VisualStudio>
+  </ProjectExtensions>
+
+
+</Project>

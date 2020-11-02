@@ -27,7 +27,11 @@ namespace MachineCartSystem.IdentityServer.Service
                         "http://localhost:4200/login",
                         "http://localhost:4200/lib/silent-refresh",
                         "http://localhost:4200/lib/silent-refresh.html",
-                        "http://localhost:4200/assets/silent-refresh.html"
+                        "http://localhost:4200/assets/silent-refresh.html",
+
+                        "https://localhost:2001/swagger/oauth2-redirect.html",
+                        "https://localhost:2002/swagger/oauth2-redirect.html",
+                        "https://localhost:5001/swagger/oauth2-redirect.html"
                     },
                     // where to redirect to after logout
                     PostLogoutRedirectUris =
@@ -45,40 +49,7 @@ namespace MachineCartSystem.IdentityServer.Service
                     },
                     AllowOfflineAccess=true,
                     AccessTokenLifetime=8000,
-             },
-               new Client
-                {
-                    ClientId = "swagger",
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequireConsent = false,
-                    RequirePkce = true,
-                    AllowAccessTokensViaBrowser=true,
-                    RequireClientSecret=false,
-                    // where to redirect to after login
-                    RedirectUris =
-                    {
-                        "https://localhost:2001/swagger/oauth2-redirect.html",
-                        "https://localhost:2002/swagger/oauth2-redirect.html",
-                        "https://localhost:5001/swagger/oauth2-redirect.html"
-                    },
-                    // where to redirect to after logout
-                    PostLogoutRedirectUris =
-                    {
-                        "http://localhost:5001/signout-callback-oidc" ,
-                        "http://localhost:4200",
-                        "http://localhost:4200/login",
-                    },
-
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "basket",
-                        "order"
-                    },
-                    AllowOfflineAccess=true,
-                    AccessTokenLifetime=8000,
-                }
+             }
             };
         }
     };

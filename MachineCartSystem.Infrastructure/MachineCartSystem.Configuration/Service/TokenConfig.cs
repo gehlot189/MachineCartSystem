@@ -31,7 +31,6 @@ namespace MachineCartSystem.Configuration.Service
                 Address = disco.TokenEndpoint,
                 ClientId = "client",
                 ClientSecret = "secretKey",
-                Scope = "api1"
             });
 
             if (tokenResponse.IsError)

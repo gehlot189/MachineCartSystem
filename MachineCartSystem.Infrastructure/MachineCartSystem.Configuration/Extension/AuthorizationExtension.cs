@@ -1,4 +1,5 @@
 ﻿using IdentityModel;
+using MachineCartSystem.Common;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
 
@@ -10,15 +11,15 @@ namespace MachineCartSystem.Configuration
         {
             services.AddAuthorization(p =>
             {
-                p.AddPolicy("AdminPolicy", q =>
+                p.AddPolicy(Policy.Admin, q =>
                  {
                      q.RequireAuthenticatedUser();
-                     q.RequireRole("Admin");
+                     q.RequireRole(Role.Admin);
                  });
-                p.AddPolicy("BasicPolicy", q =>
+                p.AddPolicy(Policy.Basic, q =>
                 {
                     q.RequireAuthenticatedUser();
-                    q.RequireRole("Basic");
+                    q.RequireRole(Role.Basic);
                 });
             });
             return services;

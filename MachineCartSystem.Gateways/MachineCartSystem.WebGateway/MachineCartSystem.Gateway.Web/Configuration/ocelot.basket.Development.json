@@ -15,7 +15,7 @@
       "SwaggerKey": "basket",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",
-        "AllowedScopes": []
+        "AllowedScopes": [ "basket" ]
       },
       "Key": "basket",
       "LoadBalancerOptions": {

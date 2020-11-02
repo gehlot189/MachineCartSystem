@@ -14,9 +14,9 @@ namespace MachineCartSystem.Gateway.WebService.Initializers
                 p.InjectStylesheet("/swagger-ui/custom.css");
                 p.EnableDeepLinking();
 
-                p.OAuthClientId("client");
+                p.OAuthClientId("angular");
                 p.OAuthUsePkce();
-                p.OAuth2RedirectUrl("https://localhost:5001/swagger/oauth2-redirect.html");
+                p.OAuth2RedirectUrl($"{configuration.GetValue<string>("GatewayUrl")}swagger/oauth2-redirect.html");
             });
         }
     }

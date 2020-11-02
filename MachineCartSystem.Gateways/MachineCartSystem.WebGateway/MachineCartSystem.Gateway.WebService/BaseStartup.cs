@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System.Linq;
 
 namespace MachineCartSystem.Gateway.WebService
 {
@@ -29,10 +30,11 @@ namespace MachineCartSystem.Gateway.WebService
         {
             return new JwtConfig
             {
-                Audience = Configuration["Jwt:Audience"].ToString(),
+                Audiences = Configuration["Jwt:Audience"].Split(new char[] { ',' }),
                 Authority = Configuration["Jwt:Authority"].ToString(),
                 Issuer = Configuration["Jwt:Issuer"].ToString(),
-                Key = Configuration["Jwt:Signing:PrivateKey"].ToCharArray()
+                Key = Configuration["Jwt:Signing:PrivateKey"].ToCharArray(),
+                Scopes = Configuration["Jwt:Scopes"].Split(new char[] { ' ' })
             };
         }
 

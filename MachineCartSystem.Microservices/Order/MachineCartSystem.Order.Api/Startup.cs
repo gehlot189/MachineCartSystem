@@ -21,7 +21,7 @@ namespace MachineCartSystem.Order.Api
 
             services.AddCustomAuthentication(JwtConfig)
                     .AddCustomAuthorization(JwtConfig)
-                    .AddCustomSwagger();
+                    .AddCustomSwagger(Configuration, JwtConfig);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

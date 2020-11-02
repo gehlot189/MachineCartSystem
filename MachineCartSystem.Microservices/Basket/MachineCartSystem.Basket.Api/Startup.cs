@@ -29,7 +29,7 @@ namespace MachineCartSystem.BasketApi
             services.AddCustomAuthentication(JwtConfig)
             .AddCustomAuthorization(JwtConfig)
             .AddEFCore<MachineCartSystemDbContext>(DbConfig)
-            .AddCustomSwagger()
+            .AddCustomSwagger(Configuration, JwtConfig)
             .AddServices();
         }
 

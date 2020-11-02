@@ -14,8 +14,9 @@ namespace MachineCartSystem.Gateway.WebService.Initializers
             // AutoMapperService.Initialize(exportedTypes, services);
             //  DbService.Initialize(exportedTypes, services, configuration);
             // HealthCheckService.Initialize<new DbContext()>(services);
-            AuthenticationService.Initialize(services, jwtConfig);
 
+            AuthenticationService.Initialize(services, jwtConfig);
+            SwaggerUIService.Initialize(services, configuration, jwtConfig);
             services.AddAuthorization();
 
             //  .AddConsul()

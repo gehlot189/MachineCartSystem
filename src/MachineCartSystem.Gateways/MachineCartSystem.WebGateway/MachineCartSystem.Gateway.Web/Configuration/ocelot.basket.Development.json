@@ -1,0 +1,40 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Account",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2001
+        }
+      ],
+      "DownstreamHttpMethod": "Get",
+      "UpstreamPathTemplate": "/basket-api/{everything}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHost": "localhost:5001",
+      "SwaggerKey": "basket",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": [ "basket1" ]
+      },
+      "Key": "basket",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+    }
+  ],
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "basket",
+        "order"
+      ],
+      "UpstreamPathTemplate": "/api/ag",
+      // "Aggregator": "BasketOrderAggregator",
+      "UpstreamHost": "localhost:5001",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    }
+  ]
+}

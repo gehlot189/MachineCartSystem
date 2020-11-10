@@ -5,25 +5,25 @@ services:
     image: ${DOCKER_REGISTRY-}machinecartsystemgatewayweb
     build:
       context: .
-      dockerfile: MachineCartSystem.Gateways\MachineCartSystem.WebGateway\MachineCartSystem.Gateway.Web\Dockerfile
+      dockerfile: MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.Web/Dockerfile
 
   machinecartsystem.identityserver:
     image: ${DOCKER_REGISTRY-}machinecartsystemidentityserver
     build:
       context: .
-      dockerfile: MachineCartSystem.IdentityServer\MachineCartSystem.IdentityServer\Dockerfile
+      dockerfile: MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer/Dockerfile
 
 
   machinecartsystem.basket.api:
     image: ${DOCKER_REGISTRY-}machinecartsystembasketapi
     build:
       context: .
-      dockerfile: MachineCartSystem.Microservices\Basket\MachineCartSystem.Basket.Api\Dockerfile
+      dockerfile: MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Api/Dockerfile
 
 
   machinecartsystem.order.api:
     image: ${DOCKER_REGISTRY-}machinecartsystemorderapi
     build:
       context: .
-      dockerfile: MachineCartSystem.Microservices\Order\MachineCartSystem.Order.Api\Dockerfile
+      dockerfile: MachineCartSystem.Microservices/Order/MachineCartSystem.Order.Api/Dockerfile
 

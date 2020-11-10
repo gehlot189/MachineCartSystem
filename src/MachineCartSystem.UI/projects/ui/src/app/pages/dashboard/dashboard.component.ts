@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   }
 onclick()
 {
-    this.httpClient.get('https://localhost:5001/api/ag',
+    this.httpClient.get('http://localhost:5001/api/ag',
       {
         headers: new HttpHeaders(
           {

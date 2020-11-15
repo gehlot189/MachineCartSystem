@@ -44,7 +44,7 @@ namespace MachineCartSystem.Configuration
                 p.SwaggerEndpoint("/swagger/v1/swagger.json", configuration.GetSection("api:name").Value);
                 p.EnableDeepLinking();
 
-                p.OAuthClientId("client");
+                p.OAuthClientId("angular");
                 p.OAuthUsePkce();
                 p.OAuth2RedirectUrl($"{configuration.GetSection("api:host").Value }swagger/oauth2-redirect.html");
             });

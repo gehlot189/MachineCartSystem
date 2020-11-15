@@ -4,18 +4,18 @@
       "DownstreamPathTemplate": "/api/Account",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 2001
+          "Host": "machinecartsystem.basket.api",
+          "Port": 80
         }
       ],
       "DownstreamHttpMethod": "Get",
-      "UpstreamPathTemplate": "/basket-api/{everything}",
+      "UpstreamPathTemplate": "/basket-api/Account",
       "UpstreamHttpMethod": [ "Get" ],
       "UpstreamHost": "localhost:5001",
       "SwaggerKey": "basket",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",
-        "AllowedScopes": [ "basket1" ]
+        "AllowedScopes": [ "basket" ]
       },
       "Key": "basket",
       "LoadBalancerOptions": {

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 
 namespace MachineCartSystem.Order.Api
 {
@@ -17,6 +18,8 @@ namespace MachineCartSystem.Order.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true; //Add this line
+
             services.AddControllers();
 
             services.AddCustomAuthentication(JwtConfig)

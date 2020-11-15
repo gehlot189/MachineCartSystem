@@ -1,6 +1,14 @@
 version: '3.4'
 
 services:
+
+  #machinecartsystem.ui:
+  #  container_name: MachineCartSystem.UI
+  # image: ${DOCKER_REGISTRY-}machinecartsystemui
+  #  build:
+  #    context: .
+  #   dockerfile: MachineCartSystem.UI/Dockerfile
+
   machinecartsystem.gateway.web:
     image: ${DOCKER_REGISTRY-}machinecartsystemgatewayweb
     build:
@@ -13,17 +21,15 @@ services:
       context: .
       dockerfile: MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer/Dockerfile
 
-
   machinecartsystem.basket.api:
     image: ${DOCKER_REGISTRY-}machinecartsystembasketapi
     build:
       context: .
       dockerfile: MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Api/Dockerfile
 
-
   machinecartsystem.order.api:
     image: ${DOCKER_REGISTRY-}machinecartsystemorderapi
     build:
       context: .
       dockerfile: MachineCartSystem.Microservices/Order/MachineCartSystem.Order.Api/Dockerfile
-
+      

@@ -21,7 +21,7 @@ namespace MachineCartSystem.IdentityServer.Service
                     // where to redirect to after login
                     RedirectUris =
                     {
-                        "http://localhost:5001/signin-oidc",
+                        "http://machinecartsystem.gateway.web:80/signin-oidc",
                         "http://localhost:4200/lib/auth-callback",
                         "http://localhost:4200",
                         "http://localhost:4200/login",
@@ -29,9 +29,9 @@ namespace MachineCartSystem.IdentityServer.Service
                         "http://localhost:4200/lib/silent-refresh.html",
                         "http://localhost:4200/assets/silent-refresh.html",
 
-                        "https://localhost:2001/swagger/oauth2-redirect.html",
-                        "https://localhost:2002/swagger/oauth2-redirect.html",
-                        "https://localhost:5001/swagger/oauth2-redirect.html"
+                        "http://localhost:2002/swagger/oauth2-redirect.html",
+                        "http://localhost:2001/swagger/oauth2-redirect.html",
+                        "http://localhost:5001/swagger/oauth2-redirect.html"
                     },
                     // where to redirect to after logout
                     PostLogoutRedirectUris =
@@ -48,7 +48,7 @@ namespace MachineCartSystem.IdentityServer.Service
                         "basket"
                     },
                     AllowOfflineAccess=true,
-                    AccessTokenLifetime=8000,
+                    AccessTokenLifetime=80000,
              }
             };
         }

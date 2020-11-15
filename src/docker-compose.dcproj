@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>3c4737ab-14f1-4ad3-955c-f7d585b99f12</ProjectGuid>
+    <ProjectGuid>20ac4add-fc22-431d-8cd2-5841d95a15eb</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>machinecartsystem.gateway.web</DockerServiceName>

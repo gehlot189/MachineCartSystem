@@ -24,8 +24,7 @@ onclick()
           {
             Authorization: 'Bearer ' + this.oidcSecurityService.getToken(),
           }),
-      }
-    ).subscribe();
+      }).subscribe();
 }
   ngOnDestroy() {
   }

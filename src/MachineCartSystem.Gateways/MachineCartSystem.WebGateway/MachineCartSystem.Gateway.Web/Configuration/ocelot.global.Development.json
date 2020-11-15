@@ -1,7 +1,7 @@
 {
   "GlobalConfiguration": {
-    "DownstreamScheme": "https",
-    "BaseUrl": "https://localhost",
+    "DownstreamScheme": "http",
+    "BaseUrl": "http://localhost",
     "AuthenticationOptions": {
       "AuthenticationProviderKey": "TestKey",
       "AllowedScopes": []

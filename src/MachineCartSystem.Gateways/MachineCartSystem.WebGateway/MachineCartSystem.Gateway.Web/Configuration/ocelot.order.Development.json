@@ -4,12 +4,12 @@
       "DownstreamPathTemplate": "/api/Account",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 2002
+          "Host": "machinecartsystem.order.api",
+          "Port": 80
         }
       ],
       "DownstreamHttpMethod": "Get",
-      "UpstreamPathTemplate": "/order-api/{everything}",
+      "UpstreamPathTemplate": "/order-api/Account",
       "UpstreamHttpMethod": [ "Get" ],
       "UpstreamHost": "localhost:5001",
       "SwaggerKey": "order",

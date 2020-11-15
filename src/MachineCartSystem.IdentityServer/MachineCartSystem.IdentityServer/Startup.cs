@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 using System;
 
 namespace MachineCartSystem.IdentityServer
@@ -23,6 +24,8 @@ namespace MachineCartSystem.IdentityServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //IdentityModelEventSource.ShowPII = true; //Add this line
+
             services.AddCors(p => p.AddPolicy("AllowOrigin", options =>
             {
                 options.AllowAnyOrigin();
@@ -33,10 +36,9 @@ namespace MachineCartSystem.IdentityServer
             services.AddControllersWithViews();
             
             services.AddIdentityServer(p=>
-            {
-                p.Discovery.ResponseCacheInterval = 0;
-               // p.Endpoints.
-            })
+                {
+                    p.IssuerUri = Configuration.GetValue<string>("JWT:Issuer");
+                })
                 .AddInMemoryIdentityResources(Config.Ids)
                 .AddInMemoryApiResources(Config.Apis)
                 .AddInMemoryApiScopes(Config.ApiScopes)

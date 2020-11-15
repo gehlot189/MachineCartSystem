@@ -11,11 +11,14 @@ namespace MachineCartSystem.Configuration
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, JwtConfig jwtConfig)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(option =>
+                .AddJwtBearer(option =>
                 {
                     option.Authority = jwtConfig.Issuer;
                     option.RequireHttpsMetadata = false;
-                    option.ApiName = jwtConfig.Audiences.First();
+                    option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidAudience= jwtConfig.Audiences.First()
+                };
                 });
             return services;
         }

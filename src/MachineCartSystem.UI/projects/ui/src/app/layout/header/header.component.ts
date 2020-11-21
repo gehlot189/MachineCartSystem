@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -9,8 +10,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() isAuthenticated = false;
   Property = false;
+  isUserLoggedIn: boolean;
+  appTitle = "MachineCart";
+  appLogo = require("../../../assets/images/logo-white.png").default;
 
-  constructor(private oidcSecurityService: OidcSecurityService) { }
+  constructor(private oidcSecurityService: OidcSecurityService,
+    public router: Router) { }
 
   ngOnInit(): void {
 

@@ -1,4 +1,18 @@
-<app-header></app-header>
-<!-- <ngx-spinner></ngx-spinner> -->
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div id="app_container">
+  <ngx-toasta></ngx-toasta>
+  <div class='container'>
+    <app-header></app-header>
+    <div id="mainContent" class="app-component">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+
+  </div>
+
+  <!-- <div *ngIf="shouldShowLoginModal" class="modal fade" bsModal #loginModal="bs-modal" (onShown)="onLoginModalShown()" (onHidden)="onLoginModalHidden()" (onHide)="onLoginModalHide()"
+       [config]="{backdrop: 'static'}" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <app-login #loginControl isModal="true"></app-login>
+    </div>
+  </div> -->
+</div>

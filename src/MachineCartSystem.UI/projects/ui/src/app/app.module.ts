@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthModule, OidcConfigService } from 'angular-auth-oidc-client';
 import { HttpClientModule } from '@angular/common/http';
 import { EagerLoadModule } from 'projects/lib/src/public-api';
@@ -30,7 +29,6 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       BrowserAnimationsModule,
       ToastrModule.forRoot(),
       AuthModule.forRoot(),
-      NgxSpinnerModule,
       AppRoutingModule,
       EagerLoadModule
     ],

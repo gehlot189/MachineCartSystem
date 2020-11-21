@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +10,6 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   constructor(private oidcSecurityService: OidcSecurityService,
-    private spinner: NgxSpinnerService,
     private router: Router) {
   }
 
@@ -20,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.spinner.show();
+    // this.spinner.show();
     this.router.navigate([this.oidcSecurityService.authorize()]);
   }
 }

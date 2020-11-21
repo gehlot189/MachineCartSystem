@@ -4,7 +4,6 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "ngx-spinner": "ngx-spinner",
       "oidc-client": "oidc-client",
       "ngx-toastr": "ngx-toastr",
       "angular-auth-oidc-client": "angular-auth-oidc-client"

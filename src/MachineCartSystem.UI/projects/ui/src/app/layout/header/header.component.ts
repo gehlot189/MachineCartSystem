@@ -1,4 +1,3 @@
-import { NgxSpinnerService } from 'ngx-spinner';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -11,15 +10,14 @@ export class HeaderComponent implements OnInit {
   @Input() isAuthenticated = false;
   Property = false;
 
-  constructor(private oidcSecurityService: OidcSecurityService,
-    private spinner: NgxSpinnerService) { }
+  constructor(private oidcSecurityService: OidcSecurityService) { }
 
   ngOnInit(): void {
 
   }
 
   logout() {
-    this.spinner.show();
+    //this.spinner.show();
     this.oidcSecurityService.logoff();
   }
 

@@ -39,5 +39,3 @@ services:
       - "2002:80"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-    dns:
-      - 8.8.8.8

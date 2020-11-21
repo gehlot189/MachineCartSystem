@@ -30,7 +30,7 @@
         "order"
       ],
       "UpstreamPathTemplate": "/api/ag",
-      // "Aggregator": "BasketOrderAggregator",
+      "Aggregator": "BasketOrderAggregator",
       "UpstreamHost": "localhost:5001",
       "UpstreamHttpMethod": [
         "Get"

@@ -2,10 +2,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Component, ViewChild, OnInit, Input, ViewChildren, QueryList } from '@angular/core';
-import { ComponentConstant } from 'projects/lib/src/public-api';
-import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { ComponentConstant, AppTranslationService } from 'projects/lib/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -31,11 +28,16 @@ export class AppComponent implements OnInit {
   // loginControl: LoginComponent;
 
   constructor(private oidcSecurityService: OidcSecurityService,
-    private router: Router) {
+    private router: Router,
+    private translationService: AppTranslationService) {
   }
 
   ngOnInit(): void {
+    this.translationService.addLanguages(["en", "fr", "de", "pt", "ar", "ko"]);
+    debugger;
+    this.translationService.setDefaultLanguage('fr');
     this.checkAuthenticate();
+
   }
 
   private checkAuthenticate() {

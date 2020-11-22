@@ -47,6 +47,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   login() {
     this.isLoading = true;
     this.alertService.startLoadingMessage("", "Attempting login...");
-    timer().pipe(untilDestroyed(this)).subscribe(() => this.router.navigate([this.oidcSecurityService.authorize()]));
+    timer().pipe(untilDestroyed(this)).subscribe(() => {
+      this.router.navigate([this.oidcSecurityService.authorize()]);
+    });
   }
 }

@@ -9,6 +9,7 @@ export class ExceptionHandlerService implements ErrorHandler {
   }
 
   handleError(error) {
+    debugger;
     const loggingService = this.injector.get(LoggingService);
     // throw error;
   }

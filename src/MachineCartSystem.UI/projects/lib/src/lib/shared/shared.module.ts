@@ -1,3 +1,4 @@
+import { AlertService } from './../core/services/alert.service';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BaseComponent } from './components/base/base.component';
@@ -8,6 +9,6 @@ import { BaseComponent } from './components/base/base.component';
       BaseComponent,
       ConfirmDialogComponent,
     ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule { }

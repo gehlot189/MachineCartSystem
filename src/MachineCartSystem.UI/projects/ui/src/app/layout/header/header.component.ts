@@ -10,7 +10,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() isAuthenticated = false;
   Property = false;
-  isUserLoggedIn: boolean;
   appTitle = "MachineCart";
   appLogo = require("../../../assets/images/logo-white.png").default;
 
@@ -18,12 +17,11 @@ export class HeaderComponent implements OnInit {
     public router: Router) { }
 
   ngOnInit(): void {
-
   }
 
   logout() {
-    //this.spinner.show();
     this.oidcSecurityService.logoff();
+    //  this.oidcSecurityService.logoffAndRevokeTokens();
   }
 
   revokeAccessToken() {

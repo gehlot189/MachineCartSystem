@@ -1,3 +1,4 @@
+import { AlertService } from './../core/services/alert.service';
 import { ExceptionHandlerService } from './../core/exception/exception-handler.service';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { AuthGuard } from '../index/guard.index';
@@ -8,7 +9,8 @@ import { AuthGuard } from '../index/guard.index';
   providers:
     [
       { useClass: ExceptionHandlerService, provide: ErrorHandler },
-      AuthGuard
+      AuthGuard,
+      AlertService
     ]
 })
 export class EagerLoadModule { }

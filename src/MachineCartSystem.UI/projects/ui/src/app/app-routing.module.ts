@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { AuthGuard } from 'projects/lib/src/public-api';
 import { DashboardComponent, NoPageComponent } from './pages/pages-index';
 
 const routes: Routes =

@@ -4,7 +4,6 @@ import { identityServer } from './../environments/identity-server';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthModule, OidcConfigService } from 'angular-auth-oidc-client';
@@ -24,13 +23,12 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     ],
   imports:
     [
-      CommonModule,
       HttpClientModule,
       BrowserAnimationsModule,
       ToastrModule.forRoot(),
       AuthModule.forRoot(),
       AppRoutingModule,
-      EagerLoadModule
+      EagerLoadModule,
     ],
   providers: [
     OidcConfigService,

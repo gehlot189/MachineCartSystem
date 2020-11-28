@@ -32,6 +32,7 @@
     "bootstrap-select": "^1.13.1",
     "bootstrap-toggle": "^2.2.2",
     "font-awesome": "^4.7.0",
+    "http-status-codes": "^2.1.4",
     "lib": "^4.3.0",
     "ngx-bootstrap": "^3.0.1",
     "ngx-toasta": "^0.1.0",

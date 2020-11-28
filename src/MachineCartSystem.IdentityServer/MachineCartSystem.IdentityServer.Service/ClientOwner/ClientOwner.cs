@@ -22,11 +22,11 @@ namespace MachineCartSystem.IdentityServer.Service
                     RedirectUris =
                     {
                         "http://machinecartsystem.gateway.web:80/signin-oidc",
-                        "http://localhost:4200/lib/auth-callback",
+                        "http://localhost:4200/auth-callback",
                         "http://localhost:4200",
                         "http://localhost:4200/login",
-                        "http://localhost:4200/lib/silent-refresh",
-                        "http://localhost:4200/lib/silent-refresh.html",
+                        "http://localhost:4200/silent-refresh",
+                        "http://localhost:4200/silent-refresh.html",
                         "http://localhost:4200/assets/silent-refresh.html",
 
                         "http://localhost:2002/swagger/oauth2-redirect.html",

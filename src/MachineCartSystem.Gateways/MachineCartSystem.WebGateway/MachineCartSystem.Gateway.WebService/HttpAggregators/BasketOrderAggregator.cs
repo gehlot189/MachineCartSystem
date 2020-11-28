@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Ocelot.Middleware;
 using Ocelot.Multiplexer;
 using System.Collections.Generic;
@@ -6,7 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MachineCartSystem.Gateway.WebService.Aggregators
@@ -15,20 +16,23 @@ namespace MachineCartSystem.Gateway.WebService.Aggregators
     {
         public async Task<DownstreamResponse> Aggregate(List<HttpContext> responses)
         {
-            var contentBuilder = new StringBuilder();
+            var dcResponse = new Dictionary<string, JObject>();
+
             foreach (var context in responses)
             {
-                contentBuilder.Append(await context.Items.DownstreamResponse().Content.ReadAsStringAsync());
-                contentBuilder.Append(",");
+                var data = await context.Items.DownstreamResponse().Content.ReadAsStringAsync();
+                dcResponse.Add(context.Items.DownstreamRoute().Key,
+                    JsonConvert.DeserializeObject<JObject>(data));
             }
 
-            var stringContent = new StringContent(contentBuilder.ToString())
+            var stringContent = new StringContent(JsonConvert.SerializeObject(dcResponse))
             {
                 Headers = { ContentType = new MediaTypeHeaderValue("application/json") }
             };
+            var headers = responses.SelectMany(x => x.Items.DownstreamResponse().Headers).ToList();
 
-            return new DownstreamResponse(stringContent, HttpStatusCode.OK,
-            responses.SelectMany(x => x.Items.DownstreamResponse().Headers).ToList(), "OK");
+            var response = new DownstreamResponse(stringContent, HttpStatusCode.OK, headers, "OK");
+            return response;
         }
     }
 }

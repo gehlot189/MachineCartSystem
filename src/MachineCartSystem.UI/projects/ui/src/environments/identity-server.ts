@@ -2,7 +2,7 @@ import { LogLevel, OpenIdConfiguration } from 'angular-auth-oidc-client';
 
 export const identityServer: OpenIdConfiguration = {
   stsServer: 'http://localhost:5000',
-  redirectUrl: `${window.location.origin}`,
+  redirectUrl: `${window.location.origin}/auth-callback`,
   postLogoutRedirectUri: `${window.location.origin}/login`,
   clientId: 'angular',
   scope: 'openid profile order basket',

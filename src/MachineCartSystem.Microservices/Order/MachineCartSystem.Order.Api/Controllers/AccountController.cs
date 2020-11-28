@@ -10,7 +10,7 @@ namespace MachineCartSystem.Order.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-   // [Authorize(Policy.Admin)]
+    // [Authorize(Policy.Admin)]
     public class AccountController : ControllerBase
     {
         private readonly ILogger<AccountController> _logger;
@@ -24,7 +24,8 @@ namespace MachineCartSystem.Order.Api.Controllers
         [Produces("application/json")]
         public IActionResult Get()
         {
-            return Ok("order");
+            var data = new { age = "order" };
+            return Ok(data);
         }
     }
 }

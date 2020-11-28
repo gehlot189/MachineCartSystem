@@ -24,11 +24,13 @@ namespace MachineCartSystem.BasketApi.Controllers
         [Produces("application/json")]
         public IActionResult Get()
         {
+            var data = new { age = "basket" };
+            return Ok(data);
             // var data = await _userService.GetAllUserDetailAsync();
             // var data1 = data.FirstOrDefault();
             //  data1.MiddleName = "m1";
             // await _userService.UpdateUserDetailAsync(data1);
-            return Ok("basket");
+            // return Ok("basket");
         }
 
 

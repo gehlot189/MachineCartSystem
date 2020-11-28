@@ -8,7 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthModule, OidcConfigService } from 'angular-auth-oidc-client';
 import { HttpClientModule } from '@angular/common/http';
-import { EagerLoadModule } from 'projects/lib/src/public-api';
+import { EagerLoadModule, Environment } from 'projects/lib/src/public-api';
+import { CommonModule } from '@angular/common';
+import { environment } from '../environments/environment';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () => oidcConfigService.withConfig(identityServer);
@@ -23,6 +25,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     ],
   imports:
     [
+      CommonModule,
       HttpClientModule,
       BrowserAnimationsModule,
       ToastrModule.forRoot(),
@@ -31,6 +34,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       EagerLoadModule,
     ],
   providers: [
+    { provide: Environment, useValue: environment },
     OidcConfigService,
     {
       provide: APP_INITIALIZER,

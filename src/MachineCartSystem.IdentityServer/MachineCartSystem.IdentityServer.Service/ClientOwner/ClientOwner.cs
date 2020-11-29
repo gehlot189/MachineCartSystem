@@ -1,5 +1,6 @@
 ﻿using IdentityServer4;
 using IdentityServer4.Models;
+using System;
 using System.Collections.Generic;
 
 namespace MachineCartSystem.IdentityServer.Service
@@ -48,7 +49,7 @@ namespace MachineCartSystem.IdentityServer.Service
                         "basket"
                     },
                     AllowOfflineAccess=true,
-                    AccessTokenLifetime=80000,
+                    AccessTokenLifetime=12
              }
             };
         }

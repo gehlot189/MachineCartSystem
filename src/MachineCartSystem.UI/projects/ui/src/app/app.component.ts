@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Component, ViewChild, OnInit, Input, ViewChildren, QueryList } from '@angular/core';
 import { ComponentConstant, AppTranslationService } from 'projects/lib/src/public-api';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -40,7 +42,8 @@ export class AppComponent implements OnInit {
   }
 
   private checkAuthenticate() {
-    this.oidcSecurityService.checkAuth().subscribe(isAuthenticated => {
+    this.oidcSecurityService.checkAuth().pipe(untilDestroyed(this)).subscribe(isAuthenticated => {
+      // debugger;
       this.appHeader.isAuthenticated = isAuthenticated;
       if (!isAuthenticated && '/' + ComponentConstant.Login !== window.location.pathname) {
         this.router.navigate([ComponentConstant.Login]);

@@ -32,10 +32,12 @@ export class AuthService {
     });
 
     this.manager.events.addSilentRenewError((p) => {
+      debugger;
       this.toast.warning(Constant.SlientRefreshError);
     });
 
     this.manager.events.addAccessTokenExpired(() => {
+      debugger;
       this.toast.warning(Constant.SessionExpired);
       this.manager.removeUser();
       this.logout();

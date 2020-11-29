@@ -5,7 +5,7 @@ import { SilentRefreshComponent } from './silent-refresh.component';
 
 const routes: Route[] =
   [
-    { path: '', component: SilentRefreshComponent, canActivate: [AuthGuard] },
+    { path: '', component: SilentRefreshComponent },
   ];
 
 @NgModule({

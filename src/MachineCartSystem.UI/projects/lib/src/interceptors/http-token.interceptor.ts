@@ -16,7 +16,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    debugger;
+    // debugger;
     if (!request.url.startsWith(this.env.identityServerUrl)) {
       const token = this.authService.getToken();
       const headersConfig = {

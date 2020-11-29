@@ -11,5 +11,9 @@ export class SilentRefreshComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('working');
+
+    // debugger;
+
   }
 }

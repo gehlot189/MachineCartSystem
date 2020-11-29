@@ -34,8 +34,8 @@ namespace MachineCartSystem.IdentityServer
             }));
 
             services.AddControllersWithViews();
-            
-            services.AddIdentityServer(p=>
+
+            services.AddIdentityServer(p =>
                 {
                     p.IssuerUri = Configuration.GetValue<string>("JWT:Issuer");
                 })
@@ -50,7 +50,7 @@ namespace MachineCartSystem.IdentityServer
                 .AddCookie("MyCookie", options =>
                 {
                     options.Cookie.HttpOnly = true;
-                    options.ExpireTimeSpan = TimeSpan.FromSeconds(14000);
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                     //options.LoginPath = "/Identity/Account/Login";
                     //options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                     options.SlidingExpiration = true;

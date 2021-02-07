@@ -19,13 +19,8 @@ export class HttpTokenInterceptor implements HttpInterceptor {
     // debugger;
     if (!request.url.startsWith(this.env.identityServerUrl)) {
       const token = this.authService.getToken();
-      const headersConfig = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${token}`
-      };
       if (token) {
-        request = request.clone({ setHeaders: headersConfig });
+        request = request.clone({ setHeaders: { 'Authorization': `Bearer ${token}` } });
       }
     }
     return next.handle(request);

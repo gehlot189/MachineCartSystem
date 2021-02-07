@@ -9,7 +9,7 @@ export const identityServer: OpenIdConfiguration = {
   responseType: 'code',
   silentRenew: true,
   silentRenewUrl: `${window.location.origin}/silent-refresh`,
-  logLevel: LogLevel.Debug,
+  logLevel: LogLevel.Warn,
   // startCheckSession: true,
   // historyCleanupOff: false,
   postLoginRoute: '/',

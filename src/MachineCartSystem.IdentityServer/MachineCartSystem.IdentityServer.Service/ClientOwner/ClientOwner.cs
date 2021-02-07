@@ -49,7 +49,7 @@ namespace MachineCartSystem.IdentityServer.Service
                         "basket"
                     },
                     AllowOfflineAccess=true,
-                    AccessTokenLifetime=12
+                    AccessTokenLifetime=1200
              }
             };
         }

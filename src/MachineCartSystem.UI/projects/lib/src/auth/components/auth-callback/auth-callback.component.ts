@@ -8,11 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class AuthCallbackComponent implements OnInit {
 
   constructor() {
-    debugger;
   }
 
   ngOnInit(): void {
-    debugger;
   }
 
 }

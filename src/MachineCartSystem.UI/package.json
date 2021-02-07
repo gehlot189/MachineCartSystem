@@ -25,7 +25,6 @@
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@ngneat/until-destroy": "^7.3.2",
     "@ngx-translate/core": "^13.0.0",
-    "@swimlane/ngx-datatable": "^13.1.0",
     "angular-auth-oidc-client": "^11.2.3",
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.8.0",

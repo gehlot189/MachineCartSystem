@@ -17,8 +17,8 @@ namespace MachineCartSystem.Configuration
                     option.RequireHttpsMetadata = false;
                     option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                     {
-                        ValidAudience= jwtConfig.Audiences.First()
-                };
+                        ValidAudience = jwtConfig.Audiences.First()
+                    };
                 });
             return services;
         }

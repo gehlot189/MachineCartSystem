@@ -10,9 +10,9 @@ const routes: Routes =
   [
     { path: '', component: DashboardComponent, canActivate: [AuthGuard], data: { title: 'Dashboard' } },
     { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard] },
-    { path: 'auth-callback', loadChildren: () => import('../../../lib/src/auth/components/auth-callback/auth-callback.module').then(p => p.AuthCallBackModule) },
+    { path: 'auth-callback', data: { preload: true, delay: 100 }, loadChildren: () => import('../../../lib/src/auth/components/auth-callback/auth-callback.module').then(p => p.AuthCallBackModule) },
     { path: 'silent-refresh', loadChildren: () => import('../../../lib/src/auth/components/silent-refresh/silent-refresh.module').then(p => p.SilentRefreshModule) },
-    { path: 'login', loadChildren: () => import('./pages/login/login.module').then(p => p.LoginModule) },
+    { path: 'login', data: {}, loadChildren: () => import('./pages/login/login.module').then(p => p.LoginModule) },
     //{ path: '**', component: NoPageComponent },
   ];
 

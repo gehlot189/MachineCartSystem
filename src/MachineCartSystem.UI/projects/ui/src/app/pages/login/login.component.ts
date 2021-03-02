@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    debugger;
     //this.userLogin.rememberMe = this.authService.rememberMe;
 
   }

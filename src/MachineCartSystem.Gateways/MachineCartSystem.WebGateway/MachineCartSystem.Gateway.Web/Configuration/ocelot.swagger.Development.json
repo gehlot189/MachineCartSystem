@@ -11,12 +11,22 @@
       ]
     },
     {
-      "Key": "order", 
+      "Key": "order",
       "Config": [
         {
           "Name": "Order API",
           "Version": "v1",
           "Url": "http://machinecartsystem.order.api:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "catalog",
+      "Config": [
+        {
+          "Name": "Catalog API",
+          "Version": "v1",
+          "Url": "http://machinecartsystem.catalog.api:80/swagger/v1/swagger.json"
         }
       ]
     },

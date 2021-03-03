@@ -46,7 +46,8 @@ namespace MachineCartSystem.IdentityServer.Service
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "order",
-                        "basket"
+                        "basket",
+                        "catalog"
                     },
                     AllowOfflineAccess=true,
                     AccessTokenLifetime=1200

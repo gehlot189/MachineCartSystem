@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MachineCartSystem.Infrastructure\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
     <ProjectReference Include="..\MachineCartSystem.Order.Service\MachineCartSystem.Order.Service.csproj" />
   </ItemGroup>
 

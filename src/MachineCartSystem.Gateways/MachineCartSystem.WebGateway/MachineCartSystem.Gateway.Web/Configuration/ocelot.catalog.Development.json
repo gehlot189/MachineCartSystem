@@ -1,0 +1,40 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Catalog",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "machinecartsystem.catalog.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamHttpMethod": "Get",
+      "UpstreamPathTemplate": "/catalog-api1/Catalog",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "catalog",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": [ "catalog" ]
+      },
+      "Key": "catalog",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+    }
+  ],
+  "Aggregates": [ 
+    {
+      "RouteKeys": [
+        "basket",
+        "order",
+        "catalog"
+      ],
+      "UpstreamPathTemplate": "/api/ag1",
+      "Aggregator": "BasketOrderAggregator",
+      "UpstreamHost": "localhost:5001",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    }
+  ]
+}

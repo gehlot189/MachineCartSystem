@@ -30,6 +30,10 @@ namespace MachineCartSystem.IdentityServer.Service
                 {
                     Scopes= { "payment"},
                     //UserClaims = new List<string> {"role"}
+                },
+                new ApiResource("catalog","Catalog Api")
+                {
+                    Scopes={ "catalog" }
                 }
          };
     }

@@ -1,15 +1,15 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
-namespace MachineCartSystem.Gateway.WebService
+namespace MachineCartSystem.Configuration
 {
     public abstract class BaseStartup
     {
-        public readonly IConfiguration Configuration;
+        protected readonly IConfiguration Configuration;
 
-        public BaseStartup(IConfiguration configuration)
+        public BaseStartup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            Configuration = ConfigReader.GetConfig(env.EnvironmentName);
         }
 
         public DbConfig DbConfig => GetDbConfigSetting();

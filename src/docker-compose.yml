@@ -32,4 +32,10 @@ services:
     build:
       context: .
       dockerfile: MachineCartSystem.Microservices/Order/MachineCartSystem.Order.Api/Dockerfile
+  
+  machinecartsystem.catalog.api:
+    image: ${DOCKER_REGISTRY-}machinecartsystemcatalogapi
+    build:
+      context: .
+      dockerfile: MachineCartSystem.Microservices/Catalog/MachineCartSystem.Catalog.Api/Dockerfile
       

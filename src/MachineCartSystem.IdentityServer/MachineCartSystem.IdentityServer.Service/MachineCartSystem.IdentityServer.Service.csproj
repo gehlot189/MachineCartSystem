@@ -13,4 +13,8 @@
     <Folder Include="Constants\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\MachineCartSystem.Core\MachineCartSystem.Common\MachineCartSystem.Common.csproj" />
+  </ItemGroup>
+
 </Project>

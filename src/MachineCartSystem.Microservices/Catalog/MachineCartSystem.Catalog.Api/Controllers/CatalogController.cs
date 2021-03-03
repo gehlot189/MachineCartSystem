@@ -17,6 +17,7 @@ namespace MachineCartSystem.Catalog.Api.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok(await Task.FromResult<string>("Catalog api called"));

@@ -1,4 +1,5 @@
-﻿using MachineCartSystem.Gateway.WebService.Initializers.Services;
+﻿using MachineCartSystem.Configuration;
+using MachineCartSystem.Gateway.WebService.Initializers.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;

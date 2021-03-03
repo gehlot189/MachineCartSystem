@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MachineCartSystem.Infrastructure\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
     <ProjectReference Include="..\MachineCartSystem.Basket.Entity\MachineCartSystem.Basket.Entity.csproj" />
     <ProjectReference Include="..\MachineCartSystem.Basket.Service\MachineCartSystem.Basket.Service.csproj" />
   </ItemGroup>

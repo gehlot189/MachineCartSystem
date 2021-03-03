@@ -21,6 +21,8 @@ namespace MachineCartSystem.IdentityServer.Service
             {
                 new ApiScope("basket", "Read Access to Basket Api"),
                 new ApiScope("order", "Read Access to Order Api"),
+                new ApiScope("catalog", "Read Access to Catalog Api"),
+
          };
     }
 }

@@ -10,7 +10,7 @@ namespace MachineCartSystem.Order.Api
 {
     public class Startup : BaseStartup
     {
-        public Startup(IConfiguration configuration) : base(configuration)
+        public Startup(IWebHostEnvironment env) : base(env)
         {
 
         }

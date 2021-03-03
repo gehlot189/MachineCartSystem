@@ -17,10 +17,11 @@
   <ItemGroup>
     <Folder Include="Extension\" />
     <Folder Include="Http\" />
+    <Folder Include="Model\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MachineCartSystem.Infrastructure\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
+    <ProjectReference Include="..\..\..\MachineCartSystem.Core\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
   </ItemGroup>
 
 </Project>

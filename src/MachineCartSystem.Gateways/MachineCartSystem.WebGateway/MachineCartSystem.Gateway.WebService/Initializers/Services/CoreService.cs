@@ -11,7 +11,8 @@ namespace MachineCartSystem.Gateway.WebService.Initializers.Services
                {
                    p.AddPolicy("CorsPolicy", q =>
                    {
-                       q.SetIsOriginAllowed((host) => true)
+                      q.SetIsOriginAllowed((host) => true)
+                    // q.AllowAnyOrigin()
                       .AllowAnyMethod()
                       .AllowAnyHeader()
                       .AllowCredentials();

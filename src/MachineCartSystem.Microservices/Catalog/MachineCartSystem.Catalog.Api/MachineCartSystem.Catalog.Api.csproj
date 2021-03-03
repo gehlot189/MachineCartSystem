@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MachineCartSystem.Infrastructure\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
     <ProjectReference Include="..\MachineCartSystem.Catalog.Service\MachineCartSystem.Catalog.Service.csproj" />
   </ItemGroup>
 

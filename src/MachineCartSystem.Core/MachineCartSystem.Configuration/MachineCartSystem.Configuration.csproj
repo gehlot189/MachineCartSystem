@@ -6,14 +6,6 @@
 
   <ItemGroup>
     <None Remove="identity.Development1.json" />
-    <None Remove="identity.json" />
-    <None Remove="identity.prod.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="identity.Development1.json" />
-    <Content Include="identity.json" />
-    <Content Include="identity.prod.json" />
   </ItemGroup>
 
   <ItemGroup>

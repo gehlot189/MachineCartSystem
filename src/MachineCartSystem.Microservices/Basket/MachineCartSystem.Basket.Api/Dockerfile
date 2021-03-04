@@ -9,8 +9,8 @@ WORKDIR /src
 COPY ["MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Api/MachineCartSystem.Basket.Api.csproj", "MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Api/"]
 COPY ["MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Entity/MachineCartSystem.Basket.Entity.csproj", "MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Entity/"]
 COPY ["MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Service/MachineCartSystem.Basket.Service.csproj", "MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Service/"]
-COPY ["MachineCartSystem.Infrastructure/MachineCartSystem.Configuration/MachineCartSystem.Configuration.csproj", "MachineCartSystem.Infrastructure/MachineCartSystem.Configuration/"]
-COPY ["MachineCartSystem.Infrastructure/MachineCartSystem.Common/MachineCartSystem.Common.csproj", "MachineCartSystem.Infrastructure/MachineCartSystem.Common/"]
+COPY ["MachineCartSystem.Core/MachineCartSystem.Configuration/MachineCartSystem.Configuration.csproj", "MachineCartSystem.Core/MachineCartSystem.Configuration/"]
+COPY ["MachineCartSystem.Core/MachineCartSystem.Common/MachineCartSystem.Common.csproj", "MachineCartSystem.Core/MachineCartSystem.Common/"]
 RUN dotnet restore "MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Api/MachineCartSystem.Basket.Api.csproj"
 COPY . .
 WORKDIR "/src/MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Api"
@@ -18,6 +18,7 @@ RUN dotnet build "MachineCartSystem.Basket.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "MachineCartSystem.Basket.Api.csproj" -c Release -o /app/publish
+
 
 FROM base AS final
 WORKDIR /app

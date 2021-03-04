@@ -9,6 +9,13 @@
     <Import_RootNamespace>MachineCartSystem.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)identity.Development.json" />
+    <Content Include="$(MSBuildThisFileDirectory)ConfigFiles\identity.Development.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)ConfigFiles\identity.json" />
+    <Content Include="$(MSBuildThisFileDirectory)ConfigFiles\identity.prod.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ConfigReader.cs" />
   </ItemGroup>
 </Project>

@@ -12,6 +12,7 @@
     <WarningLevel>0</WarningLevel>
   </PropertyGroup>
 
+
   <ItemGroup>
     <ProjectReference Include="..\MachineCartSystem.Gateway.WebService\MachineCartSystem.Gateway.WebService.csproj" />
   </ItemGroup>
@@ -28,11 +29,27 @@
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <!--<None Include="..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.Development.json" Link="identity.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.json" Link="identity.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.prod.json" Link="identity.prod.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>-->
   </ItemGroup>
 
   <ProjectExtensions>
-    <VisualStudio><UserProperties /></VisualStudio>
+    <VisualStudio>
+      <UserProperties />
+    </VisualStudio>
   </ProjectExtensions>
 
-
+  <Target Name="identityContent" AfterTargets="AfterBuild">
+    <Copy SourceFiles="..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.Development.json;
+          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.json;
+          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.prod.json;" 
+          SkipUnchangedFiles="True" OverwriteReadOnlyFiles="True" DestinationFolder="$(OutDir)" />
+  </Target>
 </Project>

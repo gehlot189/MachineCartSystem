@@ -8,8 +8,8 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.Web/MachineCartSystem.Gateway.Web.csproj", "MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.Web/"]
 COPY ["MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.WebService/MachineCartSystem.Gateway.WebService.csproj", "MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.WebService/"]
-COPY ["MachineCartSystem.Infrastructure/MachineCartSystem.Configuration/MachineCartSystem.Configuration.csproj", "MachineCartSystem.Infrastructure/MachineCartSystem.Configuration/"]
-COPY ["MachineCartSystem.Infrastructure/MachineCartSystem.Common/MachineCartSystem.Common.csproj", "MachineCartSystem.Infrastructure/MachineCartSystem.Common/"]
+COPY ["MachineCartSystem.Core/MachineCartSystem.Configuration/MachineCartSystem.Configuration.csproj", "MachineCartSystem.Core/MachineCartSystem.Configuration/"]
+COPY ["MachineCartSystem.Core/MachineCartSystem.Common/MachineCartSystem.Common.csproj", "MachineCartSystem.Core/MachineCartSystem.Common/"]
 RUN dotnet restore "MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.Web/MachineCartSystem.Gateway.Web.csproj"
 COPY . .
 WORKDIR "/src/MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.Web"

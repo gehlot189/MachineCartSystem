@@ -16,5 +16,10 @@
   <ItemGroup>
     <ProjectReference Include="..\MachineCartSystem.Catalog.Service\MachineCartSystem.Catalog.Service.csproj" />
   </ItemGroup>
-
+  <Target Name="identityContent" AfterTargets="AfterBuild">
+    <Copy SourceFiles="..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.Development.json;
+          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.json;
+          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.prod.json;"
+          SkipUnchangedFiles="True" OverwriteReadOnlyFiles="True" DestinationFolder="$(OutDir)" />
+  </Target>
 </Project>

@@ -7,7 +7,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster AS build
 WORKDIR /src
 COPY ["MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer.csproj", "MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer/"]
-COPY ["MachineCartSystem.Infrastructure/MachineCartSystem.Common/MachineCartSystem.Common.csproj", "MachineCartSystem.Infrastructure/MachineCartSystem.Common/"]
+COPY ["MachineCartSystem.Core/MachineCartSystem.Common/MachineCartSystem.Common.csproj", "MachineCartSystem.Core/MachineCartSystem.Common/"]
 COPY ["MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer.Service/MachineCartSystem.IdentityServer.Service.csproj", "MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer.Service/"]
 RUN dotnet restore "MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer.csproj"
 COPY . .

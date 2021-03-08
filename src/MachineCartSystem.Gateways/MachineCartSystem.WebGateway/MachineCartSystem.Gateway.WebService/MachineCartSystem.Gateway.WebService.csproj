@@ -5,22 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
-    <PackageReference Include="MMLib.SwaggerForOcelot" Version="2.6.0" />
-    <PackageReference Include="Ocelot" Version="16.0.1" />
-    <PackageReference Include="Ocelot.Cache.CacheManager" Version="16.0.1" />
-    <PackageReference Include="Ocelot.Provider.Consul" Version="16.0.1" />
-    <PackageReference Include="Ocelot.Provider.Kubernetes" Version="16.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Extension\" />
     <Folder Include="Http\" />
     <Folder Include="Model\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\MMLib.SwaggerForOcelot\src\MMLib.SwaggerForOcelot\MMLib.SwaggerForOcelot.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Ocelot\src\Ocelot\Ocelot.csproj" />
     <ProjectReference Include="..\..\..\MachineCartSystem.Core\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
   </ItemGroup>
 

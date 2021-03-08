@@ -2,15 +2,16 @@ using MachineCartSystem.Configuration;
 using MachineCartSystem.Gateway.WebService.Initializers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MachineCartSystem.Gateway.Web
 {
     public class Startup : BaseStartup
     {
-        public Startup(IWebHostEnvironment env) : base(env)
+        public Startup(IWebHostEnvironment env,IConfiguration configuration) : base(env)
         {
-
+            Configuration = configuration;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

@@ -8,8 +8,7 @@ namespace MachineCartSystem.Gateway.WebService.Initializers
         public static void UseSwagger(IApplicationBuilder app, IConfiguration configuration)
         {
             app.UseSwagger();
-            var dd = $"{configuration.GetValue<string>("GatewayUrl")}";
-            app.UseSwaggerForOcelotUI(p =>
+            app.UseSwaggerForOcelotUI(configuration,p =>
             {
                 p.InjectStylesheet("/swagger-ui/custom.css");
                 p.EnableDeepLinking();

@@ -12,7 +12,11 @@ namespace MachineCartSystem.Gateway.WebService.Initializers
     {
         public static void Initialize(IServiceCollection services, IConfiguration configuration, JwtConfig jwtConfig)
         {
-            services.AddSwaggerForOcelot(configuration);
+            services.AddSwaggerForOcelot(configuration,p=>
+            {
+            //    p.GenerateDocsForGatewayItSelf = true;
+               // p.GenerateDocsForAggregates = true;
+            });
 
             services.AddSwaggerGen(c =>
             {

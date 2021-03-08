@@ -8,18 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MachineCartSystem.Catalog.Service\MachineCartSystem.Catalog.Service.csproj" />
   </ItemGroup>
   <Target Name="identityContent" AfterTargets="AfterBuild">
-    <Copy SourceFiles="..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.Development.json;
-          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.json;
-          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.prod.json;"
-          SkipUnchangedFiles="True" OverwriteReadOnlyFiles="True" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.Development.json;&#xD;&#xA;          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.json;&#xD;&#xA;          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.prod.json;" SkipUnchangedFiles="True" OverwriteReadOnlyFiles="True" DestinationFolder="$(OutDir)" />
   </Target>
 </Project>

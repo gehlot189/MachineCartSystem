@@ -10,19 +10,19 @@
   },
   "AllowedHosts": "*",
   "Api": [
-          {
-            "name": "Catalog Api",
-            "host": "http://machinecartsystem.catalog.api:80/"
-          },
-          {
-            "name": "Order Api",
-            "host": "http://machinecartsystem.order.api:80/"
-          },
-          {
-            "name": "Basket Api",
-            "host": "http://machinecartsystem.basket.api:80/"
-          }
-      ],
+    {
+      "name": "Catalog Api",
+      "host": "http://machinecartsystem.catalog.api:80/"
+    },
+    {
+      "name": "Order Api",
+      "host": "http://machinecartsystem.order.api:80/"
+    },
+    {
+      "name": "Basket Api",
+      "host": "http://machinecartsystem.basket.api:80/"
+    }
+  ],
   "Jwt": {
     "Signing": {
       "PrivateKey": "MySecretKey"

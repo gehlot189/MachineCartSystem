@@ -6,7 +6,7 @@ namespace MachineCartSystem.Configuration
 {
     public abstract class BaseStartup
     {
-        protected readonly IConfiguration Configuration;
+        protected  IConfiguration Configuration;
 
         public BaseStartup(IWebHostEnvironment env)
         {

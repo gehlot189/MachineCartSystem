@@ -20,7 +20,7 @@ namespace MachineCartSystem.Entity.Model
                  .AddJsonFile("appsettings.json")
                  .AddJsonFile($"appsettings.{envName}.json", true)
                  .Build();
-            var connStr = configuration.GetValue<string>("DbConfiguration:ConnectionString");
+            var connStr="";//= configuration.GetValue<string>("DbConfiguration:ConnectionString");
 
             builder.UseSqlServer(connStr);
             return new MachineCartSystemDbContext(builder.Options);

@@ -2,14 +2,12 @@
 using AutoMapper.EntityFrameworkCore;
 using AutoMapper.QueryableExtensions;
 using MachineCartSystem.Entity;
-using MachineCartSystem.Entity.DomainModel;
 using MachineCartSystem.Entity.UserInfo;
 using MachineCartSystem.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Core;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace MachineCartSystem.Service.Services

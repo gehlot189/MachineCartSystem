@@ -11,8 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MMLib.SwaggerForOcelot" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\MMLib.SwaggerForOcelot\src\MMLib.SwaggerForOcelot\MMLib.SwaggerForOcelot.csproj" />
-    <ProjectReference Include="..\..\..\..\..\Ocelot\src\Ocelot\Ocelot.csproj" />
     <ProjectReference Include="..\..\..\MachineCartSystem.Core\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
   </ItemGroup>
 

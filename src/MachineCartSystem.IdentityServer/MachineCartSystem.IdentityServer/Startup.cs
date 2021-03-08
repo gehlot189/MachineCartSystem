@@ -1,4 +1,5 @@
 using IdentityServerHost.Quickstart.UI;
+using MachineCartSystem.Configuration;
 using MachineCartSystem.IdentityServer.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,15 +11,13 @@ using System;
 
 namespace MachineCartSystem.IdentityServer
 {
-    public class Startup
+    public class Startup : BaseStartup
     {
         public IWebHostEnvironment Environment { get; }
-        public IConfiguration Configuration { get; }
 
-        public Startup(IWebHostEnvironment environment, IConfiguration configuration)
+        public Startup(IWebHostEnvironment environment, IConfiguration configuration) : base(environment)
         {
             Environment = environment;
-            Configuration = configuration;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

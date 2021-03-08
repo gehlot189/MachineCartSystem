@@ -17,6 +17,7 @@ namespace MachineCartSystem.Gateway.WebService.Initializers.Services
                     x.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidAudiences = jwtConfig.Audiences,
+                        //ValidIssuer=jwtConfig.Issuer
                     };
                 });
         }

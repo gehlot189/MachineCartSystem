@@ -14,8 +14,7 @@ namespace MachineCartSystem.Gateway.WebService.Initializers
         {
             services.AddSwaggerForOcelot(configuration,p=>
             {
-            //    p.GenerateDocsForGatewayItSelf = true;
-               // p.GenerateDocsForAggregates = true;
+                p.GenerateDocsForAggregates = true;
             });
 
             services.AddSwaggerGen(c =>

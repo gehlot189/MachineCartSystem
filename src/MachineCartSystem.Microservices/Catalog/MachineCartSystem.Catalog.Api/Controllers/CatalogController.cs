@@ -12,15 +12,16 @@ namespace MachineCartSystem.Catalog.Api.Controllers
     public class CatalogController : ControllerBase
     {
         private readonly ILogger<CatalogController> _logger;
-        public CatalogController(ILogger<CatalogController>  logger)
+        public CatalogController(ILogger<CatalogController> logger)
         {
             _logger = logger;
         }
 
         [HttpGet]
+        [Produces("application/json")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await Task.FromResult<string>("Catalog api called"));
+            return Ok(await Task.FromResult<object>(new { age = "order" }));
         }
     }
 }

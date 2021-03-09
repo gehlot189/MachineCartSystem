@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MachineCartSystem.Gateway.WebService.Initializers.Services
+namespace MachineCartSystem.Gateway.Web.Initializer
 {
     public class BaseService : IServiceInitializer
     {

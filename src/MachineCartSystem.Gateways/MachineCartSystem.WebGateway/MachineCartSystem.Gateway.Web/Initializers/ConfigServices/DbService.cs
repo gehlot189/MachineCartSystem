@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace MachineCartSystem.Gateway.WebService.Initializers.Services
+namespace MachineCartSystem.Gateway.Web.Initializer
 {
     public class DbService
     {

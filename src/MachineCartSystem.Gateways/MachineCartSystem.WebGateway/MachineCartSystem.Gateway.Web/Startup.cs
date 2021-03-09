@@ -1,5 +1,5 @@
 using MachineCartSystem.Configuration;
-using MachineCartSystem.Gateway.WebService.Initializers;
+using MachineCartSystem.Gateway.Web.Initializer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

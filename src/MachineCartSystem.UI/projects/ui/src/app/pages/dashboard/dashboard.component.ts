@@ -19,7 +19,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.httpClient.get('catalog-all').subscribe(p => {
+      debugger;
+    });
   }
 
   ngOnDestroy() {

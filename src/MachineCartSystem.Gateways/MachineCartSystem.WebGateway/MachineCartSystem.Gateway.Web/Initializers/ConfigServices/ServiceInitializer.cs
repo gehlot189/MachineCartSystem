@@ -1,11 +1,11 @@
 ﻿using MachineCartSystem.Configuration;
-using MachineCartSystem.Gateway.WebService.Initializers.Services;
+using MachineCartSystem.Gateway.Web.Initializer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 
-namespace MachineCartSystem.Gateway.WebService.Initializers
+namespace MachineCartSystem.Gateway.Web.Initializer
 {
     public static class ServiceInitializer
     {

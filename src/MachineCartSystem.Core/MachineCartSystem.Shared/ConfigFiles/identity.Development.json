@@ -27,7 +27,7 @@
     "Signing": {
       "PrivateKey": "MySecretKey"
     },
-    "Audiences": "order,basket,order,catalog",
+    "Audiences": "order,basket,catalog",
     "Issuer": "http://machinecartsystem.identityserver:80/",
     "Authority": "http://machinecartsystem.identityserver:80/",
     "Scopes": "openid profile order basket catalog"

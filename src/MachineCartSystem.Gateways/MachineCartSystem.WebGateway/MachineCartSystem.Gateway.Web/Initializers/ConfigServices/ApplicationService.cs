@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MachineCartSystem.Gateway.WebService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MachineCartSystem.Gateway.WebService.Initializers.Services
+namespace MachineCartSystem.Gateway.Web.Initializer
 {
     public class ApplicationService : IServiceInitializer
     {

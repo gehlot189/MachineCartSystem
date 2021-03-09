@@ -10,7 +10,7 @@ namespace MachineCartSystem.Order.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    // [Authorize(Policy.Admin)]
+    [Authorize(Policy.Admin)]
     public class AccountController : ControllerBase
     {
         private readonly ILogger<AccountController> _logger;

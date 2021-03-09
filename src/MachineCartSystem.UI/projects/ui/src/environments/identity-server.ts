@@ -5,7 +5,7 @@ export const identityServer: OpenIdConfiguration = {
   redirectUrl: `${window.location.origin}/auth-callback`,
   postLogoutRedirectUri: `${window.location.origin}/login`,
   clientId: 'angular',
-  scope: 'openid profile order basket',
+  scope: 'openid profile order basket catalog',
   responseType: 'code',
   silentRenew: true,
   silentRenewUrl: `${window.location.origin}/silent-refresh`,

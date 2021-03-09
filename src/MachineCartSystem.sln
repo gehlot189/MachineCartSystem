@@ -57,10 +57,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineCartSystem.Configura
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MachineCartSystem.Shared", "MachineCartSystem.Core\MachineCartSystem.Shared\MachineCartSystem.Shared.shproj", "{D0637348-C8DE-40D4-8D25-FF1596F28482}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMLib.SwaggerForOcelot", "..\..\MMLib.SwaggerForOcelot\src\MMLib.SwaggerForOcelot\MMLib.SwaggerForOcelot.csproj", "{07F5D769-4DDB-4436-89E9-D7F77CB6903D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ocelot", "..\..\Ocelot\src\Ocelot\Ocelot.csproj", "{5B27A6DB-886E-4229-901F-5DD87CB8AB84}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MachineCartSystem.Core\MachineCartSystem.Shared\MachineCartSystem.Shared.projitems*{80392e82-4591-4354-9d02-6dfc116477d9}*SharedItemsImports = 5
@@ -131,14 +127,6 @@ Global
 		{80392E82-4591-4354-9D02-6DFC116477D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80392E82-4591-4354-9D02-6DFC116477D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80392E82-4591-4354-9D02-6DFC116477D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07F5D769-4DDB-4436-89E9-D7F77CB6903D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07F5D769-4DDB-4436-89E9-D7F77CB6903D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07F5D769-4DDB-4436-89E9-D7F77CB6903D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07F5D769-4DDB-4436-89E9-D7F77CB6903D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B27A6DB-886E-4229-901F-5DD87CB8AB84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B27A6DB-886E-4229-901F-5DD87CB8AB84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B27A6DB-886E-4229-901F-5DD87CB8AB84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B27A6DB-886E-4229-901F-5DD87CB8AB84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

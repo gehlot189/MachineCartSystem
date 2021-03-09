@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MachineCartSystem.Gateway.WebService.Initializers
+namespace MachineCartSystem.Gateway.Web.Initializer
 {
     public class ContollerService : IServiceInitializer
     {

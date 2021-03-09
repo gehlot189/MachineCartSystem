@@ -1,0 +1,29 @@
+{
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "basket",
+        "order"
+      ],
+      "Description": "Custom description for this aggregate route.",
+      "UpstreamPathTemplate": "/api/ag",
+      "Aggregator": "BasketOrderAggregator",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "RouteKeys": [
+        "basket",
+        "order",
+        "catalog"
+      ],
+      "Description": "Custom description for this aggregate route.",
+      "UpstreamPathTemplate": "/api/catalog-all",
+      "Aggregator": "CatalogAggregator",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    }
+  ]
+}

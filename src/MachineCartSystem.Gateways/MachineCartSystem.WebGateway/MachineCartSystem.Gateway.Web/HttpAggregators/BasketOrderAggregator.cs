@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using MMLib.SwaggerForOcelot.Aggregates;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Ocelot.Middleware;
@@ -10,8 +11,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace MachineCartSystem.Gateway.WebService.Aggregators
+namespace MachineCartSystem.Gateway.Web.HttpAggregators
 {
+    [AggregateResponse("Basket with buyer and basket items.", typeof(BasketOrderAggregator))]
+
     public class BasketOrderAggregator : IDefinedAggregator
     {
         public async Task<DownstreamResponse> Aggregate(List<HttpContext> responses)

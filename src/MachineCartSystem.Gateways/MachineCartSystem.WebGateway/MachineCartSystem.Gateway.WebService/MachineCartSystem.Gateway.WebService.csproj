@@ -12,10 +12,14 @@
 
   <ItemGroup>
     <PackageReference Include="MMLib.SwaggerForOcelot" Version="4.4.0" />
+    <PackageReference Include="Ocelot" Version="17.0.0" />
+    <PackageReference Include="Ocelot.Administration" Version="17.0.0" />
+    <PackageReference Include="Ocelot.Cache.CacheManager" Version="17.0.0" />
+    <PackageReference Include="Ocelot.Provider.Consul" Version="17.0.0" />
+    <PackageReference Include="Ocelot.Provider.Polly" Version="17.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\MMLib.SwaggerForOcelot\src\MMLib.SwaggerForOcelot\MMLib.SwaggerForOcelot.csproj" />
     <ProjectReference Include="..\..\..\MachineCartSystem.Core\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
   </ItemGroup>
 

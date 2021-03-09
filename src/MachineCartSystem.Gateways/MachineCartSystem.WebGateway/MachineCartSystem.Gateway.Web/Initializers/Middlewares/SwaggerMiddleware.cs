@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace MachineCartSystem.Gateway.WebService.Initializers
+namespace MachineCartSystem.Gateway.Web.Initializer
 {
     public class SwaggerMiddleware
     {
@@ -10,6 +13,9 @@ namespace MachineCartSystem.Gateway.WebService.Initializers
             app.UseSwagger();
             app.UseSwaggerForOcelotUI(p =>
             {
+                p.PathToSwaggerGenerator = "/swagger/docs";
+                p.ReConfigureUpstreamSwaggerJson = AlterUpstreamSwaggerJson;
+
                 p.InjectStylesheet("/swagger-ui/custom.css");
                 p.EnableDeepLinking();
 
@@ -17,6 +23,13 @@ namespace MachineCartSystem.Gateway.WebService.Initializers
                 p.OAuthUsePkce();
                 p.OAuth2RedirectUrl($"{configuration.GetValue<string>("GatewayUrl")}swagger/oauth2-redirect.html");
             });
+
+             string AlterUpstreamSwaggerJson(HttpContext context, string swaggerJson)
+            {
+                var swagger = JObject.Parse(swaggerJson);
+                // ... alter upstream json
+                return swagger.ToString(Formatting.Indented);
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace MachineCartSystem.Gateway.WebService.Initializers.Services
+namespace MachineCartSystem.Gateway.Web.Initializer
 {
     public class AuthenticationService 
     {

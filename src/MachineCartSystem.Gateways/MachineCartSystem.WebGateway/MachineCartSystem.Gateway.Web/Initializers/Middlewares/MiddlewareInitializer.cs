@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Ocelot.Middleware;
 
-namespace MachineCartSystem.Gateway.WebService.Initializers
+namespace MachineCartSystem.Gateway.Web.Initializer
 {
     public static class MiddlewareInitializer
     {

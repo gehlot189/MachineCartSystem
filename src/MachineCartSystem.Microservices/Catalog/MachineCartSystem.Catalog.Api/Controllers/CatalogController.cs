@@ -21,7 +21,8 @@ namespace MachineCartSystem.Catalog.Api.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await Task.FromResult<object>(new { age = "order" }));
+            throw new System.Exception();
+           // return Ok(await Task.FromResult<object>(new { age = "order" }));
         }
     }
 }

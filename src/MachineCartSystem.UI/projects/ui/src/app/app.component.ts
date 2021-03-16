@@ -1,9 +1,10 @@
-import { HeaderComponent } from './layout/header/header.component';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { Component, ViewChild, OnInit, Input, ViewChildren, QueryList } from '@angular/core';
-import { ComponentConstant, AppTranslationService } from 'projects/lib/src/public-api';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { AppTranslationService, ComponentConstant } from 'projects/lib/src/public-api';
+import { HeaderComponent } from './layout/header/header.component';
+const alertify: any = require('../assets/scripts/alertify.js');
 
 @UntilDestroy()
 @Component({
@@ -38,7 +39,6 @@ export class AppComponent implements OnInit {
     this.translationService.addLanguages(["en", "fr", "de", "pt", "ar", "ko"]);
     this.translationService.setDefaultLanguage('fr');
     this.checkAuthenticate();
-
   }
 
   private checkAuthenticate() {
@@ -50,5 +50,4 @@ export class AppComponent implements OnInit {
       }
     });
   }
-
 }

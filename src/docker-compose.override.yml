@@ -7,6 +7,15 @@ services:
   # ports:
   #    - "4200:4200"
 
+  machinecartsystem.sqlServer:
+    image: mcr.microsoft.com/mssql/server
+    container_name: MachineCartSystem.SqlServer
+    environment:
+        - SA_PASSWORD=sa@123
+        - ACCEPT_EULA=Y
+    ports:
+        - "5433:1433"
+
   machinecartsystem.gateway.web:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -47,3 +56,5 @@ services:
       - "2003:80"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    #depends_on:
+    #  - machinecartsystem.sqlServer

@@ -1,19 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { OpenIdConfiguration } from 'angular-auth-oidc-client';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AppConfigService {
-  private appConfig;
+  private appConfig: OpenIdConfiguration;
 
   constructor(private http: HttpClient) {
   }
 
-  loadAppConfig = (): Promise<void> => {
-    return this.http.get('/').toPromise().then(p => {
-      this.appConfig = p;
-    });
+  loadAppConfig = (): Observable<void> => {
+    return this.http.get('configuration/getConfig').pipe(map(() => null));
   }
 
   getAppConfig = () => {

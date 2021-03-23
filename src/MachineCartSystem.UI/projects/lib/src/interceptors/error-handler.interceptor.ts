@@ -20,7 +20,6 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
   }
 
   private errorHandler = (response: HttpEvent<any>) => {
-    debugger;
     const httpErrorCode = response['status'] as StatusCodes;
     switch (httpErrorCode) {
       case StatusCodes.UNAUTHORIZED:

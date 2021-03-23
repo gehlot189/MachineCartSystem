@@ -4,7 +4,7 @@ import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule, OidcConfigService } from 'angular-auth-oidc-client';
 import { ToastrModule } from 'ngx-toastr';
-import { EagerLoadModule, Environment } from 'projects/lib/src/public-api';
+import { AppConfigService, EagerLoadModule, Environment } from 'projects/lib/src/public-api';
 import { environment } from '../environments/environment';
 import { identityServer } from './../environments/identity-server';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +13,9 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
-  return () => oidcConfigService.withConfig(identityServer);
+  return () => {
+    return oidcConfigService.withConfig(identityServer);
+  };
 }
 
 @NgModule({
@@ -41,10 +43,20 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       useFactory: configureAuth,
       deps: [OidcConfigService],
       multi: true,
-    }
+    },
+    AppConfigService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
+  constructor(private appConfigService: AppConfigService) {
+    debugger;
+    //  oidcConfigService.withConfig(identityServer);
+    appConfigService.loadAppConfig().subscribe(p => {
+
+    }, (err) => {
+      debugger;
+    });
+  }
 }

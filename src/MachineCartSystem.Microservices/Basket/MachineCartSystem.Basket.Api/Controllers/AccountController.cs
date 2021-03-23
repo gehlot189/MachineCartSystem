@@ -10,15 +10,11 @@ namespace MachineCartSystem.BasketApi.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize(Policy.Admin)]
-    public class AccountController : ControllerBase
+    public class AccountController : BasketBaseController<AccountController>
     {
-        private readonly ILogger<AccountController> _logger;
-        private readonly IUserService _userService;
-
-        public AccountController(IUserService userService, ILogger<AccountController> logger)
+        public AccountController()
         {
-            _logger = logger;
-            _userService = userService;
+
         }
 
         [HttpGet]

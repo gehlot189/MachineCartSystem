@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OpenIdConfiguration } from 'angular-auth-oidc-client';
+import { StatusCodes } from 'http-status-codes';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ApiResponse } from '../utils/api-response';
 
 @Injectable()
 export class AppConfigService {
@@ -11,12 +13,16 @@ export class AppConfigService {
   constructor(private http: HttpClient) {
   }
 
-  loadAppConfig = (): Observable<void> => {
-    return this.http.get('configuration/getConfig').pipe(map(() => null));
-  }
+  private loadAppConfig = (): Observable<any> => this.http.get('configuration/getConfig');
 
-  getAppConfig = () => {
-    return this.appConfig;
+  getAppConfig = (): Promise<OpenIdConfiguration> => {
+    return this.loadAppConfig().pipe(map((response: ApiResponse) => {
+      this.appConfig = <OpenIdConfiguration>response.result;
+      if (!response.isError && response.statusCode == StatusCodes.OK) {
+        this.appConfig = <OpenIdConfiguration>response.result;
+      }
+      return this.appConfig;
+    })).toPromise()
   }
 
 }

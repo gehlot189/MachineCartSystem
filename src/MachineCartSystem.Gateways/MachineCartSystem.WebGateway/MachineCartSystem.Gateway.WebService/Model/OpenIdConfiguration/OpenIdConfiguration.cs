@@ -1,10 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using MachineCartSystem.Configuration;
 
-namespace MachineCartSystem.Gateway.WebService.Model.OpenIdConfigurationService
+namespace MachineCartSystem.Gateway.WebService.Model.OpenIdConfiguration
 {
     public class OpenIdConfiguration
     {
-        [JsonInclude]
         public string StsServer { get; set; }
         public string RedirectUrl { get; set; }
         public string PostLogoutRedirectUri { get; set; }
@@ -12,8 +11,9 @@ namespace MachineCartSystem.Gateway.WebService.Model.OpenIdConfigurationService
         public string Scope { get; set; }
         public string ResponseType { get; set; }
         public bool SilentRenew { get; set; }
+        public string SilentRenewUrl { get; set; }
         public string LilentRenewUrl { get; set; }
-        public string LogLevel { get; set; }
+        public LogLevel LogLevel { get; set; }
         public string PostLoginRoute { get; set; }
         public string ForbiddenRoute { get; set; }
         public string UnauthorizedRoute { get; set; }

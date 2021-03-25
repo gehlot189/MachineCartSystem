@@ -3,11 +3,7 @@
   "identityServerUrl": "http://localhost:5000/",
   "scope": "openid profile order basket catalog",
   "audiences": "order,basket,catalog",
-  "client": {
-    "url": "http://localhost:4200",
-    "auth-callback": "/auth-callback",
-    "login": "/login"
-  },
+  "clientUrl": "http://localhost:4200",
 
   "Logging": {
     "LogLevel": {
@@ -17,15 +13,15 @@
     }
   },
   "openIdConfiguration": {
-    "stsServer": { "$ref": "#/identityServerUrl" },
-    //"redirectUrl": [ "#/client/url", "#/client/auth-callback" ],
-    //"postLogoutRedirectUri": [ "#/client/url", "#/client/login" ],
+    "stsServer": "{stsServer}",
+    "redirectUrl": "{redirectUrl}/auth-callback",
+    "postLogoutRedirectUri": "{postLogoutRedirectUri}/login",
     "clientId": "angular",
-    //"scope": "#/scope",
+    "scope": "{scope}",
     "responseType": "code",
     "silentRenew": true,
-    "silentRenewUrl": "",
-    "logLevel": "LogLevel.Warn",
+    "silentRenewUrl": "{silentRenewUrl}/silent-refresh",
+    "logLevel": "Warn",
     // startCheckSession: true,
     // historyCleanupOff: false,
     "postLoginRoute": "/",
@@ -51,14 +47,14 @@
       "host": "http://machinecartsystem.basket.api:80/"
     }
   ],
-  "Jwt": {
-    "Signing": {
-      "PrivateKey": "MySecretKey"
+  "jwt": {
+    "signing": {
+      "privateKey": "MySecretKey"
     },
-    "Audiences": "#/audiences",
-    "Issuer": "http://machinecartsystem.identityserver:80/",
-    "Authority": "http://machinecartsystem.identityserver:80/",
-    "Scopes": "#/scope"
+    "audiences": ["{audiences}"],
+    "issuer": "http://machinecartsystem.identityserver:80/",
+    "authority": "http://machinecartsystem.identityserver:80/",
+    "scopes": ["{scopes}"]
   },
   "DbConfiguration": {
     "ConnectionString": "Server=MYPC;Database=MachineCartSystem.v1;Trusted_Connection=True;",

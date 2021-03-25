@@ -6,16 +6,13 @@ import { AuthModule, OidcConfigService } from 'angular-auth-oidc-client';
 import { ToastrModule } from 'ngx-toastr';
 import { AppConfigService, EagerLoadModule, Environment } from 'projects/lib/src/public-api';
 import { environment } from '../environments/environment';
-import { identityServer } from './../environments/identity-server';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 
-export function configureAuth(oidcConfigService: OidcConfigService) {
-  return () => {
-    return oidcConfigService.withConfig(identityServer);
-  };
+export function configureAuth(oidcConfigService: OidcConfigService, appConfigService: AppConfigService) {
+  return () => appConfigService.getAppConfig().then(p => oidcConfigService.withConfig(p));
 }
 
 @NgModule({
@@ -37,26 +34,11 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     ],
   providers: [
     { provide: Environment, useValue: environment },
-    OidcConfigService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: configureAuth,
-      deps: [OidcConfigService],
-      multi: true,
-    },
-    AppConfigService
+    { provide: APP_INITIALIZER, useFactory: configureAuth, deps: [OidcConfigService, AppConfigService], multi: true },
+    AppConfigService,
+    OidcConfigService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule {
-  constructor(private appConfigService: AppConfigService) {
-    debugger;
-    //  oidcConfigService.withConfig(identityServer);
-    appConfigService.loadAppConfig().subscribe(p => {
-
-    }, (err) => {
-      debugger;
-    });
-  }
-}
+export class AppModule { }

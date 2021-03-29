@@ -31,11 +31,11 @@ namespace MachineCartSystem.Configuration
         {
             return new JwtConfig
             {
-                Audiences = Configuration["Jwt:Audiences"].Split(new char[] { ',' }),
-                Authority = Configuration["Jwt:Authority"].ToString(),
-                Issuer = Configuration["Jwt:Issuer"].ToString(),
-                Key = Configuration["Jwt:Signing:PrivateKey"].ToCharArray(),
-                Scopes = Configuration["Jwt:Scopes"].Split(new char[] { ' ' })
+                Audiences = Configuration["jwt:audiences"].Split(new char[] { ',' }),
+                Authority = Configuration["jwt:authority"].ToString(),
+                Issuer = Configuration["jwt:issuer"].ToString(),
+                Key =new Signing { PrivateKey = Configuration["jwt:signing:privateKey"].ToString() },
+                Scopes = Configuration["jwt:scopes"].Split(new char[] { ' ' })
             };
         }
 

@@ -30,25 +30,25 @@ namespace MachineCartSystem.Service.Services
                 await _dbContext.UserDetail.Persist(_mapper).InsertOrUpdateAsync(userDetailVM);
                 await _dbContext.SaveChangesAsync();
             }
-            catch (OptimisticConcurrencyException ex)
+            //catch (OptimisticConcurrencyException ex)
+            //{
+            //    throw ex;
+            //}
+            //catch (DbUpdateConcurrencyException ex)
+            //{
+            //    throw ex;
+            //}
+            //catch (DbUpdateException ex)
+            //{
+            //    throw ex;
+            //}
+            //catch (DBConcurrencyException ex)
+            //{
+            //    throw ex;
+            //}
+            catch (System.Exception )
             {
-                throw ex;
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                throw ex;
-            }
-            catch (DbUpdateException ex)
-            {
-                throw ex;
-            }
-            catch (DBConcurrencyException ex)
-            {
-                throw ex;
-            }
-            catch (System.Exception ex)
-            {
-                throw ex;
+                //throw ex;
             }
 
 
@@ -61,25 +61,25 @@ namespace MachineCartSystem.Service.Services
                 await _dbContext.UserDetail.Persist(_mapper).InsertOrUpdateAsync(userDetailVM);
                 await _dbContext.SaveChangesAsync();
             }
-            catch (OptimisticConcurrencyException ex)
+            //catch (OptimisticConcurrencyException ex)
+            //{
+            //    throw ex;
+            //}
+            //catch (DbUpdateConcurrencyException ex)
+            //{
+            //    throw ex;
+            //}
+            //catch (DbUpdateException ex)
+            //{
+            //    throw ex;
+            //}
+            //catch (DBConcurrencyException ex)
+            //{
+            //    throw ex;
+            //}
+            catch (System.Exception )
             {
-                throw ex;
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                throw ex;
-            }
-            catch (DbUpdateException ex)
-            {
-                throw ex;
-            }
-            catch (DBConcurrencyException ex)
-            {
-                throw ex;
-            }
-            catch (System.Exception ex)
-            {
-                throw ex;
+                //throw ex;
             }
 
         }

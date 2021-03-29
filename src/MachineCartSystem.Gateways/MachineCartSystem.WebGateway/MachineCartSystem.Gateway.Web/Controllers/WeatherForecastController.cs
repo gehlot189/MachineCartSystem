@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MachineCartSystem.Configuration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,6 +21,7 @@ namespace MachineCartSystem.Gateway.Web.Controllers
         }
 
         [HttpGet]
+        [Permissions()]
         public string Get()
         {
             return "ocelot";

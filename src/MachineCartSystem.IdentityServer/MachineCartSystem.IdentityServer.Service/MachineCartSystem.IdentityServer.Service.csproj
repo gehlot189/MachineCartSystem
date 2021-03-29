@@ -9,11 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\" />
+    <ProjectReference Include="..\..\MachineCartSystem.Core\MachineCartSystem.Common\MachineCartSystem.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MachineCartSystem.Core\MachineCartSystem.Common\MachineCartSystem.Common.csproj" />
+    <Folder Include="Constants\" />
   </ItemGroup>
 
 </Project>

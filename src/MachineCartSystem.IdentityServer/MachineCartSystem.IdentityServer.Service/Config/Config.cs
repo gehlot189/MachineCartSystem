@@ -19,10 +19,21 @@ namespace MachineCartSystem.IdentityServer.Service
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
-                new ApiScope("basket", "Read Access to Basket Api"),
-                new ApiScope("order", "Read Access to Order Api"),
-                new ApiScope("catalog", "Read Access to Catalog Api"),
+                new ApiScope("create:events", "Read Access to Basket Api"),
+                new ApiScope("update:events", "Write Access to Basket Api"),
+                new ApiScope("view:events", "Write Access to Basket Api"),
+                new ApiScope("register:events", "Write Access to Basket Api"),
 
+                new ApiScope("read:basket", "Read Access to Basket Api"),
+                new ApiScope("save:basket", "Write Access to Basket Api"),
+                new ApiScope("upload:basket", "Upload Access to Basket Api"),
+                new ApiScope("delete:basket", "Delete Access to Basket Api"),
+
+                new ApiScope("read:order", "Read Access to Order Api"),
+                new ApiScope("write:order", "Write Access to Order Api"),
+
+                new ApiScope("read:catalog", "Read Access to Catalog Api"),
+                new ApiScope("write:catalog", "Write Access to Catalog Api"),
          };
     }
 }

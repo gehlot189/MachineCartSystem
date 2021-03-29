@@ -1,27 +1,40 @@
-﻿using IdentityModel;
-using MachineCartSystem.Common;
+﻿using MachineCartSystem.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
-using System.Security.Claims;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MachineCartSystem.Configuration
 {
     public static class AuthorizationExtension
     {
-        public static IServiceCollection AddCustomAuthorization(this IServiceCollection services, JwtConfig jwtConfig)
+        public static IServiceCollection AddCustomAuthorization(this IServiceCollection services, JwtConfig jwtConfig,
+            IEnumerable<PolicyApplier> policyAppliers=null)
         {
             services.AddAuthorization(p =>
             {
-                p.AddPolicy(Policy.Admin, q =>
-                 {
-                     q.RequireAuthenticatedUser();
-                     q.RequireRole(Role.Admin);
-                 });
-                p.AddPolicy(Policy.Basic, q =>
+                policyAppliers.ToList().ForEach(q =>
                 {
-                    q.RequireAuthenticatedUser();
-                    q.RequireRole(Role.Basic);
+                    p.AddPolicy(q.PoliyName, r =>
+                     {
+                         if (q.IsRequireAuthenticatedUser)
+                             r.RequireAuthenticatedUser();
+                         r.AddRequirements(q.AuthorizationRequirements);
+                     });
                 });
+
+                //p.AddPolicy(Policy.Minimum, q =>
+                // {
+                //     q.RequireAuthenticatedUser();
+                //     q.(new MinimumRequiredPolicyHandler());
+                // });
+                //p.AddPolicy(Policy.Basic, q =>
+                //{
+                //    q.RequireAuthenticatedUser();
+                //    q.RequireRole(Role.Basic);
+                //});
             });
+            
             return services;
         }
     }

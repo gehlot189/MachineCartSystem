@@ -15,6 +15,7 @@ namespace MachineCartSystem.IdentityServer.Service
                     ClientId = "angular",
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireConsent = false,
+                    AllowRememberConsent=false,
                     RequirePkce = true,
                     AllowAccessTokensViaBrowser=true,
                     RequireClientSecret=false,
@@ -44,12 +45,18 @@ namespace MachineCartSystem.IdentityServer.Service
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "order",
-                        "basket",
-                        "catalog"
+                        "read:basket",
+                        "write:basket",
+                        "upload:basket",
+                        "delete:basket",
+                        "read:order",
+                        "write:order",
+                        "read:catalog",
+                        "write:catalog"
                     },
                     AllowOfflineAccess=true,
-                    AccessTokenLifetime=1200
+                    AccessTokenLifetime=1200,
+                   // AlwaysIncludeUserClaimsInIdToken=true,
              }
             };
         }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using IdentityServer4.AccessTokenValidation;
 
 namespace MachineCartSystem.BasketApi
 {
@@ -30,6 +31,7 @@ namespace MachineCartSystem.BasketApi
             .AddCustomAuthorization(JwtConfig)
             .AddEFCore<MachineCartSystemDbContext>(DbConfig)
             .AddCustomSwagger(Configuration, JwtConfig)
+            .AddApplicationServices()
             .AddServices();
         }
 
@@ -62,7 +64,7 @@ namespace MachineCartSystem.BasketApi
             });
 
             app.UseAuthentication();
-
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

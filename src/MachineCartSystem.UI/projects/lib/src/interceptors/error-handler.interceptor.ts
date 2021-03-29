@@ -1,39 +1,49 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { StatusCodes } from 'http-status-codes';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { ComponentConstant } from '../index/constant.index';
 import { LoggingService } from './../logger/logging.service';
+import { Injectable } from '@angular/core';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor
+} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { StatusCodes } from 'http-status-codes';
+import { Router } from '@angular/router';
+import { ComponentConstant, Environment } from '../index/constant.index';
 
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
 
-  constructor(private logService: LoggingService,
+  constructor(private env: Environment,
+    private logService: LoggingService,
     private router: Router) {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    // debugger;
-    return next.handle(request).pipe(tap(_ => _, (err) => this.errorHandler(err)));
+    return next.handle(request).pipe(catchError(err => this.erroHandler(err)));
   }
 
-  private errorHandler = (response: HttpEvent<any>) => {
-    const httpErrorCode = response['status'] as StatusCodes;
+  private erroHandler = (response: HttpEvent<any>): Observable<HttpEvent<any>> => {
+    debugger;
+    if (!this.env.production) {
+      this.logService.logError('Request error ' + JSON.stringify(response));
+    }
+    const httpErrorCode = response['status'];
     switch (httpErrorCode) {
       case StatusCodes.UNAUTHORIZED:
-        //  this.alertService.showMessage('response', 'Error', MessageSeverity.error);
         this.router.navigateByUrl(ComponentConstant.Login);
         break;
       case StatusCodes.FORBIDDEN:
         // this.router.navigateByUrl('/auth/403');
-        //   this.alertService.showMessage('response', 'Error', MessageSeverity.error);
         this.router.navigateByUrl(ComponentConstant.Login);
         break;
+      case StatusCodes.BAD_REQUEST:
+        //  this.showError(error.message);
+        break;
       default:
-      // this.alertService.showMessage('response', 'Error', MessageSeverity.error);
+      //this.toasterService.pop('error', appToaster.errorHead, response['message']);
     }
-    // this.alertService.showMessage('response', 'Error', MessageSeverity.error);
+    throw response;
   }
 }

@@ -6,7 +6,6 @@ using MMLib.SwaggerForOcelot.DependencyInjection;
 using Serilog;
 using System.IO;
 using System.Linq;
-using MachineCartSystem.Gateway.WebService.Resolver;
 
 namespace MachineCartSystem.Gateway.Web
 {
@@ -34,7 +33,8 @@ namespace MachineCartSystem.Gateway.Web
                         p.AddJsonFile("appUrl.json", false, true);
                         p.AddJsonFile($"appUrl.{q.HostingEnvironment.EnvironmentName}.json", false, true);
 
-                        var identityFile = JsonResolver.ResolveIdentityConfigurationSetting(q.HostingEnvironment);
+                        var identityFile = Directory.GetFiles(q.HostingEnvironment.ContentRootPath, $"identity.{ q.HostingEnvironment.EnvironmentName}.json", SearchOption.AllDirectories).FirstOrDefault();
+
                         p.AddJsonFile(identityFile, false, true);
 
                         p.AddEnvironmentVariables();

@@ -1,15 +1,16 @@
-import {
-  HttpEvent, HttpHandler,
-
-  HttpInterceptor, HttpRequest
-} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Environment } from '../index/constant.index';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class HttpTokenInterceptor implements HttpInterceptor {
 
   constructor(private authService: OidcSecurityService, private env: Environment) {
   }

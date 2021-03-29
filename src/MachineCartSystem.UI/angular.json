@@ -68,40 +68,13 @@
               "projects/ui/src/styles.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": [],
-            "allowedCommonJsDependencies": [
-              "lodash"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [{
                 "replace": "projects/ui/src/environments/environment.ts",
                 "with": "projects/ui/src/environments/environment.prod.ts"
-              }],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [{
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            },
-            "staging": {
-              "fileReplacements": [{
-                "replace": "projects/ui/src/environments/environment.ts",
-                "with": "projects/ui/src/environments/environment.stage.ts"
               }],
               "optimization": true,
               "outputHashing": "all",
@@ -132,9 +105,6 @@
           "configurations": {
             "production": {
               "browserTarget": "ui:build:production"
-            },
-            "staging": {
-              "browserTarget": "ui:build:staging"
             }
           }
         },

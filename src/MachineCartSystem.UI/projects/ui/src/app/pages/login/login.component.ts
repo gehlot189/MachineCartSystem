@@ -1,9 +1,10 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { timer } from 'rxjs';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { UserLogin } from './user-login';
+import { timer } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AlertService, MessageSeverity } from 'projects/lib/src/public-api';
 
 @UntilDestroy()
 @Component({
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   @Input()
   isModal = false;
   constructor(private oidcSecurityService: OidcSecurityService,
-    private router: Router) {
+    private router: Router,
+    private alertService: AlertService) {
   }
 
   ngOnDestroy(): void {
@@ -30,11 +32,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   showErrorAlert(caption: string, message: string) {
-    //this.AlertService.showMessage(caption, message, MessageSeverity.error);
+    this.alertService.showMessage(caption, message, MessageSeverity.error);
   }
 
   ngOnInit(): void {
-    // debugger;
+    debugger;
     //this.userLogin.rememberMe = this.authService.rememberMe;
 
   }
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   login() {
     this.isLoading = true;
-    //  this.AlertService.startLoadingMessage("", "Attempting login...");
+    this.alertService.startLoadingMessage("", "Attempting login...");
     timer().pipe(untilDestroyed(this)).subscribe(() => {
       this.router.navigate([this.oidcSecurityService.authorize()]);
     });

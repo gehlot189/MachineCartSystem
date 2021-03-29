@@ -1,5 +1,4 @@
-﻿using AutoWrapper;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -31,7 +30,6 @@ namespace MachineCartSystem.Gateway.Web.Initializer
             app.UseHttpsRedirection();
 
             // app.UseHeaderPropagation();
-            app.UseApiResponseAndExceptionWrapper();
 
             app.UseEndpoints(endpoints =>
             {

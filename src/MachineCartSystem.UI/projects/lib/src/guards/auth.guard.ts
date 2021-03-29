@@ -1,7 +1,7 @@
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Route, Router, RouterStateSnapshot } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ComponentConstant } from '../configs/component-constant';
@@ -12,12 +12,12 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private oidcSecurityService: OidcSecurityService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    debugger;
+    // debugger;
     return this.checkUser();
   }
 
   canLoad(state: Route): Observable<boolean> {
-    debugger;
+    // debugger;
     return this.checkUser();
   }
 

@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Observable } from 'rxjs';
 
@@ -19,8 +19,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.httpClient.get('catalog-all').subscribe(p => {
-      debugger;
+
+    this.httpClient.get('catalog-all').pipe(untilDestroyed(this)).subscribe(p => {
+    }, err => {
     });
   }
 

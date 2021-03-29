@@ -1,12 +1,36 @@
 {
-  "GatewayUrl": "http://localhost:5001/",
-  "IdentityServerUrl": "http://localhost:5000/",
+  "gatewayUrl": "http://localhost:5001/",
+  "identityServerUrl": "http://localhost:5000/",
+  "scope": "openid profile order basket catalog",
+  "audiences": "order,basket,catalog",
+  "clientUrl": "http://localhost:4200",
+
   "Logging": {
     "LogLevel": {
       "Default": "Information",
       "Microsoft": "Warning",
       "Microsoft.Hosting.Lifetime": "Information"
     }
+  },
+  "openIdConfiguration": {
+    "stsServer": "{stsServer}",
+    "redirectUrl": "{redirectUrl}/auth-callback",
+    "postLogoutRedirectUri": "{postLogoutRedirectUri}/login",
+    "clientId": "angular",
+    "scope": "{scope}",
+    "responseType": "code",
+    "silentRenew": true,
+    "silentRenewUrl": "{silentRenewUrl}/silent-refresh",
+    "logLevel": "Warn",
+    // startCheckSession: true,
+    // historyCleanupOff: false,
+    "postLoginRoute": "/",
+    "forbiddenRoute": "/forbidden",
+    "unauthorizedRoute": "/unauthorized",
+    //maxIdTokenIatOffsetAllowedInSeconds: 40,
+    "renewTimeBeforeTokenExpiresInSeconds": 10,
+    "autoUserinfo": true,
+    "useRefreshToken": false
   },
   "AllowedHosts": "*",
   "Api": [
@@ -23,14 +47,14 @@
       "host": "http://machinecartsystem.basket.api:80/"
     }
   ],
-  "Jwt": {
-    "Signing": {
-      "PrivateKey": "MySecretKey"
+  "jwt": {
+    "signing": {
+      "privateKey": "MySecretKey"
     },
-    "Audiences": "order,basket,catalog",
-    "Issuer": "http://machinecartsystem.identityserver:80/",
-    "Authority": "http://machinecartsystem.identityserver:80/",
-    "Scopes": "openid profile order basket catalog"
+    "audiences": ["{audiences}"],
+    "issuer": "http://machinecartsystem.identityserver:80/",
+    "authority": "http://machinecartsystem.identityserver:80/",
+    "scopes": ["{scopes}"]
   },
   "DbConfiguration": {
     "ConnectionString": "Server=MYPC;Database=MachineCartSystem.v1;Trusted_Connection=True;",

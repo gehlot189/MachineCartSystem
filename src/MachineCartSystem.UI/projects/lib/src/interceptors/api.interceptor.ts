@@ -1,15 +1,14 @@
-import { Inject, Injectable } from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
+  HttpEvent, HttpHandler,
+
+  HttpInterceptor, HttpRequest
 } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Environment } from '../index/constant.index';
 
 @Injectable()
-export class ApiPrefixInterceptor implements HttpInterceptor {
+export class ApiInterceptor implements HttpInterceptor {
 
   constructor(private env: Environment) {
   }

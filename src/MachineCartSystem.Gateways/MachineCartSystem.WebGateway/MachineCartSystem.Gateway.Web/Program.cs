@@ -1,12 +1,9 @@
+using MachineCartSystem.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MMLib.SwaggerForOcelot.DependencyInjection;
 using Serilog;
-using System.IO;
-using System.Linq;
-using MachineCartSystem.Gateway.WebService.Resolver;
 
 namespace MachineCartSystem.Gateway.Web
 {
@@ -25,17 +22,15 @@ namespace MachineCartSystem.Gateway.Web
                     {
                         p.SetBasePath(q.HostingEnvironment.ContentRootPath);
 
-                        p.AddOcelotWithSwaggerSupport(q.HostingEnvironment, "Configuration", "ocelot.swagger");
+                        p.AddOcelotWithSwaggerSupport(q.HostingEnvironment, "OcelotConfiguration", "ocelot.swagger");
                         p.AddJsonFile("ocelot.json", false, true);
 
+                        p.AddJsonFile("app-url.json", false, true);
+                        p.AddJsonFile($"app-url.{q.HostingEnvironment.EnvironmentName}.json", false, true);
+
+                        var appSetting = JsonResolver.ResolveGatewayAppSettingConfiguration(q.HostingEnvironment, "appsettings");
                         p.AddJsonFile("appsettings.json", false, true);
                         p.AddJsonFile($"appsettings.{q.HostingEnvironment.EnvironmentName}.json", false, true);
-
-                        p.AddJsonFile("appUrl.json", false, true);
-                        p.AddJsonFile($"appUrl.{q.HostingEnvironment.EnvironmentName}.json", false, true);
-
-                        var identityFile = JsonResolver.ResolveIdentityConfigurationSetting(q.HostingEnvironment);
-                        p.AddJsonFile(identityFile, false, true);
 
                         p.AddEnvironmentVariables();
                     });

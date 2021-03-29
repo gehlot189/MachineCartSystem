@@ -1,0 +1,23 @@
+{
+  "GatewayUrl": "http://localhost:5001/",
+  "IdentityServerUrl": "http://localhost:5000/",
+  "IssuerOrAuthority": "http://machinecartsystem.identityserver:80/",
+  "Basket": {
+    "Url": "http://machinecartsystem.basket.api:2001/",
+    "Scope": "basket.read",
+    "Audiences": "basket",
+    "PrivateKey": "MySecretKey"
+  },
+  "Order": {
+    "Url": "http://machinecartsystem.order.api:2001/",
+    "Scope": "order.read",
+    "Audiences": "order",
+    "PrivateKey": "MySecretKey"
+  },
+  "Catalog": {
+    "Url": "http://machinecartsystem.catalog.api:2001/",
+    "Scope": "catalog.read",
+    "Audiences": "catalog",
+    "PrivateKey": "MySecretKey"
+  }
+}

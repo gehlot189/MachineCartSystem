@@ -9,10 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MachineCartSystem.Order.Service\MachineCartSystem.Order.Service.csproj" />
+    <ProjectReference Include="..\..\..\MachineCartSystem.Core\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
   </ItemGroup>
-  <Target Name="identityContent" AfterTargets="AfterBuild">
-    <Copy SourceFiles="..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.Development.json;&#xD;&#xA;          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.json;&#xD;&#xA;          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.prod.json;" SkipUnchangedFiles="True" OverwriteReadOnlyFiles="True" DestinationFolder="$(OutDir)" />
-  </Target>
 
 </Project>

@@ -9,8 +9,9 @@ namespace MachineCartSystem.Catalog.Api
 {
     public class Startup : BaseStartup
     {
-        public Startup(IWebHostEnvironment env) : base(env)
+        public Startup(IConfiguration configuration) : base(configuration)
         {
+
         }
 
 

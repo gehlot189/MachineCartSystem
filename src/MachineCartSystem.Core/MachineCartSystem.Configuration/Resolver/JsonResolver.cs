@@ -1,42 +1,52 @@
 ﻿using MachineCartSystem.Configuration;
-using MachineCartSystem.Gateway.WebService.Model.OpenIdConfiguration;
 using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Linq;
 
-namespace MachineCartSystem.Gateway.WebService.Resolver
+namespace MachineCartSystem.Configuration
 {
     public class JsonResolver
     {
-        public static string ResolveIdentityConfigurationSetting(IWebHostEnvironment hostingEnvironment)
+        public static string ResolveGatewayAppSettingConfiguration(IWebHostEnvironment hostingEnvironment, string name)
+        {
+            var result1 = ReadFile(hostingEnvironment, name);
+            var resultGlobal = ReadFile(hostingEnvironment, "global");
+
+            // ResolveJwtSetting(hostingEnvironment, result.Item1);
+            ResolveOpenIdConfiguration(hostingEnvironment, result.Item1);
+
+            return WriteFile(result);
+        }
+
+        public static string ResolveGlobalConfiguration(IWebHostEnvironment hostingEnvironment)
         {
             var identityFile = Directory.GetFiles(hostingEnvironment.ContentRootPath, $"identity.{ hostingEnvironment.EnvironmentName}.json", SearchOption.AllDirectories).FirstOrDefault();
             var textFile = File.ReadAllText(identityFile);
             var jObject = JObject.Parse(textFile);
 
             ResolveJwtSetting(hostingEnvironment, jObject);
-            ResolveOpenIdConfigurationSetting(hostingEnvironment, jObject);
+            ResolveOpenIdConfiguration(hostingEnvironment, jObject);
 
             File.WriteAllText(identityFile, jObject.ToString());
             return identityFile;
         }
 
-        private static void ResolveOpenIdConfigurationSetting(IWebHostEnvironment hostingEnvironment,JObject jObject)
+        private static void ResolveOpenIdConfiguration(IWebHostEnvironment hostingEnvironment, JObject jObject)
         {
-            var openIdConfigObject = jObject.SelectToken("openIdConfiguration");
+            var openIdConfigObject = jObject.SelectToken(nameof(OpenIdConfiguration));
 
             var openIdConfiguration = JsonConvert.DeserializeObject<OpenIdConfiguration>(openIdConfigObject.ToString());
 
-            openIdConfiguration.StsServer = jObject["identityServerUrl"].Value<string>();
+            openIdConfiguration.StsServer = jObject["IdentityServerUrl"].Value<string>();
             openIdConfiguration.RedirectUrl = openIdConfiguration.RedirectUrl.Replace("{redirectUrl}", jObject["clientUrl"].Value<string>());
             openIdConfiguration.PostLogoutRedirectUri = openIdConfiguration.PostLogoutRedirectUri.Replace("{postLogoutRedirectUri}", jObject["clientUrl"].Value<string>());
             openIdConfiguration.SilentRenewUrl = openIdConfiguration.SilentRenewUrl.Replace("{silentRenewUrl}", jObject["clientUrl"].Value<string>());
 
             openIdConfiguration.Scope = jObject["scope"].Value<string>();
 
-            jObject["openIdConfiguration"] = JToken.FromObject(openIdConfiguration);
+            jObject[nameof(OpenIdConfiguration)] = JToken.FromObject(openIdConfiguration);
         }
 
         private static void ResolveJwtSetting(IWebHostEnvironment hostingEnvironment, JObject jObject)
@@ -49,5 +59,19 @@ namespace MachineCartSystem.Gateway.WebService.Resolver
 
             jObject["jwt"] = JToken.FromObject(jwtConfig);
         }
+
+        private static (JObject, string) ReadFile(IWebHostEnvironment hostingEnvironment, string name)
+        {
+            var file = Directory.GetFiles(hostingEnvironment.ContentRootPath, $"{name}.{ hostingEnvironment.EnvironmentName}.json", SearchOption.AllDirectories).FirstOrDefault();
+            var textFile = File.ReadAllText(file);
+            return (JObject.Parse(textFile), file);
+        }
+
+        private static string WriteFile((JObject, string) result)
+        {
+            File.WriteAllText(result.Item2, result.Item1.ToString());
+            return result.Item2;
+        }
+
     }
 }

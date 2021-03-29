@@ -1,16 +1,15 @@
-﻿using MachineCartSystem.Shared;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
 namespace MachineCartSystem.Configuration
 {
     public abstract class BaseStartup
     {
-        protected  IConfiguration Configuration;
+        protected readonly IConfiguration Configuration;
 
-        public BaseStartup(IWebHostEnvironment env)
+        public BaseStartup(IConfiguration configuration )
         {
-            //Configuration = ConfigReader.GetConfig(env.EnvironmentName);
+            Configuration = configuration;
         }
 
         public DbConfig DbConfig => GetDbConfigSetting();
@@ -31,11 +30,11 @@ namespace MachineCartSystem.Configuration
         {
             return new JwtConfig
             {
-                Audiences = Configuration["jwt:audiences"].Split(new char[] { ',' }),
-                Authority = Configuration["jwt:authority"].ToString(),
-                Issuer = Configuration["jwt:issuer"].ToString(),
-                Key =new Signing { PrivateKey = Configuration["jwt:signing:privateKey"].ToString() },
-                Scopes = Configuration["jwt:scopes"].Split(new char[] { ' ' })
+                Audiences = Configuration["Jwt:Audiences"].Split(new char[] { ',' }),
+                Authority = Configuration["Jwt:Authority"].ToString(),
+                Issuer = Configuration["Jwt:Issuer"].ToString(),
+             //   Key = Configuration["Jwt:Signing:PrivateKey"].ToCharArray(),
+                Scopes = Configuration["Jwt:Scopes"].Split(new char[] { ' ' })
             };
         }
 

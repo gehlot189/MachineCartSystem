@@ -13,7 +13,7 @@ namespace MachineCartSystem.Configuration
         {
             services.AddAuthorization(p =>
             {
-                policyAppliers.ToList().ForEach(q =>
+                policyAppliers?.ToList().ForEach(q =>
                 {
                     p.AddPolicy(q.PoliyName, r =>
                      {

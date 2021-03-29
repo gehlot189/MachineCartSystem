@@ -55,13 +55,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineCartSystem.Common", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineCartSystem.Configuration", "MachineCartSystem.Core\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj", "{80392E82-4591-4354-9D02-6DFC116477D9}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MachineCartSystem.Shared", "MachineCartSystem.Core\MachineCartSystem.Shared\MachineCartSystem.Shared.shproj", "{D0637348-C8DE-40D4-8D25-FF1596F28482}"
-EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		MachineCartSystem.Core\MachineCartSystem.Shared\MachineCartSystem.Shared.projitems*{80392e82-4591-4354-9d02-6dfc116477d9}*SharedItemsImports = 5
-		MachineCartSystem.Core\MachineCartSystem.Shared\MachineCartSystem.Shared.projitems*{d0637348-c8de-40d4-8d25-ff1596f28482}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -155,7 +149,6 @@ Global
 		{70D83DEB-88FF-44D9-8BDA-70D0055CD680} = {4736E66C-AEB5-45E6-9F2A-D350BDB12093}
 		{9451B75B-EA86-4D00-831C-5C967FBFD6E4} = {166E36C8-1E32-4577-A1A7-19D1B1955665}
 		{80392E82-4591-4354-9D02-6DFC116477D9} = {166E36C8-1E32-4577-A1A7-19D1B1955665}
-		{D0637348-C8DE-40D4-8D25-FF1596F28482} = {166E36C8-1E32-4577-A1A7-19D1B1955665}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43502D4D-6921-484E-9D2F-632259A40C93}

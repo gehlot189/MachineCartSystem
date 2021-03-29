@@ -28,8 +28,6 @@
       <UserProperties appsettings_1json__JsonSchema="http://json.schemastore.org/appsscript" />
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="identityContent" AfterTargets="AfterBuild">
-    <Copy SourceFiles="..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.Development.json;&#xD;&#xA;          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.json;&#xD;&#xA;          ..\..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.prod.json;" SkipUnchangedFiles="True" OverwriteReadOnlyFiles="True" DestinationFolder="$(OutDir)" />
-  </Target>
+
 
 </Project>

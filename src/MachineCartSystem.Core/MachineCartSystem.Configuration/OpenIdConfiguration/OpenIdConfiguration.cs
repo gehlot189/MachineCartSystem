@@ -1,6 +1,4 @@
-﻿using MachineCartSystem.Configuration;
-
-namespace MachineCartSystem.Gateway.WebService.Model.OpenIdConfiguration
+﻿namespace MachineCartSystem.Configuration
 {
     public class OpenIdConfiguration
     {

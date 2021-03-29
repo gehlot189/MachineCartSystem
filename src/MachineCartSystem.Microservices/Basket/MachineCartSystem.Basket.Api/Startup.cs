@@ -12,7 +12,7 @@ namespace MachineCartSystem.BasketApi
 {
     public class Startup : BaseStartup
     {
-        public Startup(IConfiguration configuration, IWebHostEnvironment env) : base( env)
+        public Startup(IConfiguration configuration) : base(configuration)
         {
 
         }

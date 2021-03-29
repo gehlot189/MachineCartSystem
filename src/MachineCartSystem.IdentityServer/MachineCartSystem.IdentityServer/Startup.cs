@@ -15,9 +15,9 @@ namespace MachineCartSystem.IdentityServer
     {
         public IWebHostEnvironment Environment { get; }
 
-        public Startup(IWebHostEnvironment environment, IConfiguration configuration) : base(environment)
+        public Startup(IConfiguration configuration) : base(configuration)
         {
-            Environment = environment;
+
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -77,7 +77,7 @@ namespace MachineCartSystem.IdentityServer
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (Environment.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }

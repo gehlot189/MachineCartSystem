@@ -1,5 +1,5 @@
 ﻿using AutoWrapper.Wrappers;
-using MachineCartSystem.Gateway.WebService.Model.OpenIdConfiguration;
+using MachineCartSystem.Configuration;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MachineCartSystem.Gateway.Web.Controllers
@@ -17,7 +17,14 @@ namespace MachineCartSystem.Gateway.Web.Controllers
 
         [HttpGet]
         [Route("getConfig")]
-        public ApiResponse GetIdentityServerConfiguration()
+        public ApiResponse GetOpenIdConfigurationConfiguration()
+        {
+            return new ApiResponse(_openIdConfiguration);
+        }
+
+        [HttpGet]
+        [Route("getBasketApiConfig")]
+        public ApiResponse GetBasketApiConfiguration()
         {
             return new ApiResponse(_openIdConfiguration);
         }

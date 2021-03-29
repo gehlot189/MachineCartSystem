@@ -1,9 +1,7 @@
 ﻿using MachineCartSystem.Gateway.WebService;
-using MachineCartSystem.Gateway.WebService.Model.OpenIdConfiguration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
@@ -21,9 +19,7 @@ namespace MachineCartSystem.Gateway.Web.Initializer
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>();
             //.AddDevspacesSupport();
 
-            services.Configure<OpenIdConfiguration>(configuration.GetSection("openIdConfiguration"));
-            services.AddSingleton(p => p.GetService<IOptions<OpenIdConfiguration>>().Value);
-
+            
             //services.AddHttpClient<ICatalogService, CatalogService>()
             //    .AddDevspacesSupport();
 

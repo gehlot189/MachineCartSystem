@@ -10,7 +10,7 @@ namespace MachineCartSystem.Configuration
 
         public BaseStartup(IWebHostEnvironment env)
         {
-            Configuration = ConfigReader.GetConfig(env.EnvironmentName);
+            //Configuration = ConfigReader.GetConfig(env.EnvironmentName);
         }
 
         public DbConfig DbConfig => GetDbConfigSetting();

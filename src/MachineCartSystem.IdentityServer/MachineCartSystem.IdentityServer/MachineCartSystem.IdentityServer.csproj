@@ -20,5 +20,7 @@
     <Copy SourceFiles="..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.Development.json;&#xD;&#xA;          ..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.json;&#xD;&#xA;  
       ..\..\MachineCartSystem.Core\MachineCartSystem.Shared\ConfigFiles\identity.prod.json;" SkipUnchangedFiles="True" OverwriteReadOnlyFiles="True" DestinationFolder="$(OutDir)" />
   </Target>
-
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+  </ItemGroup>
 </Project>

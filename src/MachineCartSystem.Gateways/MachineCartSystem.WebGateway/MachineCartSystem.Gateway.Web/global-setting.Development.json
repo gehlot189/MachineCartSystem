@@ -1,0 +1,29 @@
+{
+  "GatewayUrl": "http://localhost:5001/",
+  "IdentityServerUrl": "http://localhost:5000/",
+  "Scope": "openid profile order basket catalog",
+  "Audiences": "order,basket,catalog",
+  "ClientUrl": "http://localhost:4200",
+
+  "Api": [
+    {
+      "Name": "Catalog",
+      "Host": "http://machinecartsystem.catalog.api:80/"
+    },
+    {
+      "Name": "Order",
+      "Host": "http://machinecartsystem.order.api:80/"
+    },
+    {
+      "Name": "Basket",
+      "Host": "http://machinecartsystem.basket.api:80/"
+    }
+  ]
+  //"DbConfiguration": {
+  //  "ConnectionString": "Server=MYPC;Database=MachineCartSystem.v1;Trusted_Connection=True;",
+  //  "Attempt": {
+  //    "MaxRetryCount": 3,
+  //    "MaxRetryDelayInSeconds": 3
+  //  }
+  //}
+}

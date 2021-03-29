@@ -8,13 +8,13 @@ namespace MachineCartSystem.Shared
     {
         public static IConfiguration GetConfig(string env)
         {
-            var configurationBuilder = new ConfigurationBuilder();
-            var dcInfo = new DirectoryInfo(Directory.GetCurrentDirectory());
-            var path = dcInfo.GetFiles($"identity.{env}.json", SearchOption.AllDirectories).FirstOrDefault().FullName;
-            configurationBuilder.AddJsonFile(path, false);
+            //var configurationBuilder = new ConfigurationBuilder();
+            //var dcInfo = new DirectoryInfo(Directory.GetCurrentDirectory());
+            //var path = dcInfo.GetFiles($"identity.{env}.json", SearchOption.AllDirectories).FirstOrDefault().FullName;
+            //configurationBuilder.AddJsonFile(path, false);
 
-            var root = configurationBuilder.Build();
-            return root;
+            //var root = configurationBuilder.Build();
+            //return root;
         }
     }
 }

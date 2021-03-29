@@ -1,0 +1,22 @@
+{
+  "openIdConfiguration": {
+    "stsServer": "{stsServer}",
+    "redirectUrl": "{redirectUrl}/auth-callback",
+    "postLogoutRedirectUri": "{postLogoutRedirectUri}/login",
+    "clientId": "angular",
+    "scope": "{scope}",
+    "responseType": "code",
+    "silentRenew": true,
+    "silentRenewUrl": "{silentRenewUrl}/silent-refresh",
+    "logLevel": "Warn",
+    // startCheckSession: true,
+    // historyCleanupOff: false,
+    "postLoginRoute": "/",
+    "forbiddenRoute": "/forbidden",
+    "unauthorizedRoute": "/unauthorized",
+    //maxIdTokenIatOffsetAllowedInSeconds: 40,
+    "renewTimeBeforeTokenExpiresInSeconds": 10,
+    "autoUserinfo": true,
+    "useRefreshToken": false
+  }
+}

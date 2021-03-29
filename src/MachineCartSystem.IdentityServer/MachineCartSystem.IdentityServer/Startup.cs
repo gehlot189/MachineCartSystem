@@ -23,6 +23,11 @@ namespace MachineCartSystem.IdentityServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //const string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;database=IdentityServer4.Quickstart.EntityFramework-2.0.0;trusted_connection=yes;";
+            //var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
+
+
             //IdentityModelEventSource.ShowPII = true; //Add this line
 
             services.AddCors(p => p.AddPolicy("AllowOrigin", options =>

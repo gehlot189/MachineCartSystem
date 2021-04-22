@@ -2,16 +2,18 @@
 using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.IO;
 using System.Linq;
 
 namespace MachineCartSystem.Configuration
 {
+    [Obsolete]
     public class JsonResolver
     {
         public static string ResolveGatewayAppSettingConfiguration(IWebHostEnvironment hostingEnvironment, string name)
         {
-            var result1 = ReadFile(hostingEnvironment, name);
+            var result = ReadFile(hostingEnvironment, name);
             var resultGlobal = ReadFile(hostingEnvironment, "global");
 
             // ResolveJwtSetting(hostingEnvironment, result.Item1);
@@ -35,18 +37,18 @@ namespace MachineCartSystem.Configuration
 
         private static void ResolveOpenIdConfiguration(IWebHostEnvironment hostingEnvironment, JObject jObject)
         {
-            var openIdConfigObject = jObject.SelectToken(nameof(OpenIdConfiguration));
+            //var openIdConfigObject = jObject.SelectToken(nameof(OpenIdConfiguration));
 
-            var openIdConfiguration = JsonConvert.DeserializeObject<OpenIdConfiguration>(openIdConfigObject.ToString());
+            //var openIdConfiguration = JsonConvert.DeserializeObject<OpenIdConfiguration>(openIdConfigObject.ToString());
 
-            openIdConfiguration.StsServer = jObject["IdentityServerUrl"].Value<string>();
-            openIdConfiguration.RedirectUrl = openIdConfiguration.RedirectUrl.Replace("{redirectUrl}", jObject["clientUrl"].Value<string>());
-            openIdConfiguration.PostLogoutRedirectUri = openIdConfiguration.PostLogoutRedirectUri.Replace("{postLogoutRedirectUri}", jObject["clientUrl"].Value<string>());
-            openIdConfiguration.SilentRenewUrl = openIdConfiguration.SilentRenewUrl.Replace("{silentRenewUrl}", jObject["clientUrl"].Value<string>());
+            //openIdConfiguration.StsServer = jObject["IdentityServerUrl"].Value<string>();
+            //openIdConfiguration.RedirectUrl = openIdConfiguration.RedirectUrl.Replace("{redirectUrl}", jObject["clientUrl"].Value<string>());
+            //openIdConfiguration.PostLogoutRedirectUri = openIdConfiguration.PostLogoutRedirectUri.Replace("{postLogoutRedirectUri}", jObject["clientUrl"].Value<string>());
+            //openIdConfiguration.SilentRenewUrl = openIdConfiguration.SilentRenewUrl.Replace("{silentRenewUrl}", jObject["clientUrl"].Value<string>());
 
-            openIdConfiguration.Scope = jObject["scope"].Value<string>();
+            //openIdConfiguration.Scope = jObject["scope"].Value<string>();
 
-            jObject[nameof(OpenIdConfiguration)] = JToken.FromObject(openIdConfiguration);
+            //jObject[nameof(OpenIdConfiguration)] = JToken.FromObject(openIdConfiguration);
         }
 
         private static void ResolveJwtSetting(IWebHostEnvironment hostingEnvironment, JObject jObject)

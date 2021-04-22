@@ -25,10 +25,10 @@ namespace MachineCartSystem.Gateway.Web
                         p.AddOcelotWithSwaggerSupport(q.HostingEnvironment, "OcelotConfiguration", "ocelot.swagger");
                         p.AddJsonFile("ocelot.json", false, true);
 
-                        p.AddJsonFile("app-url.json", false, true);
-                        p.AddJsonFile($"app-url.{q.HostingEnvironment.EnvironmentName}.json", false, true);
+                        //p.AddJsonFile("app-url.json", false, true);
+                        //p.AddJsonFile($"app-url.{q.HostingEnvironment.EnvironmentName}.json", false, true);
 
-                        var appSetting = JsonResolver.ResolveGatewayAppSettingConfiguration(q.HostingEnvironment, "appsettings");
+                      //  var appSetting = JsonResolver.ResolveGatewayAppSettingConfiguration(q.HostingEnvironment, "appsettings");
                         p.AddJsonFile("appsettings.json", false, true);
                         p.AddJsonFile($"appsettings.{q.HostingEnvironment.EnvironmentName}.json", false, true);
 

@@ -1,6 +1,8 @@
 ﻿using AutoWrapper.Wrappers;
-using MachineCartSystem.Configuration;
+using MachineCartSystem.Configuration.Config.FileConfigProvider;
+using MachineCartSystem.Gateway.WebService.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace MachineCartSystem.Gateway.Web.Controllers
 {
@@ -8,25 +10,25 @@ namespace MachineCartSystem.Gateway.Web.Controllers
     [Route("api/configuration")]
     public class ConfigurationController : GatewayBaseController<ConfigurationController>
     {
-        private readonly OpenIdConfiguration _openIdConfiguration;
+        private readonly IConfigurationService _configurationService;
 
-        public ConfigurationController(OpenIdConfiguration openIdConfiguration)
+        public ConfigurationController(IConfigurationService configurationService)
         {
-            _openIdConfiguration = openIdConfiguration;
+            _configurationService = configurationService;
         }
 
         [HttpGet]
         [Route("getConfig")]
-        public ApiResponse GetOpenIdConfigurationConfiguration()
+        public async Task<ApiResponse> GetOpenIdConfigurationConfiguration()
         {
-            return new ApiResponse(_openIdConfiguration);
+            return new ApiResponse(await _configurationService.GetOpenIdConfigurationConfiguration());
         }
 
-        [HttpGet]
-        [Route("getBasketApiConfig")]
-        public ApiResponse GetBasketApiConfiguration()
+        [HttpPost]
+        [Route("getApiConfig")]
+        public async Task<ApiResponse> GetApiConfiguration(ApiEnv apiEnv)
         {
-            return new ApiResponse(_openIdConfiguration);
+            return new ApiResponse(await _configurationService.GetApiConfiguration(apiEnv));
         }
     }
 }

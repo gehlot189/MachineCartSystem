@@ -36,10 +36,6 @@
     </Content>-->
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ApiConfiguration\OpenIdConfiguration\" />
-  </ItemGroup>
-
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties />

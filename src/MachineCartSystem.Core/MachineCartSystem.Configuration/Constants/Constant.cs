@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace MachineCartSystem.Configuration
 {
-    public class ApiConstant
+    public class Constant
     {
-        public const string Basket = "Basket";
     }
 }

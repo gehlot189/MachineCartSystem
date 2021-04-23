@@ -13,9 +13,13 @@ namespace MachineCartSystem.Gateway.Web.Initializer
         {
             services.AddAutoMapper((serviceProvider, automapper) =>
             {
-                automapper.AddCollectionMappers();
-                automapper.UseEntityFrameworkCoreModel<T1>(serviceProvider);
             }, typeof(T2).Assembly);
+
+            //services.AddAutoMapper((serviceProvider, automapper) =>
+            //{
+            //    automapper.AddCollectionMappers();
+            //    automapper.UseEntityFrameworkCoreModel<T1>(serviceProvider);
+            //}, typeof(T2).Assembly);
         }
     }
 }

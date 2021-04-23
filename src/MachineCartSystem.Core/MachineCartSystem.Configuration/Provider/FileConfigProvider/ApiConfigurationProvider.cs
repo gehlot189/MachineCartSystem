@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 
@@ -33,21 +32,22 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
         {
             try
             {
-                var data = JsonContent.Create<ApiEnv>(new ApiEnv { Environment = _apiConfigurationSource.HostEnvironment.EnvironmentName, ApiName = _apiConfigurationSource.ApiName });
+                var data = JsonContent.Create<Api>(_apiConfigurationSource.Api);
                 using (HttpClient client = new HttpClient())
                 {
                     var httpResponse = await client.PostAsync(_apiConfigurationSource.ReqUrl, data);
                     if (httpResponse.IsSuccessStatusCode)
                     {
                         var res = await httpResponse.Content.ReadAsStringAsync();
-                       // Data = Unwrapper.Unwrap<Dictionary<string, string>>(res);
-                        JsonResolver.ResolveGatewayAppSettingConfiguration(_apiConfigurationSource.HostEnvironment, "appsetting");
+                        var response = JsonConvert.DeserializeObject<ApiResponse>(res);
+                        if (!response.IsError.Value)
+                            Data = JObject.Parse(JsonConvert.SerializeObject(response.Result)).ToObject<Dictionary<string, string>>();
                     }
                     else
                         CheckOptional();
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 CheckOptional();
             }

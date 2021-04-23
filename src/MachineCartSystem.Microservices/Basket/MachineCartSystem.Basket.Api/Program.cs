@@ -1,11 +1,8 @@
-using MachineCartSystem.Basket.Service;
 using MachineCartSystem.Configuration;
-using MachineCartSystem.Configuration.Config.FileConfigProvider;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-
 
 namespace MachineCartSystem.BasketApi
 {
@@ -23,7 +20,7 @@ namespace MachineCartSystem.BasketApi
                     webBuilder.ConfigureAppConfiguration((q, p) =>
                     {
                         p.SetBasePath(q.HostingEnvironment.ContentRootPath);
-                        AppSettingProvider.Add(p, q.HostingEnvironment);
+                        AppSettingProvider.Add(p, q.HostingEnvironment, Api.Basket);
                     });
                     webBuilder.UseSerilog((p, q) =>
                     {

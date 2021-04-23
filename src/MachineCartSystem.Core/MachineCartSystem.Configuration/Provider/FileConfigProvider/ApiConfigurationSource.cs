@@ -10,7 +10,6 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
         public string ReqUrl { get; set; }
         public int? Period { get => _period; set => _period = value ?? _period; }
         public bool Optional { get; set; }
-        public IWebHostEnvironment HostEnvironment { get; set; }
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
             return new ApiConfigurationProvider(this);
@@ -19,7 +18,7 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
 
     public class ApiEnv
     {
-        public string ApiName { get; set; }
-        public string Environment { get; set; }
+        public Api Api  { get; set; }
+        public IWebHostEnvironment HostEnvironment { get; set; }
     }
 }

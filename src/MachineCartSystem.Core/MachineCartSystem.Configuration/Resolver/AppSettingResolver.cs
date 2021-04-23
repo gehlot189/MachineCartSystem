@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using MachineCartSystem.Configuration;
+using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
@@ -6,36 +7,36 @@ using System.Linq;
 
 namespace MachineCartSystem.Configuration
 {
-    public abstract class BaseAppSettingResolver
+    public abstract class AppSettingResolver
     {
-        public abstract string Resolve(AppSetting appSetting);
+        protected abstract void Resolve(IWebHostEnvironment hostingEnvironment, GlobalConfiguration globalConfiguration);
 
-        public virtual FileSetting BaseResolve(AppSetting appSetting)
+        protected virtual FileSetting BaseResolve(IWebHostEnvironment hostingEnvironment, GlobalConfiguration globalConfiguration)
         {
-            var result = ReadFile(appSetting);
-            ResolveJwtSetting(appSetting.Environment, result.FileObject);
+            var result = ReadFile(hostingEnvironment);
+            ResolveJwtSetting(hostingEnvironment, result.FileObject);
             return result;
         }
 
         private static void ResolveJwtSetting(IWebHostEnvironment hostingEnvironment, JObject jObject)
         {
-            var jwtObject = jObject.SelectToken("jwt");
+            var jwtObject = jObject.SelectToken("Jwt");
 
             var jwtConfig = JsonConvert.DeserializeObject<JwtConfig>(jwtObject.ToString());
-            jwtConfig.Audiences = jObject["audiences"].Value<string>().Split(",");
-            jwtConfig.Scopes = jObject["scope"].Value<string>().Split(",");
+            jwtConfig.Audiences = jObject["Audiences"].Value<string>().Split(",");
+            jwtConfig.Scopes = jObject["Scope"].Value<string>().Split(",");
 
-            jObject["jwt"] = JToken.FromObject(jwtConfig);
+            jObject["Jwt"] = JToken.FromObject(jwtConfig);
         }
 
-        private FileSetting ReadFile(AppSetting appSetting)
+        private FileSetting ReadFile(IWebHostEnvironment hostingEnvironment)
         {
-            var file = Directory.GetFiles(appSetting.Environment.ContentRootPath, $"{appSetting.Name}.{ appSetting.Environment.EnvironmentName}.json", SearchOption.AllDirectories).FirstOrDefault();
+            var file = Directory.GetFiles(hostingEnvironment.ContentRootPath, $"appsetting.{ hostingEnvironment.EnvironmentName}.json", SearchOption.AllDirectories).FirstOrDefault();
             var textFile = File.ReadAllText(file);
             return new FileSetting { FileObject = JObject.Parse(textFile), Path = file };
         }
 
-        public string WriteFile(FileSetting fileSetting)
+        protected string WriteFile(FileSetting fileSetting)
         {
             File.WriteAllText(fileSetting.Path, fileSetting.FileObject.ToString());
             return fileSetting.Path;

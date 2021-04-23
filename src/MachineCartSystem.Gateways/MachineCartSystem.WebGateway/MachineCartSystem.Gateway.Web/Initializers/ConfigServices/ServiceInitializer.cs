@@ -1,5 +1,7 @@
 ﻿using MachineCartSystem.Configuration;
 using MachineCartSystem.Gateway.Web.Initializer;
+using MachineCartSystem.Gateway.WebService;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,7 +15,7 @@ namespace MachineCartSystem.Gateway.Web.Initializer
         public static void InitializeAllServices(this IServiceCollection services, IConfiguration configuration, JwtConfig jwtConfig)
         {
             InitializeService(services, configuration);
-            // AutoMapperService.Initialize(exportedTypes, services);
+            AutoMapperService.Initialize<DbContext, AutoMapperConfig>( services);
             //  DbService.Initialize(exportedTypes, services, configuration);
             // HealthCheckService.Initialize<new DbContext()>(services);
 

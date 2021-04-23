@@ -1,11 +1,11 @@
-﻿using MachineCartSystem.Configuration.Config.FileConfigProvider;
+﻿using MachineCartSystem.Configuration;
 using System.Threading.Tasks;
 
 namespace MachineCartSystem.Gateway.WebService.Service
 {
     public interface IConfigurationService
     {
-        Task<object> GetApiConfiguration(ApiEnv apiEnv);
+        Task<object> GetApiConfiguration(Api api);
         Task<object> GetOpenIdConfigurationConfiguration();
     }
 }

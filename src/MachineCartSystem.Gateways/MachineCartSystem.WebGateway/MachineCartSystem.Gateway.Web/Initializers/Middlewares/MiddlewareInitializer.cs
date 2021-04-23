@@ -31,7 +31,17 @@ namespace MachineCartSystem.Gateway.Web.Initializer
             app.UseHttpsRedirection();
 
             // app.UseHeaderPropagation();
-            app.UseApiResponseAndExceptionWrapper();
+            app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions
+            {
+                IsDebug = env.IsDevelopment(),
+                IsApiOnly = false,
+                ShouldLogRequestData = true,
+                LogRequestDataOnException = true,
+                EnableExceptionLogging = true,
+                EnableResponseLogging = true,
+                UseApiProblemDetailsException = true,
+                ShowIsErrorFlagForSuccessfulResponse = true,
+            });
 
             app.UseEndpoints(endpoints =>
             {

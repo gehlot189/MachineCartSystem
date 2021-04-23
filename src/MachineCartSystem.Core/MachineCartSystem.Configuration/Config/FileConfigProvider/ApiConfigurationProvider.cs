@@ -1,4 +1,5 @@
-﻿using AutoWrapper.Wrappers;
+﻿using AutoWrapper.Server;
+using AutoWrapper.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -21,25 +22,27 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
             _apiConfigurationSource.ReqUrl += "/api/configuration/getApiConfig";
             Load();
 
-          /*  _timer = new Timer(x => Load(),
-            null,
-            TimeSpan.FromSeconds(_apiConfigurationSource.Period.Value),
-            TimeSpan.FromSeconds(_apiConfigurationSource.Period.Value));
-          */
+            /*  _timer = new Timer(x => Load(),
+              null,
+              TimeSpan.FromSeconds(_apiConfigurationSource.Period.Value),
+              TimeSpan.FromSeconds(_apiConfigurationSource.Period.Value));
+            */
         }
 
-        public override void Load()
+        public async override void Load()
         {
             try
             {
-                var data = JsonContent.Create<ApiEnv>(_apiConfigurationSource.ApiEnv);
+                var data = JsonContent.Create<ApiEnv>(new ApiEnv { Environment = _apiConfigurationSource.HostEnvironment.EnvironmentName, ApiName = _apiConfigurationSource.ApiName });
                 using (HttpClient client = new HttpClient())
                 {
-                    var result = client.PostAsync(_apiConfigurationSource.ReqUrl, data).ConfigureAwait(false).GetAwaiter().GetResult();
-                    var res = result.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
-                    var response = JsonConvert.DeserializeObject<ApiResponse>(res);
-                    if (result.StatusCode == HttpStatusCode.OK)
-                        Data = JObject.FromObject(response.Result).ToObject<Dictionary<string, string>>();
+                    var httpResponse = await client.PostAsync(_apiConfigurationSource.ReqUrl, data);
+                    if (httpResponse.IsSuccessStatusCode)
+                    {
+                        var res = await httpResponse.Content.ReadAsStringAsync();
+                       // Data = Unwrapper.Unwrap<Dictionary<string, string>>(res);
+                        JsonResolver.ResolveGatewayAppSettingConfiguration(_apiConfigurationSource.HostEnvironment, "appsetting");
+                    }
                     else
                         CheckOptional();
                 }
@@ -60,7 +63,7 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
 
         public void Dispose()
         {
-           // _timer?.Change(Timeout.Infinite, 0);
+            // _timer?.Change(Timeout.Infinite, 0);
             //_timer?.Dispose();
         }
 

@@ -6,7 +6,7 @@ namespace MachineCartSystem.Configuration
 {
     public static class ApiExtension
     {
-        public static IConfigurationBuilder AddApiConfiguration(this IConfigurationBuilder builder, Action<ApiConfigurationSource> action)
+        public static IConfigurationBuilder AddAppConfiguration(this IConfigurationBuilder builder, Action<ApiConfigurationSource> action)
         {
             var source = new ApiConfigurationSource();
             action(source);

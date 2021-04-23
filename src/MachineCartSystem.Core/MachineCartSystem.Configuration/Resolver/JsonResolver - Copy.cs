@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace MachineCartSystem.Configuration
 {
-    [Obsolete]
+    //[Obsolete]
     public class JsonResolver
     {
         public static string ResolveGatewayAppSettingConfiguration(IWebHostEnvironment hostingEnvironment, string name)
@@ -74,6 +74,5 @@ namespace MachineCartSystem.Configuration
             File.WriteAllText(result.Item2, result.Item1.ToString());
             return result.Item2;
         }
-
     }
 }

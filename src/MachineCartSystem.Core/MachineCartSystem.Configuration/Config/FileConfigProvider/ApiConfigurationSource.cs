@@ -1,15 +1,16 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace MachineCartSystem.Configuration.Config.FileConfigProvider
 {
-    public class ApiConfigurationSource : IConfigurationSource
+    public sealed class ApiConfigurationSource : ApiEnv, IConfigurationSource
     {
         private int? _period = 60;
 
         public string ReqUrl { get; set; }
-        public int? Period { get => _period; set=> _period=value?? _period; }
+        public int? Period { get => _period; set => _period = value ?? _period; }
         public bool Optional { get; set; }
-        public ApiEnv ApiEnv { get; set; }
+        public IWebHostEnvironment HostEnvironment { get; set; }
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
             return new ApiConfigurationProvider(this);
@@ -19,6 +20,6 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
     public class ApiEnv
     {
         public string ApiName { get; set; }
-        public string Env { get; set; }
+        public string Environment { get; set; }
     }
 }

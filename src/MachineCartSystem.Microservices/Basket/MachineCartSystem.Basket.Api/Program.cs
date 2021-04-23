@@ -1,3 +1,4 @@
+using MachineCartSystem.Basket.Service;
 using MachineCartSystem.Configuration;
 using MachineCartSystem.Configuration.Config.FileConfigProvider;
 using Microsoft.AspNetCore.Hosting;
@@ -22,14 +23,7 @@ namespace MachineCartSystem.BasketApi
                     webBuilder.ConfigureAppConfiguration((q, p) =>
                     {
                         p.SetBasePath(q.HostingEnvironment.ContentRootPath);
-                        p.AddJsonFile($"appsettings.{q.HostingEnvironment.EnvironmentName}.json", false, true);
-                        var root = p.Build();
-
-                        p.AddApiConfiguration(x =>
-                        {
-                            x.ApiEnv = new ApiEnv { ApiName = ApiConstant.Basket, Env = q.HostingEnvironment.EnvironmentName };
-                            x.ReqUrl = root.GetSection("GatewayUrl").Value;
-                        });
+                        AppSettingProvider.Add(p, q.HostingEnvironment);
                     });
                     webBuilder.UseSerilog((p, q) =>
                     {

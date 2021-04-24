@@ -19,8 +19,7 @@ RUN dotnet build "MachineCartSystem.Basket.Api.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "MachineCartSystem.Basket.Api.csproj" -c Release -o /app/publish
 
-
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "MachineCartSystem.Basket.Api.dll"]
+ENTRYPOINT ["/wait-for-it.sh", "dotnet", "MachineCartSystem.Basket.Api.dll"]

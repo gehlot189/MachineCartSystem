@@ -7,7 +7,7 @@ namespace MachineCartSystem.Configuration
     {
         protected readonly IConfiguration Configuration;
 
-        public BaseStartup(IConfiguration configuration )
+        public BaseStartup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -30,11 +30,11 @@ namespace MachineCartSystem.Configuration
         {
             return new JwtConfig
             {
-             //   Audiences = Configuration["Jwt:Audiences"].Split(new char[] { ',' }),
-             //   Authority = Configuration["Jwt:Authority"].ToString(),
-             //   Issuer = Configuration["Jwt:Issuer"].ToString(),
-             ////   Key = Configuration["Jwt:Signing:PrivateKey"].ToCharArray(),
-             //   Scopes = Configuration["Jwt:Scopes"].Split(new char[] { ' ' })
+                Audiences = Configuration["Audiences"]?.Split(new char[] { ',' }),
+                Authority = Configuration["Authority"]?.ToString(),
+                Issuer = Configuration["Issuer"]?.ToString(),
+                //Key = Configuration["PrivateKey"]?.ToCharArray(),
+                Scopes = Configuration["Scopes"]?.Split(new char[] { ' ' })
             };
         }
 

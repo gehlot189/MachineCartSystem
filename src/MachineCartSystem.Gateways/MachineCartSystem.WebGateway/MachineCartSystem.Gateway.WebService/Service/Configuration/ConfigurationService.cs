@@ -26,15 +26,21 @@ namespace MachineCartSystem.Gateway.WebService.Service
                 case Api.Basket:
                     data = _mapper.Map<BasketConfig>(_globalConfiguration);
                     break;
+                case Api.Order:
+                    data = _mapper.Map<OrderConfig>(_globalConfiguration);
+                    break;
+                case Api.Catalog:
+                    data = _mapper.Map<CatalogConfig>(_globalConfiguration);
+                    break;
                 default:
                     break;
             }
             return await Task.FromResult<object>(data);
         }
 
-        public async Task<object> GetOpenIdConfigurationConfiguration()
+        public async Task<OpenIdConfiguration> GetOpenIdConfigurationConfiguration()
         {
-            return await Task.FromResult<object>(_openIdConfiguration);
+            return await Task.FromResult<OpenIdConfiguration>(_openIdConfiguration);
         }
     }
 }

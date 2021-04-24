@@ -1,6 +1,17 @@
 {
   "SwaggerEndPoints": [
     {
+      "Key": "gateway",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "Gateway",
+          "Version": "v1",
+          "Url": "http://host.docker.internal:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
       "Key": "basket",
       "Config": [
         {
@@ -27,17 +38,6 @@
           "Name": "Catalog API",
           "Version": "v1",
           "Url": "http://machinecartsystem.catalog.api:80/swagger/v1/swagger.json"
-        }
-      ]
-    },
-    {
-      "Key": "gateway",
-      "TransformByOcelotConfig": false,
-      "Config": [
-        {
-          "Name": "Gateway",
-          "Version": "v1",
-          "Url": "http://machinecartsystem.gateway.web:80/swagger/v1/swagger.json"
         }
       ]
     }

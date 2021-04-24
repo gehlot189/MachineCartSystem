@@ -1,6 +1,5 @@
 ﻿using AutoWrapper.Wrappers;
 using MachineCartSystem.Configuration;
-using MachineCartSystem.Configuration.Config.FileConfigProvider;
 using MachineCartSystem.Gateway.WebService.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -27,9 +26,9 @@ namespace MachineCartSystem.Gateway.Web.Controllers
 
         [HttpPost]
         [Route("getApiConfig")]
-        public async Task<ApiResponse> GetApiConfiguration(Api api)
+        public async Task<IActionResult> GetApiConfiguration(Api api)
         {
-            return new ApiResponse(await _configurationService.GetApiConfiguration(api));
+            return  Ok(await _configurationService.GetApiConfiguration(api));
         }
     }
 }

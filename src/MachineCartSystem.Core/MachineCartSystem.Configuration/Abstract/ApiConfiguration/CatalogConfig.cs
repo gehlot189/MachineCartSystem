@@ -1,6 +1,6 @@
 ﻿namespace MachineCartSystem.Configuration
 {
-    public class OrderConfig : BaseApiConfiguration, IBaseConfiguration
+    public class CatalogConfig : BaseApiConfiguration, IBaseConfiguration
     {
         public string GatewayUrl { get; set; }
         public string IdentityServerUrl { get; set; }

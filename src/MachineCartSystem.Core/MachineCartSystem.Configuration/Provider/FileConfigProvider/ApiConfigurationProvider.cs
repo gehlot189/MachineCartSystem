@@ -3,6 +3,7 @@ using AutoWrapper.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -28,20 +29,20 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
             */
         }
 
-        public async override void Load()
+        public override void Load()
         {
             try
             {
                 var data = JsonContent.Create<Api>(_apiConfigurationSource.Api);
                 using (HttpClient client = new HttpClient())
                 {
-                    var httpResponse = await client.PostAsync(_apiConfigurationSource.ReqUrl, data);
+                    var httpResponse = client.PostAsync(_apiConfigurationSource.ReqUrl, data).Result;
                     if (httpResponse.IsSuccessStatusCode)
                     {
-                        var res = await httpResponse.Content.ReadAsStringAsync();
+                        var res = httpResponse.Content.ReadAsStringAsync().Result;
                         var response = JsonConvert.DeserializeObject<ApiResponse>(res);
                         if (!response.IsError.Value)
-                            Data = JObject.Parse(JsonConvert.SerializeObject(response.Result)).ToObject<Dictionary<string, string>>();
+                            Data = JObject.Parse(JsonConvert.SerializeObject(response.Result, new JsonSerializerSettings { ContractResolver = new UpperCaseContractResolver() })).ToObject<Dictionary<string, string>>();
                     }
                     else
                         CheckOptional();
@@ -57,7 +58,7 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
         {
             if (!_apiConfigurationSource.Optional)
             {
-                throw new Exception($"can not load config from {_apiConfigurationSource.ReqUrl}");
+                //throw new Exception($"can not load config from {_apiConfigurationSource.ReqUrl}");
             }
         }
 
@@ -67,5 +68,12 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
             //_timer?.Dispose();
         }
 
+        private class UpperCaseContractResolver : DefaultContractResolver
+        {
+            protected override string ResolvePropertyName(string propertyName)
+            {
+                return propertyName.ToUpperInvariant();
+            }
+        }
     }
 }

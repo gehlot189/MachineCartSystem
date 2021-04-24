@@ -1,6 +1,6 @@
 ﻿namespace MachineCartSystem.Configuration
 {
-    public  class OpenIdConfiguration
+    public class OpenIdConfiguration
     {
         public string StsServer { get; set; }
         public string RedirectUrl { get; set; }

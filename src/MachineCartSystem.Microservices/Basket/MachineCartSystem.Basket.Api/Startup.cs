@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using IdentityServer4.AccessTokenValidation;
 
 namespace MachineCartSystem.BasketApi
 {
@@ -21,13 +20,8 @@ namespace MachineCartSystem.BasketApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper<MachineCartSystemDbContext, AutoMapperConfig>()
-            .AddControllers(config =>
-            {
-                config.RespectBrowserAcceptHeader = true;
-                config.ReturnHttpNotAcceptable = true;
-            }).AddXmlDataContractSerializerFormatters();
-
-            services.AddCustomAuthentication(JwtConfig)
+            .AddController()
+            .AddCustomAuthentication(JwtConfig)
             .AddCustomAuthorization(JwtConfig)
             .AddEFCore<MachineCartSystemDbContext>(DbConfig)
             .AddCustomSwagger(Configuration, JwtConfig)

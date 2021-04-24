@@ -1,34 +1,35 @@
 {
-  "GatewayUrl": "http://localhost:5001/",
+  "GatewayUrl": "http://host.docker.internal:5001/",
   "IdentityServerUrl": "http://localhost:5000/",
-  "IssuerOrAuthority": "http://machinecartsystem.identityserver:80/",
+  "Authority": "http://machinecartsystem.identityserver:80/",
+  "Issuer": "http://machinecartsystem.identityserver:80/",
   "Basket": {
     "Url": "http://machinecartsystem.basket.api:2001/",
-    "Scope": "basket.read",
+    "Scopes": "basket.read",
     "Audiences": "basket",
     "PrivateKey": "MySecretKey"
   },
   "Order": {
     "Url": "http://machinecartsystem.order.api:2001/",
-    "Scope": "order.read",
+    "Scopes": "order.read",
     "Audiences": "order",
     "PrivateKey": "MySecretKey"
   },
   "Catalog": {
     "Url": "http://machinecartsystem.catalog.api:2001/",
-    "Scope": "catalog.read",
+    "Scopes": "catalog.read",
     "Audiences": "catalog",
     "PrivateKey": "MySecretKey"
   },
   "OpenIdConfiguration": {
-    "StsServer": "{stsServer}",
-    "RedirectUrl": "{redirectUrl}/auth-callback",
-    "PostLogoutRedirectUri": "{postLogoutRedirectUri}/login",
+    "StsServer": "http://localhost:5000",
+    "RedirectUrl": "http://localhost:4200/auth-callback",
+    "PostLogoutRedirectUri": "http://localhost:4200/login",
     "ClientId": "angular",
-    "Scope": "{scope}",
+    "Scope": "basket.read order.read catalog.read",
     "ResponseType": "code",
     "SilentRenew": true,
-    "SilentRenewUrl": "{silentRenewUrl}/silent-refresh",
+    "SilentRenewUrl": "http://localhost:4200/silent-refresh",
     "LogLevel": "Warn",
     // startCheckSession: true,
     // historyCleanupOff: false,

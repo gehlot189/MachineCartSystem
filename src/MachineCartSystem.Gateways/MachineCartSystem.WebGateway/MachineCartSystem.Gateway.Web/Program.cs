@@ -20,15 +20,14 @@ namespace MachineCartSystem.Gateway.Web
                 {
                     webBuilder.ConfigureAppConfiguration((q, p) =>
                     {
-                      //  p.Sources.Clear();
 
-                     //   p.SetBasePath(q.HostingEnvironment.ContentRootPath);
+                        p.SetBasePath(q.HostingEnvironment.ContentRootPath);
 
                         p.AddOcelotWithSwaggerSupport(q.HostingEnvironment, "OcelotConfiguration", "ocelot.swagger");
                         p.AddJsonFile("ocelot.json", false, true);
 
-                        //p.AddJsonFile("app-url.json", false, true);
-                        //p.AddJsonFile($"app-url.{q.HostingEnvironment.EnvironmentName}.json", false, true);
+                        p.AddJsonFile("app-url.json", false, true);
+                        p.AddJsonFile($"app-url.{q.HostingEnvironment.EnvironmentName}.json", false, true);
 
                         p.AddJsonFile($"appsettings.{q.HostingEnvironment.EnvironmentName}.json", false, true);
 

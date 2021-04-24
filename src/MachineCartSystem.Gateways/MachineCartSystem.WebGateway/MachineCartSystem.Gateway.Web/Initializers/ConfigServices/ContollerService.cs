@@ -8,13 +8,13 @@ namespace MachineCartSystem.Gateway.Web.Initializer
     {
         public void Initialize(IServiceCollection services, IConfiguration configuration)
         {
-             services.AddControllers(p=>
-             {
+            services.AddControllers(p =>
+            {
 
-             }).AddNewtonsoftJson().AddJsonOptions(p=>
-             {
-                 p.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-             });
-        }   
+            }).AddJsonOptions(p =>
+            {
+                p.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            });
+        }
     }
 }

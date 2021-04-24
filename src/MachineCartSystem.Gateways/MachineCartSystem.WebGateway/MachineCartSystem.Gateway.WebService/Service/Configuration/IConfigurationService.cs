@@ -6,6 +6,6 @@ namespace MachineCartSystem.Gateway.WebService.Service
     public interface IConfigurationService
     {
         Task<object> GetApiConfiguration(Api api);
-        Task<object> GetOpenIdConfigurationConfiguration();
+        Task<OpenIdConfiguration> GetOpenIdConfigurationConfiguration();
     }
 }

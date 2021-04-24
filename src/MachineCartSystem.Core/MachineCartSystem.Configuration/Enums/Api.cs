@@ -2,6 +2,8 @@
 {
     public enum Api
     {
-        Basket
+        Basket,
+        Order,
+        Catalog
     }
 }

@@ -1,4 +1,3 @@
-using MachineCartSystem.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -20,7 +19,6 @@ namespace MachineCartSystem.Gateway.Web
                 {
                     webBuilder.ConfigureAppConfiguration((q, p) =>
                     {
-
                         p.SetBasePath(q.HostingEnvironment.ContentRootPath);
 
                         p.AddOcelotWithSwaggerSupport(q.HostingEnvironment, "OcelotConfiguration", "ocelot.swagger");

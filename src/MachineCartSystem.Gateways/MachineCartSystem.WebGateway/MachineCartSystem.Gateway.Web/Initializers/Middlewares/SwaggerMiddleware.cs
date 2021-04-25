@@ -15,7 +15,8 @@ namespace MachineCartSystem.Gateway.Web.Initializer
             {
                 p.PathToSwaggerGenerator = "/swagger/docs";
                 p.ReConfigureUpstreamSwaggerJson = AlterUpstreamSwaggerJson;
-
+                p.EnableFilter();
+                
                 p.InjectStylesheet("/swagger-ui/custom.css");
                 p.EnableDeepLinking();
 
@@ -24,7 +25,7 @@ namespace MachineCartSystem.Gateway.Web.Initializer
                 p.OAuth2RedirectUrl($"{configuration.GetValue<string>("GatewayUrl")}swagger/oauth2-redirect.html");
             });
 
-             string AlterUpstreamSwaggerJson(HttpContext context, string swaggerJson)
+            string AlterUpstreamSwaggerJson(HttpContext context, string swaggerJson)
             {
                 var swagger = JObject.Parse(swaggerJson);
                 // ... alter upstream json

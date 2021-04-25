@@ -11,18 +11,12 @@ COPY ["MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem
 COPY ["MachineCartSystem.Core/MachineCartSystem.Configuration/MachineCartSystem.Configuration.csproj", "MachineCartSystem.Core/MachineCartSystem.Configuration/"]
 COPY ["MachineCartSystem.Core/MachineCartSystem.Common/MachineCartSystem.Common.csproj", "MachineCartSystem.Core/MachineCartSystem.Common/"]
 RUN dotnet restore "MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.Web/MachineCartSystem.Gateway.Web.csproj"
-COPY ./wait-for-it.sh /wait-for-it.sh
-RUN chmod +x wait-for-it.sh
-
 COPY . .
 WORKDIR "/src/MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.Web"
 RUN dotnet build "MachineCartSystem.Gateway.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "MachineCartSystem.Gateway.Web.csproj" -c Release -o /app/publish
-
-COPY ./wait-for-it.sh /wait-for-it.sh
-RUN chmod +x wait-for-it.sh
 
 FROM base AS final
 WORKDIR /app

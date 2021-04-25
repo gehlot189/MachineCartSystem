@@ -55,6 +55,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineCartSystem.Common", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineCartSystem.Configuration", "MachineCartSystem.Core\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj", "{80392E82-4591-4354-9D02-6DFC116477D9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "env", "env", "{48C59611-B676-46C6-B20A-F4A367229D9C}"
+	ProjectSection(SolutionItems) = preProject
+		.env = .env
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

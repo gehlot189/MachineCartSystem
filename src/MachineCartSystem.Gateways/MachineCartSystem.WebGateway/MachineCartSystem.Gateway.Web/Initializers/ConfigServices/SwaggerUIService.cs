@@ -12,6 +12,8 @@ namespace MachineCartSystem.Gateway.Web.Initializer
             services.AddSwaggerForOcelot(configuration, o =>
              {
                  o.GenerateDocsForAggregates = true;
+                // o.GenerateDocsForGatewayItSelf = true;
+
                  o.AggregateDocsGeneratorPostProcess = (aggregateRoute, routesDocs, pathItemDoc, documentation) =>
                  {
                      if (aggregateRoute.UpstreamPathTemplate == "/gateway/api/basketwithuser/{id}")
@@ -45,7 +47,5 @@ namespace MachineCartSystem.Gateway.Web.Initializer
             //    c.OperationFilter<AuthorizeCheckOperationFilter>();
             //});
         }
-
-
     }
 }

@@ -17,7 +17,6 @@ services:
         - "5433:1433"
 
   machinecartsystem.gateway.web:
-    #container_name: MachineCartSystem.Gateway.Web
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
@@ -34,8 +33,9 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
   machinecartsystem.basket.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+    environment:    
+         - ASPNETCORE_ENVIRONMENT=Development
+         - GatewayUrl=${GatewayUrl}
     ports:
       - "2001:80"
     volumes:
@@ -46,6 +46,7 @@ services:
   machinecartsystem.order.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - GatewayUrl=${GatewayUrl}
     ports:
       - "2002:80"
     volumes:
@@ -56,6 +57,7 @@ services:
   machinecartsystem.catalog.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - GatewayUrl=${GatewayUrl}
     ports:
       - "2003:80"
     volumes:

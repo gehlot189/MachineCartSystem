@@ -23,6 +23,8 @@ namespace MachineCartSystem.IdentityServer.Service
                     RedirectUris =
                     {
                         "http://machinecartsystem.gateway.web:80/signin-oidc",
+                        "http://localhost:5001/signin-oidc",
+
                         "http://localhost:4200/auth-callback",
                         "http://localhost:4200",
                         "http://localhost:4200/login",
@@ -32,12 +34,12 @@ namespace MachineCartSystem.IdentityServer.Service
 
                         "http://localhost:2002/swagger/oauth2-redirect.html",
                         "http://localhost:2001/swagger/oauth2-redirect.html",
-                        "http://host.docker.internal:5001/swagger/oauth2-redirect.html"
+                        "http://localhost:5001/swagger/oauth2-redirect.html"
                     },
                     // where to redirect to after logout
                     PostLogoutRedirectUris =
                     {
-                        "http://host.docker.internal:5001/signout-callback-oidc" ,
+                        "http://localhost:5001/signout-callback-oidc" ,
                         "http://localhost:4200",
                         "http://localhost:4200/login",
                     },

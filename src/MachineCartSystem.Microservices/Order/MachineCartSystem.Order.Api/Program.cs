@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MachineCartSystem.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +22,12 @@ namespace MachineCartSystem.Order.Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureAppConfiguration((q, p) =>
+                    {
+                        p.SetBasePath(q.HostingEnvironment.ContentRootPath);
+                        AppSettingProvider.Add(p, q.HostingEnvironment, ApiName.Order);
+                    });
+
                     webBuilder.UseSerilog((p, q) =>
                     {
                         q.MinimumLevel.Information()

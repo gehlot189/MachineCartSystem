@@ -2,6 +2,7 @@
 using MachineCartSystem.Configuration;
 using MachineCartSystem.Gateway.WebService.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MachineCartSystem.Gateway.Web.Controllers
@@ -26,9 +27,9 @@ namespace MachineCartSystem.Gateway.Web.Controllers
 
         [HttpPost]
         [Route("getApiConfig")]
-        public async Task<IActionResult> GetApiConfiguration(Api api)
+        public async Task<IActionResult> GetApiConfiguration([FromBody] ApiName apiName)
         {
-            return  Ok(await _configurationService.GetApiConfiguration(api));
+            return Ok(await _configurationService.GetApiConfiguration(apiName));
         }
     }
 }

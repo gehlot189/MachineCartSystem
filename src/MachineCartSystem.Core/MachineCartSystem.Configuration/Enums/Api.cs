@@ -1,6 +1,6 @@
 ﻿namespace MachineCartSystem.Configuration
 {
-    public enum Api
+    public enum ApiName
     {
         Basket,
         Order,

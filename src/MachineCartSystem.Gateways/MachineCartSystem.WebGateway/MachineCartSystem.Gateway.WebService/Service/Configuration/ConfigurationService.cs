@@ -17,19 +17,19 @@ namespace MachineCartSystem.Gateway.WebService.Service
             _mapper = mapper;
         }
 
-        public async Task<object> GetApiConfiguration(Api api)
+        public async Task<object> GetApiConfiguration(ApiName apiName )
         {
             object data = null;
 
-            switch (api)
+            switch (apiName)
             {
-                case Api.Basket:
+                case ApiName.Basket:
                     data = _mapper.Map<BasketConfig>(_globalConfiguration);
                     break;
-                case Api.Order:
+                case ApiName.Order:
                     data = _mapper.Map<OrderConfig>(_globalConfiguration);
                     break;
-                case Api.Catalog:
+                case ApiName.Catalog:
                     data = _mapper.Map<CatalogConfig>(_globalConfiguration);
                     break;
                 default:

@@ -1,9 +1,7 @@
-﻿using AutoWrapper.Server;
-using AutoWrapper.Wrappers;
+﻿using AutoWrapper.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -19,7 +17,7 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
         public ApiConfigurationProvider(ApiConfigurationSource apiConfigurationSource)
         {
             _apiConfigurationSource = apiConfigurationSource;
-            _apiConfigurationSource.ReqUrl += "/api/configuration/getApiConfig";
+            _apiConfigurationSource.ReqUrl += "api/configuration/getApiConfig";
             Load();
 
             /*  _timer = new Timer(x => Load(),
@@ -33,32 +31,21 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
         {
             try
             {
-                var data = JsonContent.Create<Api>(_apiConfigurationSource.Api);
+                var data = JsonContent.Create<ApiName>(_apiConfigurationSource.ApiName);
                 using (HttpClient client = new HttpClient())
                 {
-                    var httpResponse = client.PostAsync(_apiConfigurationSource.ReqUrl, data).Result;
-                    if (httpResponse.IsSuccessStatusCode)
+                    if (IsSericeReady(client, data, out HttpResponseMessage httpResponse))
                     {
                         var res = httpResponse.Content.ReadAsStringAsync().Result;
                         var response = JsonConvert.DeserializeObject<ApiResponse>(res);
                         if (!response.IsError.Value)
-                            Data = JObject.Parse(JsonConvert.SerializeObject(response.Result, new JsonSerializerSettings { ContractResolver = new UpperCaseContractResolver() })).ToObject<Dictionary<string, string>>();
+                            Data = JObject.Parse(JsonConvert.SerializeObject(response.Result)).ToObject<Dictionary<string, string>>();
                     }
-                    else
-                        CheckOptional();
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                CheckOptional();
-            }
-        }
-
-        private void CheckOptional()
-        {
-            if (!_apiConfigurationSource.Optional)
-            {
-                //throw new Exception($"can not load config from {_apiConfigurationSource.ReqUrl}");
+                throw;
             }
         }
 
@@ -68,12 +55,26 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
             //_timer?.Dispose();
         }
 
-        private class UpperCaseContractResolver : DefaultContractResolver
+        private bool IsSericeReady(HttpClient client, JsonContent data, out HttpResponseMessage httpResponse)
         {
-            protected override string ResolvePropertyName(string propertyName)
+            bool _isSericeReady = false;
+            httpResponse = null;
+            var expireTime = DateTime.Now.AddSeconds(30);
+            do
             {
-                return propertyName.ToUpperInvariant();
+                try
+                {
+                    httpResponse = client.PostAsync(_apiConfigurationSource.ReqUrl, data).Result;
+                    _isSericeReady = httpResponse.IsSuccessStatusCode;
+                }
+                catch (Exception)
+                {
+                }
             }
+            while (expireTime > DateTime.Now && !_isSericeReady);
+            if (!_isSericeReady)
+                throw new Exception("Gateway service is not available");
+            return _isSericeReady;
         }
     }
 }

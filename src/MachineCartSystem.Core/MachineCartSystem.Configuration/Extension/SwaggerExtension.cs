@@ -25,9 +25,9 @@ namespace MachineCartSystem.Configuration
                         {
                             AuthorizationUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/authorize"),
                             TokenUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/token"),
-                            Scopes = jwtConfig.Scopes.ToDictionary(p => p)
+                            Scopes = jwtConfig.Scopes.ToDictionary(p => p),
                         }
-                    }
+                    },
                 });
                 AuthorizeCheckOperationFilter.Scope = jwtConfig.Scopes.ToList();
                 c.OperationFilter<AuthorizeCheckOperationFilter>();

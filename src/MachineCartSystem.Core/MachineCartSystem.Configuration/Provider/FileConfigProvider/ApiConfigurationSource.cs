@@ -18,7 +18,7 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
 
     public class ApiEnv
     {
-        public Api Api  { get; set; }
+        public ApiName ApiName  { get; set; }
         public IWebHostEnvironment HostEnvironment { get; set; }
     }
 }

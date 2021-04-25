@@ -5,7 +5,7 @@ namespace MachineCartSystem.Configuration
 {
     public class AppSettingProvider 
     {
-        public static void Add(IConfigurationBuilder builder, IWebHostEnvironment hostingEnvironment, Api apiName)
+        public static void Add(IConfigurationBuilder builder, IWebHostEnvironment hostingEnvironment, ApiName apiName)
         {
             builder.AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", false, true);
             var root = builder.Build();
@@ -13,7 +13,7 @@ namespace MachineCartSystem.Configuration
             builder.AddAppConfiguration(setting =>
             {
                 setting.HostEnvironment = hostingEnvironment;
-                setting.Api = apiName;
+                setting.ApiName = apiName;
                 setting.ReqUrl = root.GetSection("GatewayUrl").Value;
             });
         }

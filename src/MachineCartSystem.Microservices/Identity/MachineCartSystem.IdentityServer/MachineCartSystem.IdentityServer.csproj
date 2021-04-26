@@ -13,7 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MachineCartSystem.Core\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
     <ProjectReference Include="..\MachineCartSystem.IdentityServer.Service\MachineCartSystem.IdentityServer.Service.csproj" />
   </ItemGroup>
 

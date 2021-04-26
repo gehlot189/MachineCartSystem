@@ -5,7 +5,7 @@
 using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Test;
-using MachineCartSystem.Common;
+using MachineCartSystem.Configuration;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text.Json;

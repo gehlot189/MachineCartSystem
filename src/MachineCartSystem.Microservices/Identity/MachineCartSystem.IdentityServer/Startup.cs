@@ -82,6 +82,11 @@ namespace MachineCartSystem.IdentityServer
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("AllowOrigin");
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Content-Security-Policy", "script-src 'unsafe-inline'");
+                await next();
+            });
             app.UseStaticFiles();
             //    app.UseSerilogRequestLogging();
             app.UseRouting();

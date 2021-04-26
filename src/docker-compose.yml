@@ -15,11 +15,11 @@ services:
       context: .
       dockerfile: MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.Web/Dockerfile
 
-  machinecartsystem.identityserver:
-    image: ${DOCKER_REGISTRY-}machinecartsystemidentityserver
-    build:
-      context: .
-      dockerfile: MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer/Dockerfile
+  #machinecartsystem.identityserver:
+  #  image: ${DOCKER_REGISTRY-}machinecartsystemidentityserver
+  #  build:
+  #    context: .
+  #    dockerfile: MachineCartSystem.IdentityServer/MachineCartSystem.IdentityServer/Dockerfile
 
   machinecartsystem.basket.api:
     image: ${DOCKER_REGISTRY-}machinecartsystembasketapi

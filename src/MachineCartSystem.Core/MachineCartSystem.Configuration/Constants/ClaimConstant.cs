@@ -1,4 +1,4 @@
-﻿namespace MachineCartSystem.Common
+﻿namespace MachineCartSystem.Configuration
 {
     public static class CustomClaimTypes
     {

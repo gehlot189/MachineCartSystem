@@ -7,6 +7,12 @@ namespace MachineCartSystem.Gateway.WebService
     {
         public AutoMapperConfig()
         {
+            CreateMap<GlobalConfiguration, IdentityConfig>()
+               .ForMember(p => p.Audiences, q => q.MapFrom(r => r.Identity.Audiences))
+               .ForMember(p => p.Scopes, q => q.MapFrom(r => r.Identity.Scopes))
+               .ForMember(p => p.PrivateKey, q => q.MapFrom(r => r.Identity.PrivateKey))
+               .ForMember(p => p.Url, q => q.MapFrom(r => r.Identity.Url));
+
             CreateMap<GlobalConfiguration, BasketConfig>()
                 .ForMember(p => p.Audiences, q => q.MapFrom(r => r.Basket.Audiences))
                 .ForMember(p => p.Scopes, q => q.MapFrom(r => r.Basket.Scopes))

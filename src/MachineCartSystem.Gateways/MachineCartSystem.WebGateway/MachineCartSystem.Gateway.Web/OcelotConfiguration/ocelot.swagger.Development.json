@@ -12,6 +12,17 @@
       ]
     },
     {
+      "Key": "identity-server",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "Idenity Server",
+          "Version": "v1",
+          "Url": "http://machinecartsystem.identityserver:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
       "Key": "basket",
       "Config": [
         {

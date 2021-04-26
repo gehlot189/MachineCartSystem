@@ -1,8 +1,11 @@
 {
-  "GatewayUrl": "http://host.docker.internal:5001/",
-  "IdentityServerUrl": "http://localhost:5000/",
+  "GatewayUrl": "http://host.docker.internal:5000/",
+  "IdentityServerUrl": "http://localhost:2000/",
   "Authority": "http://machinecartsystem.identityserver:80/",
   "Issuer": "http://machinecartsystem.identityserver:80/",
+  "Identity": {
+    "PrivateKey": "MySecretKey"
+  },
   "Basket": {
     "Url": "http://machinecartsystem.basket.api:2001/",
     "Scopes": "basket.read",
@@ -22,7 +25,7 @@
     "PrivateKey": "MySecretKey"
   },
   "OpenIdConfiguration": {
-    "StsServer": "http://localhost:5000",
+    "StsServer": "http://localhost:2000",
     "RedirectUrl": "http://localhost:4200/auth-callback",
     "PostLogoutRedirectUri": "http://localhost:4200/login",
     "ClientId": "angular",

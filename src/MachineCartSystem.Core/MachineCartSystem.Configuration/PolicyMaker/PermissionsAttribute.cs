@@ -25,6 +25,7 @@ namespace MachineCartSystem.Configuration
             _roles = Array.Empty<string>();
             _scopes = Array.Empty<string>();
         }
+
         public string[] Permissions
         {
             get => _permissions; set

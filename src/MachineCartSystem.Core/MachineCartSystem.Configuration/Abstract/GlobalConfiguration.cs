@@ -8,6 +8,7 @@ namespace MachineCartSystem.Configuration
         public string IdentityServerUrl { get; set; }
         public string Issuer { get; set; }
         public string Authority { get; set; }
+        public BaseApiConfiguration Identity { get; set; }
         public BaseApiConfiguration Basket { get; set; }
         public BaseApiConfiguration Order { get; set; }
         public BaseApiConfiguration Catalog { get; set; }
@@ -35,5 +36,9 @@ namespace MachineCartSystem.Configuration
         public string Audiences { get; set; }
         [JsonProperty("PrivateKey")]
         public string PrivateKey { get; set; }
+        [JsonProperty("Name")]
+        public string Name { get; set; }
+        [JsonProperty("Description")]
+        public string Description { get; set; }
     }
 }

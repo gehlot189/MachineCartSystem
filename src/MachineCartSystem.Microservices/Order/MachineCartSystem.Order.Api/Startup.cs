@@ -20,9 +20,8 @@ namespace MachineCartSystem.Order.Api
         {
             IdentityModelEventSource.ShowPII = true; //Add this line
 
-            services.AddControllers();
-
-            services.AddCustomAuthentication(JwtConfig)
+            services.AddController()
+                    .AddCustomAuthentication(JwtConfig)
                     .AddCustomAuthorization(JwtConfig)
                     .AddCustomSwagger(Configuration, JwtConfig);
         }

@@ -11,7 +11,7 @@
       "DownstreamHttpMethod": "Get",
       "UpstreamPathTemplate": "/order-api/Account",
       "UpstreamHttpMethod": [ "Get" ],
-      "UpstreamHost": "localhost:5001",
+      "UpstreamHost": "localhost:5000",
       "SwaggerKey": "order",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",

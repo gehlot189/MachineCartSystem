@@ -26,23 +26,23 @@ namespace MachineCartSystem.IdentityServer
             //const string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;database=IdentityServer4.Quickstart.EntityFramework-2.0.0;trusted_connection=yes;";
             //var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-
-
             //IdentityModelEventSource.ShowPII = true; //Add this line
 
-            services.AddCors(p => p.AddPolicy("AllowOrigin", options =>
-            {
-                options.AllowAnyOrigin();
-                options.AllowAnyHeader();
-                options.AllowAnyMethod();
-            }));
+            services.AddCustomSwagger(Configuration, JwtConfig);
+
+            //services.AddCors(p => p.AddPolicy("AllowOrigin", options =>
+            //{
+            //    options.AllowAnyOrigin();
+            //    options.AllowAnyHeader();
+            //    options.AllowAnyMethod();
+            //}));
 
             services.AddControllersWithViews();
 
             services.AddIdentityServer(p =>
-                {
-                    p.IssuerUri = Configuration.GetValue<string>("JWT:Issuer");
-                })
+                 {
+                     p.IssuerUri = Configuration.GetValue<string>("Issuer");
+                 })
                 .AddInMemoryIdentityResources(Config.Ids)
                 .AddInMemoryApiResources(Config.Apis)
                 .AddInMemoryApiScopes(Config.ApiScopes)
@@ -80,15 +80,27 @@ namespace MachineCartSystem.IdentityServer
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                // app.UseDatabaseErrorPage();
             }
-            app.UseCors("AllowOrigin");
+            else if (env.IsProduction())
+            {
+                app.UseExceptionHandler("/error");
+                app.UseHsts();
+            }
+            //  app.UseCors("AllowOrigin");
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyHeader();
+                options.AllowAnyMethod();
+            });
             app.Use(async (context, next) =>
             {
                 context.Response.Headers.Add("Content-Security-Policy", "script-src 'unsafe-inline'");
                 await next();
             });
             app.UseStaticFiles();
-            //    app.UseSerilogRequestLogging();
+            app.UseCustomSwagger(Configuration);
             app.UseRouting();
             app.UseIdentityServer();
             app.UseAuthentication();

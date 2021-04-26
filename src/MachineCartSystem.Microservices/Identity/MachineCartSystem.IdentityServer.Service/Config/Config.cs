@@ -24,16 +24,13 @@ namespace MachineCartSystem.IdentityServer.Service
                 new ApiScope("view:events", "Write Access to Basket Api"),
                 new ApiScope("register:events", "Write Access to Basket Api"),
 
-                new ApiScope("read:basket", "Read Access to Basket Api"),
-                new ApiScope("save:basket", "Write Access to Basket Api"),
-                new ApiScope("upload:basket", "Upload Access to Basket Api"),
-                new ApiScope("delete:basket", "Delete Access to Basket Api"),
+                new ApiScope("basket.read", "Read Access to Basket Api"),
 
-                new ApiScope("read:order", "Read Access to Order Api"),
-                new ApiScope("write:order", "Write Access to Order Api"),
+                new ApiScope("order.read", "Read Access to Order Api"),
+                new ApiScope("order.write", "Write Access to Order Api"),
 
-                new ApiScope("read:catalog", "Read Access to Catalog Api"),
-                new ApiScope("write:catalog", "Write Access to Catalog Api"),
+                new ApiScope("catalog.read", "Read Access to Catalog Api"),
+                new ApiScope("catalog.write", "Write Access to Catalog Api"),
          };
     }
 }

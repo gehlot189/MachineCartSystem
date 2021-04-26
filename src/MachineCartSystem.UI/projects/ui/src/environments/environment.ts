@@ -7,8 +7,8 @@ import { Environment } from 'projects/lib/src/public-api';
 
 export class EnvironmentImp implements Environment {
   production = false;
-  apiUrl = 'http://localhost:5001/api/';
-  identityServerUrl = 'http://localhost:5000/';
+  apiUrl = 'http://localhost:5000/api/';
+  identityServerUrl = 'http://localhost:2000/';
 }
 export const environment = new EnvironmentImp();
 

@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace MachineCartSystem.Configuration
@@ -16,21 +15,24 @@ namespace MachineCartSystem.Configuration
         {
             services.AddSwaggerGen(c =>
             {
-                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                if (configuration.GetSection("Name").Value != ApiName.Identity.ToString())
                 {
-                    Type = SecuritySchemeType.OAuth2,
-                    Flows = new OpenApiOAuthFlows
+                    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                     {
-                        AuthorizationCode = new OpenApiOAuthFlow
+                        Type = SecuritySchemeType.OAuth2,
+                        Flows = new OpenApiOAuthFlows
                         {
-                            AuthorizationUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/authorize"),
-                            TokenUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/token"),
-                            Scopes = jwtConfig.Scopes.ToDictionary(p => p),
-                        }
-                    },
-                });
-                AuthorizeCheckOperationFilter.Scope = jwtConfig.Scopes.ToList();
-                c.OperationFilter<AuthorizeCheckOperationFilter>();
+                            AuthorizationCode = new OpenApiOAuthFlow
+                            {
+                                AuthorizationUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/authorize"),
+                                TokenUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/token"),
+                                Scopes = jwtConfig.Scopes.ToDictionary(p => p),
+                            }
+                        },
+                    });
+                    AuthorizeCheckOperationFilter.Scope = jwtConfig.Scopes.ToList();
+                    c.OperationFilter<AuthorizeCheckOperationFilter>();
+                }
             });
             return services;
         }
@@ -41,12 +43,15 @@ namespace MachineCartSystem.Configuration
             app.UseSwaggerUI(p =>
             {
                 p.InjectStylesheet("/swagger-ui/custom.css");
-                p.SwaggerEndpoint("/swagger/v1/swagger.json", configuration.GetSection("api:name").Value);
+                p.SwaggerEndpoint("/swagger/v1/swagger.json", configuration.GetSection("Name").Value);
                 p.EnableDeepLinking();
 
-                p.OAuthClientId("angular");
-                p.OAuthUsePkce();
-                p.OAuth2RedirectUrl($"{configuration.GetSection("api:host").Value }swagger/oauth2-redirect.html");
+                if (configuration.GetSection("Name").Value != ApiName.Identity.ToString())
+                {
+                    p.OAuthClientId("angular");
+                    p.OAuthUsePkce();
+                    p.OAuth2RedirectUrl($"{configuration.GetSection("Url").Value }swagger/oauth2-redirect.html");
+                }
             });
         }
     }

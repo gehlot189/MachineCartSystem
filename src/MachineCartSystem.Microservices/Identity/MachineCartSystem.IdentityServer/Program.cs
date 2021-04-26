@@ -1,8 +1,8 @@
+using MachineCartSystem.Configuration;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using Serilog.Events;
-using Serilog.Sinks.SystemConsole.Themes;
 using System;
 
 namespace MachineCartSystem.IdentityServer
@@ -38,6 +38,11 @@ namespace MachineCartSystem.IdentityServer
                  })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureAppConfiguration((q, p) =>
+                    {
+                        p.SetBasePath(q.HostingEnvironment.ContentRootPath);
+                        AppSettingProvider.Add(p, q.HostingEnvironment, ApiName.Identity);
+                    });
                     webBuilder.UseStartup<Startup>();
                 });
     }

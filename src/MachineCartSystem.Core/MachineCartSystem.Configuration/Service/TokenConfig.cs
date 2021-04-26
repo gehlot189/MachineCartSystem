@@ -18,7 +18,7 @@ namespace MachineCartSystem.Configuration.Service
         public async Task<string> GetToken()
         {
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync("http://localhost:5000");
+            var disco = await client.GetDiscoveryDocumentAsync("http://localhost:2000");
             if (disco.IsError)
             {
                 Console.WriteLine(disco.Error);
@@ -46,7 +46,7 @@ namespace MachineCartSystem.Configuration.Service
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.GetAsync("http://localhost:5001/identity");
+            var response = await apiClient.GetAsync("http://localhost:5000/identity");
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);

@@ -16,8 +16,8 @@ namespace MachineCartSystem.Gateway.Web.Initializer
             //or
             // services.Configure<UrlConfigOptions>(configuration.GetSection(UrlConfigOptions.Urls));
 
-            services.Configure<OpenIdConfiguration>(configuration.GetSection(nameof(OpenIdConfiguration)));
-            services.AddSingleton(p => p.GetService<IOptions<OpenIdConfiguration>>().Value);
+            services.Configure<ClientConfiguration>(configuration.GetSection(nameof(ClientConfiguration)));
+            services.AddSingleton(p => p.GetService<IOptions<ClientConfiguration>>().Value);
 
             services.Configure<GlobalConfiguration>(configuration);
             services.AddSingleton(p => p.GetService<IOptions<GlobalConfiguration>>().Value);

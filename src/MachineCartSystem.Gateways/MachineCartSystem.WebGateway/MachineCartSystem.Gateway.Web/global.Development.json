@@ -24,25 +24,51 @@
     "Audiences": "catalog",
     "PrivateKey": "MySecretKey"
   },
-  "OpenIdConfiguration": {
-    "StsServer": "http://host.docker.internal:5000",
-    "RedirectUrl": "http://localhost:4200/auth-callback",
-    "PostLogoutRedirectUri": "http://localhost:4200/login",
-    "ClientId": "angular",
-    "Scope": "openid basket.read order.read catalog.read",
-    "ResponseType": "code",
-    "SilentRenew": true,
-    "SilentRenewUrl": "http://localhost:4200/silent-refresh",
-    "LogLevel": "Warn",
-    // startCheckSession: true,
-    // historyCleanupOff: false,
-    "PostLoginRoute": "/",
-    "ForbiddenRoute": "/forbidden",
-    "unauthorizedRoute": "/unauthorized",
-    //maxIdTokenIatOffsetAllowedInSeconds: 40,
-    "RenewTimeBeforeTokenExpiresInSeconds": 10,
-    "AutoUserinfo": true,
-    "UseRefreshToken": false,
-    "TriggerAuthorizationResultEvent": true
+  "ClientConfiguration": {
+    "IsAuthWellKnownEndpointsRequired": true,
+    "OpenIdConfiguration": {
+      "StsServer": "http://host.docker.internal:5000",
+      "RedirectUrl": "http://localhost:4200/auth-callback",
+      "PostLogoutRedirectUri": "http://localhost:4200/login",
+      "ClientId": "angular",
+      "Scope": "openid basket.read order.read catalog.read",
+      "ResponseType": "code",
+      "SilentRenew": true,
+      "SilentRenewUrl": "http://localhost:4200/silent-refresh",
+      //"SilentRenewTimeoutInSeconds": 60,
+      "LogLevel": "Warn",
+      // startCheckSession: true,
+      // historyCleanupOff: false,
+      "PostLoginRoute": "/",
+      "ForbiddenRoute": "/forbidden",
+      "unauthorizedRoute": "/unauthorized",
+      //maxIdTokenIatOffsetAllowedInSeconds: 40,
+      "RenewTimeBeforeTokenExpiresInSeconds": 10,
+      "AutoUserinfo": true,
+      "UseRefreshToken": false
+      //  "TriggerAuthorizationResultEvent": true,
+      //"IgnoreNonceAfterRefresh": true
+      //"CustomParams": {
+      //  "Prompt": "consent" // login, consent
+      //},
+      //"UsePushedAuthorisationRequests": false,
+      //"RenewUserInfoAfterTokenRenew": false,
+      //"AutoCleanStateAfterAuthentication": false,
+      //"IssValidationOff": false,
+      //"DisableIatOffsetValidation": false,
+      //"Storage": 
+    },
+    "AuthWellKnownEndpoints": {
+      "Issuer": "http://machinecartsystem.identityserver:80/",
+      "JwksUri": "http://localhost:2000/.well-known/openid-configuration/jwks",
+      "AuthorizationEndpoint": "http://localhost:2000/connect/authorize",
+      "TokenEndpoint": "http://localhost:2000/connect/token",
+      "UserinfoEndpoint": "http://localhost:2000/connect/userinfo",
+      "EndSessionEndpoint": "http://localhost:2000/connect/endsession",
+      "CheckSessionIframe": "http://localhost:2000/connect/checksession",
+      "RevocationEndpoint": "http://localhost:2000/connect/revocation",
+      "IntrospectionEndpoint": "http://localhost:2000/connect/introspect",
+      "DeviceAuthorizationEndpoint": "http://localhost:2000/connect/deviceauthorization"
+    }
   }
 }

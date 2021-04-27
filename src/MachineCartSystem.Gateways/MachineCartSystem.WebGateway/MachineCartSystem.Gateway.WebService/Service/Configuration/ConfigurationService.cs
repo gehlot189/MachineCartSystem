@@ -6,14 +6,14 @@ namespace MachineCartSystem.Gateway.WebService.Service
 {
     public class ConfigurationService : IConfigurationService
     {
-        private readonly OpenIdConfiguration _openIdConfiguration;
+        private readonly ClientConfiguration _clientConfiguration;
         private readonly GlobalConfiguration _globalConfiguration;
         private readonly IMapper _mapper;
 
-        public ConfigurationService(IMapper mapper, OpenIdConfiguration openIdConfiguration, GlobalConfiguration globalConfiguration)
+        public ConfigurationService(IMapper mapper, ClientConfiguration clientConfiguration, GlobalConfiguration globalConfiguration)
         {
             _globalConfiguration = globalConfiguration;
-            _openIdConfiguration = openIdConfiguration;
+            _clientConfiguration = clientConfiguration;
             _mapper = mapper;
         }
 
@@ -33,14 +33,14 @@ namespace MachineCartSystem.Gateway.WebService.Service
                 case ApiName.Basket:
                     data = _mapper.Map<BasketConfig>(_globalConfiguration, p => p.AfterMap((q, r) =>
                     {
-                        r.Name = apiName.ToString(); 
+                        r.Name = apiName.ToString();
                         r.Description = apiName.GetDescription();
                     }));
                     break;
                 case ApiName.Order:
                     data = _mapper.Map<OrderConfig>(_globalConfiguration, p => p.AfterMap((q, r) =>
                     {
-                        r.Name = apiName.ToString(); 
+                        r.Name = apiName.ToString();
                         r.Description = apiName.GetDescription();
                     }));
                     break;
@@ -57,9 +57,9 @@ namespace MachineCartSystem.Gateway.WebService.Service
             return await Task.FromResult<object>(data);
         }
 
-        public async Task<OpenIdConfiguration> GetOpenIdConfigurationConfiguration()
+        public async Task<ClientConfiguration> GetOpenIdConfigurationConfiguration()
         {
-            return await Task.FromResult<OpenIdConfiguration>(_openIdConfiguration);
+            return await Task.FromResult<ClientConfiguration>(_clientConfiguration);
         }
     }
 }

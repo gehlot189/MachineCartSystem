@@ -1,17 +1,14 @@
 ﻿using MachineCartSystem.Common;
-using MachineCartSystem.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using System.IdentityModel;
 
 namespace MachineCartSystem.BasketApi.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
     [Authorize(Policy.Admin)]
-    public class AccountController : BasketBaseController<AccountController>
+    [Route("api/[controller]")]
+
+    public class AccountController : BaseController<AccountController>
     {
         public AccountController()
         {

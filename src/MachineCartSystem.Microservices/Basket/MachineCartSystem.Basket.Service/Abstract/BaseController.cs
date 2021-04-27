@@ -1,10 +1,10 @@
-﻿using MachineCartSystem.Configuration;
-using MachineCartSystem.Service.Interfaces;
+﻿using MachineCartSystem.Service.Interfaces;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MachineCartSystem.BasketApi
 {
-    public abstract class BasketBaseController<T> : BaseController<T> where T : BaseController<T>
+    public abstract class BaseController<T> : MachineCartSystem.Configuration.BaseController<T> where T : BaseController<T>
     {
         private IUserService _userService;
 

@@ -4,6 +4,7 @@ using MachineCartSystem.Gateway.WebService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Logging;
 using System;
 using System.Linq;
 using System.Text.Json;
@@ -14,6 +15,8 @@ namespace MachineCartSystem.Gateway.Web.Initializer
     {
         public static void InitializeAllServices(this IServiceCollection services, IConfiguration configuration, JwtConfig jwtConfig)
         {
+            IdentityModelEventSource.ShowPII = true; //Add this line
+
             InitializeService(services, configuration);
             AutoMapperService.Initialize<DbContext, AutoMapperConfig>( services);
             //  DbService.Initialize(exportedTypes, services, configuration);
@@ -21,7 +24,9 @@ namespace MachineCartSystem.Gateway.Web.Initializer
 
             AuthenticationService.Initialize(services, jwtConfig);
             SwaggerUIService.Initialize(services, configuration, jwtConfig);
+
             services.AddAuthorization();
+           // services.AddAuthorization();
 
             //  .AddConsul()
             // .AddConfigStoredInConsul();

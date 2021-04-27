@@ -24,10 +24,6 @@ namespace MachineCartSystem.Gateway.Web.Initializer
 
             app.UseRouting();
 
-            app.UseAuthentication();
-
-            app.UseAuthorization();
-
             app.UseHttpsRedirection();
 
             // app.UseHeaderPropagation();
@@ -42,6 +38,10 @@ namespace MachineCartSystem.Gateway.Web.Initializer
                 UseApiProblemDetailsException = true,
                 ShowIsErrorFlagForSuccessfulResponse = true,
             });
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -2,19 +2,20 @@
 
 namespace MachineCartSystem.Configuration
 {
-    public class GlobalConfiguration : IBaseConfiguration
+    public class GlobalConfiguration : IGlobalConfiguration
     {
         public string GatewayUrl { get; set; }
         public string IdentityServerUrl { get; set; }
         public string Issuer { get; set; }
         public string Authority { get; set; }
-        public BaseApiConfiguration Identity { get; set; }
-        public BaseApiConfiguration Basket { get; set; }
-        public BaseApiConfiguration Order { get; set; }
-        public BaseApiConfiguration Catalog { get; set; }
+        public string AuthenticationProviderKey { get; set; }
+        public ApiConfiguration Identity { get; set; }
+        public ApiConfiguration Basket { get; set; }
+        public ApiConfiguration Order { get; set; }
+        public ApiConfiguration Catalog { get; set; }
     }
 
-    public interface IBaseConfiguration
+    public interface IGlobalConfiguration
     {
         [JsonProperty("GatewayUrl")]
         public string GatewayUrl { get; set; }
@@ -24,9 +25,11 @@ namespace MachineCartSystem.Configuration
         public string Authority { get; set; }
         [JsonProperty("Issuer")]
         public string Issuer { get; set; }
+        [JsonProperty("AuthenticationProviderKey")]
+        public string AuthenticationProviderKey { get; set; }
     }
 
-    public class BaseApiConfiguration
+    public class ApiConfiguration
     {
         [JsonProperty("Url")]
         public string Url { get; set; }

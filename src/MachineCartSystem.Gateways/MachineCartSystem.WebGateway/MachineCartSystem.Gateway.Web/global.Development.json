@@ -3,6 +3,7 @@
   "IdentityServerUrl": "http://localhost:2000/",
   "Authority": "http://machinecartsystem.identityserver:80/",
   "Issuer": "http://machinecartsystem.identityserver:80/",
+  "AuthenticationProviderKey": "mykey",
   "Identity": {
     "PrivateKey": "MySecretKey"
   },

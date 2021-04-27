@@ -34,7 +34,7 @@ namespace MachineCartSystem.Configuration
                 Authority = Configuration["Authority"]?.ToString(),
                 Issuer = Configuration["Issuer"]?.ToString(),
                 //Key = Configuration["PrivateKey"]?.ToCharArray(),
-                Scopes = Configuration["Scopes"]?.Split(new char[] { ' ' })
+                Scopes = Configuration["Scopes"]?.Split(new char[] { ' ' }),
             };
         }
 

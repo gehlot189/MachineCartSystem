@@ -18,7 +18,7 @@ namespace MachineCartSystem.Configuration
                     option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                     {
                         ValidAudience = jwtConfig.Audiences.First()
-                    };
+                    };  
                 });
             return services;
         }

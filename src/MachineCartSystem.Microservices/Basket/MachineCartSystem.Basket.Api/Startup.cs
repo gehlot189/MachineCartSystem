@@ -63,6 +63,7 @@ namespace MachineCartSystem.BasketApi
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
             });
         }

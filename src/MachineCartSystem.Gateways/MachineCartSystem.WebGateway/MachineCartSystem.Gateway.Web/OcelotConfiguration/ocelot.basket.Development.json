@@ -13,7 +13,7 @@
       "UpstreamHttpMethod": [ "Get" ],
       "SwaggerKey": "basket",
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "TestKey",
+        "AuthenticationProviderKey": "api-scheme",
         "AllowedScopes": [ "basket" ]
       },
       "Key": "basket",

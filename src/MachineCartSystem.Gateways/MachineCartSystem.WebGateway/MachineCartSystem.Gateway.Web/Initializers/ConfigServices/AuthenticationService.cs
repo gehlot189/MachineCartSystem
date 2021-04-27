@@ -4,20 +4,32 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class AuthenticationService 
+    public class AuthenticationService
     {
         public static void Initialize(IServiceCollection services, JwtConfig jwtConfig)
         {
-            var authenticationProviderKey = "TestKey";
             services.AddAuthentication()
-                .AddJwtBearer(authenticationProviderKey, x =>
+                .AddJwtBearer(AuthSchemes.ApiScheme, x =>
                 {
                     x.Authority = jwtConfig.Authority;
                     x.RequireHttpsMetadata = false;
                     x.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidAudiences = jwtConfig.Audiences,
-                        //ValidIssuer=jwtConfig.Issuer
+                        ValidIssuer = jwtConfig.Issuer
+                    };
+                })
+                .AddJwtBearer(AuthSchemes.GatewayScheme, x =>
+                {
+                    x.Authority = jwtConfig.Authority;
+                    x.RequireHttpsMetadata = false;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = false,
+                        ValidateIssuer = false,
+                        RequireSignedTokens = false,
+                        ValidateIssuerSigningKey = false,
+                        RequireExpirationTime = false,
                     };
                 });
         }

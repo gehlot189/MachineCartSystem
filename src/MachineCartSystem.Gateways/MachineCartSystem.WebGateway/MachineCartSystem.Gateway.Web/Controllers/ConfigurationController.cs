@@ -1,15 +1,14 @@
 ﻿using AutoWrapper.Wrappers;
 using MachineCartSystem.Configuration;
 using MachineCartSystem.Gateway.WebService.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace MachineCartSystem.Gateway.Web.Controllers
 {
-    [ApiController]
     [Route("api/configuration")]
-    public class ConfigurationController : GatewayBaseController<ConfigurationController>
+    public class ConfigurationController : BaseController<ConfigurationController>
     {
         private readonly IConfigurationService _configurationService;
 
@@ -20,6 +19,7 @@ namespace MachineCartSystem.Gateway.Web.Controllers
 
         [HttpGet]
         [Route("getConfig")]
+        [AllowAnonymous]
         public async Task<ApiResponse> GetOpenIdConfigurationConfiguration()
         {
             return new ApiResponse(await _configurationService.GetOpenIdConfigurationConfiguration());
@@ -27,6 +27,7 @@ namespace MachineCartSystem.Gateway.Web.Controllers
 
         [HttpPost]
         [Route("getApiConfig")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetApiConfiguration([FromBody] ApiName apiName)
         {
             return Ok(await _configurationService.GetApiConfiguration(apiName));

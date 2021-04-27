@@ -12,7 +12,7 @@
       ]
     },
     {
-      "Key": "identity-server",
+      "Key": "jwks",
       "TransformByOcelotConfig": false,
       "Config": [
         {

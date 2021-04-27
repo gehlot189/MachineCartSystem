@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AutoLoginGuard } from 'angular-auth-oidc-client';
 import { AuthGuard } from 'projects/lib/src/public-api';
 import { AppPreloadingStrategy } from './app-preloading-strategy';
 import { CustomerComponent } from './pages/customer/customer.component';
-import { DashboardComponent, NoPageComponent } from './pages/pages-index';
+import { DashboardComponent } from './pages/pages-index';
 
 const routes: Routes =
   [
@@ -12,7 +13,7 @@ const routes: Routes =
     { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard] },
     { path: 'auth-callback', data: { preload: true, delay: 100 }, loadChildren: () => import('../../../lib/src/auth/components/auth-callback/auth-callback.module').then(p => p.AuthCallBackModule) },
     { path: 'silent-refresh', loadChildren: () => import('../../../lib/src/auth/components/silent-refresh/silent-refresh.module').then(p => p.SilentRefreshModule) },
-    { path: 'login', data: {}, loadChildren: () => import('./pages/login/login.module').then(p => p.LoginModule) },
+    { path: 'login', data: {}, loadChildren: () => import('./pages/login/login.module').then(p => p.LoginModule), canLoad: [AutoLoginGuard] },
     //{ path: '**', component: NoPageComponent },
   ];
 

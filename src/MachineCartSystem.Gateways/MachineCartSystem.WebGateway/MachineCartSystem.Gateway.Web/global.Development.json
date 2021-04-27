@@ -25,11 +25,11 @@
     "PrivateKey": "MySecretKey"
   },
   "OpenIdConfiguration": {
-    "StsServer": "http://localhost:2000",
+    "StsServer": "http://host.docker.internal:5000",
     "RedirectUrl": "http://localhost:4200/auth-callback",
     "PostLogoutRedirectUri": "http://localhost:4200/login",
     "ClientId": "angular",
-    "Scope": "basket.read order.read catalog.read",
+    "Scope": "openid basket.read order.read catalog.read",
     "ResponseType": "code",
     "SilentRenew": true,
     "SilentRenewUrl": "http://localhost:4200/silent-refresh",
@@ -42,6 +42,7 @@
     //maxIdTokenIatOffsetAllowedInSeconds: 40,
     "RenewTimeBeforeTokenExpiresInSeconds": 10,
     "AutoUserinfo": true,
-    "UseRefreshToken": false
+    "UseRefreshToken": false,
+    "TriggerAuthorizationResultEvent": true
   }
 }

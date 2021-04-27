@@ -16,7 +16,11 @@ export class ApiInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // debugger;
     if (!request.url.startsWith(this.env.identityServerUrl)) {
-      request = request.clone({ url: this.env.apiUrl + request.url });
+      //  debugger;
+      if (request.url.startsWith("configuration/getConfig"))
+        request = request.clone({ url: this.env.apiUrl + request.url });
+      else
+        request = request.clone({ url: request.url });
     }
     return next.handle(request);
   }

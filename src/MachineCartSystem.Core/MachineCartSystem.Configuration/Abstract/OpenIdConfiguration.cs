@@ -18,5 +18,6 @@
         public int RenewTimeBeforeTokenExpiresInSeconds { get; set; }
         public bool AutoUserinfo { get; set; }
         public bool UseRefreshToken { get; set; }
+        public bool TriggerAuthorizationResultEvent { get; set; }
     }
 }

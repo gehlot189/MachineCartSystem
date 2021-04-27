@@ -1,5 +1,18 @@
 {
   "Routes": [
-
+    {
+      "DownstreamPathTemplate": "/{any-route}",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "machinecartsystem.identityserver",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/{any-route}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+    }
   ]
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MachineCartSystem.Gateway.Web.Controllers
 {
-    [Route("api/configuration")]
+    [Route("api/[controller]")]
     public class ConfigurationController : BaseController<ConfigurationController>
     {
         private readonly IConfigurationService _configurationService;

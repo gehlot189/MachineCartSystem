@@ -5,6 +5,7 @@
         public AuthWellKnownEndpoints AuthWellKnownEndpoints { get; set; }
         public OpenIdConfiguration OpenIdConfiguration { get; set; }
         public bool IsAuthWellKnownEndpointsRequired { get; set; }
+        public string Url { get; set; }
     }
 
     public class OpenIdConfiguration

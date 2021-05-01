@@ -5,14 +5,14 @@ using Microsoft.OpenApi.Models;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class SwaggerUIService
+    public class SwaggerUIService : ServiceInitializer
     {
-        public static void Initialize(IServiceCollection services, IConfiguration configuration, JwtConfig jwtConfig)
+        public override void Initialize(IServiceCollection services, IConfiguration configuration, JwtConfig jwtConfig)
         {
             services.AddSwaggerForOcelot(configuration, o =>
              {
                  o.GenerateDocsForAggregates = true;
-                // o.GenerateDocsForGatewayItSelf = true;
+                 // o.GenerateDocsForGatewayItSelf = true;
 
                  o.AggregateDocsGeneratorPostProcess = (aggregateRoute, routesDocs, pathItemDoc, documentation) =>
                  {

@@ -1,14 +1,13 @@
 ﻿using MachineCartSystem.Gateway.Web.HttpAggregators;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class OcelotService : IServiceInitializer
+    public class OcelotService : ServiceInitializer
     {
-        public void Initialize(IServiceCollection services, IConfiguration configuration)
+        public override void Initialize(IServiceCollection services)
         {
             services.AddOcelot()
                     .AddCacheManager(x =>

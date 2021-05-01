@@ -5,11 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class ApplicationService : IServiceInitializer
+    public class ApplicationService : ServiceInitializer
     {
-        public void Initialize(IServiceCollection services, IConfiguration configuration)
+        public override void Initialize(IServiceCollection services)
         {
             ////register delegating handlers
+            ///
+            services.AddHttpClient();
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

@@ -4,7 +4,7 @@
       "DownstreamPathTemplate": "/api/catalog",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machinecartsystem.catalog.api",
+          "Host": "catalog.api",
           "Port": 80
         }
       ],

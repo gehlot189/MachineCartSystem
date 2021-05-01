@@ -20,7 +20,8 @@ namespace MachineCartSystem.BasketApi
                     webBuilder.ConfigureAppConfiguration((q, p) =>
                     {
                         p.SetBasePath(q.HostingEnvironment.ContentRootPath);
-                        AppSettingProvider.Add(p, q.HostingEnvironment, ApiName.Basket);
+                        p.AddJsonFile($"appsettings.{q.HostingEnvironment.EnvironmentName}.json", false, true);
+                        ApiConfigurationProvider.Add(p, q.HostingEnvironment, ApiName.Basket);
                     });
                     webBuilder.UseSerilog((p, q) =>
                     {

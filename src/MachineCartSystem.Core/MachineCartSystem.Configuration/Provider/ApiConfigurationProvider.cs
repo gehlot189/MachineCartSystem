@@ -3,18 +3,18 @@ using Microsoft.Extensions.Configuration;
 
 namespace MachineCartSystem.Configuration
 {
-    public class AppSettingProvider 
+    public class ApiConfigurationProvider
     {
-        public static void Add(IConfigurationBuilder builder, IWebHostEnvironment hostingEnvironment, ApiName apiName)
+        public static void Add(IConfigurationBuilder builder, IWebHostEnvironment hostingEnvironment, ApiName apiName, bool optional = false)
         {
-            builder.AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", false, true);
             var root = builder.Build();
 
-            builder.AddAppConfiguration(setting =>
+            builder.Add(setting =>
             {
                 setting.HostEnvironment = hostingEnvironment;
                 setting.ApiName = apiName;
                 setting.ReqUrl = root.GetSection("GatewayUrl").Value;
+                setting.Optional = optional;
             });
         }
     }

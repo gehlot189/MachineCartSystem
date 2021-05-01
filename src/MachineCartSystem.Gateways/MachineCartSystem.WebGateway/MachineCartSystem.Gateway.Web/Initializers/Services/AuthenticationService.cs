@@ -4,9 +4,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class AuthenticationService
+    public class AuthenticationService : ServiceInitializer
     {
-        public static void Initialize(IServiceCollection services, JwtConfig jwtConfig)
+        public override void Initialize(IServiceCollection services, JwtConfig jwtConfig)
         {
             services.AddAuthentication()
                 .AddJwtBearer(AuthSchemes.ApiScheme, x =>

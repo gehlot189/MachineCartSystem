@@ -1,21 +1,25 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Linq;
 
 namespace MachineCartSystem.Configuration
 {
-    public abstract class BaseStartup
+    public abstract class BaseStartup : BaseConfiguration
     {
-        protected readonly IConfiguration Configuration;
-        protected ApiName _apiName;
+        private readonly string _apiName = null;
 
-        public BaseStartup(IConfiguration configuration)
+        public BaseStartup(IConfiguration configuration) : base(configuration)
         {
-            Configuration = configuration;
+            _apiName = null;
+        }
+
+        public BaseStartup(IConfiguration configuration, ApiName apiName) : base(configuration)
+        {
+            _apiName = apiName.ToString();
         }
 
         public DbConfig DbConfig => GetDbConfigSetting();
+
         public JwtConfig JwtConfig => JwtConfigSetting();
+
         private DbConfig GetDbConfigSetting()
         {
             var attemptSection = Configuration.GetSection("DbConfiguration:Attempt");
@@ -29,26 +33,16 @@ namespace MachineCartSystem.Configuration
 
         private JwtConfig JwtConfigSetting()
         {
-            if (_apiName == ApiName.Gateway)
+            if (_apiName == ApiName.Gateway.ToString())
             {
-                var lstApi = Enum.GetNames(typeof(ApiName)).Where(p => p != ApiName.Gateway.ToString()).ToList();
-
-                var scopes = new string[] { Configuration[ApiName.Gateway.ToString() + ":Scopes"] };
-                var audiences = new string[] { Configuration[ApiName.Gateway.ToString() + ":Audiences"] };
-
-                lstApi.ForEach(p =>
-                {
-                    scopes.Append(" " + Configuration[p + ":Scopes"]);
-                    audiences.Append(" " + Configuration[p + ":Audiences"]);
-                });
-
+                var scope_audiences = GetAllScopesAndAudiences();
                 var jwtConfig = new JwtConfig
                 {
-                    Audiences = audiences,
+                    Audiences = scope_audiences.Item2,
                     Authority = Configuration["Identity:Authority"],
                     Issuer = Configuration["Identity:Issuer"],
                     //Key = Configuration["PrivateKey"]?.ToCharArray(),
-                    Scopes = scopes
+                    Scopes = scope_audiences.Item1
                 };
                 return jwtConfig;
             }
@@ -62,7 +56,6 @@ namespace MachineCartSystem.Configuration
                 Scopes = Configuration["Scopes"]?.Split(new char[] { ' ' }),
             };
         }
-
 
         //public Assembly[] profiles
         //{

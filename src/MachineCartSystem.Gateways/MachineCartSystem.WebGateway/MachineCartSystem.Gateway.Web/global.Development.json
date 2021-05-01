@@ -1,52 +1,59 @@
 {
-  "GatewayUrl": "http://host.docker.internal:5000/",
-  "IdentityServerUrl": "http://localhost:2000/",
-  "Authority": "http://machinecartsystem.identityserver:80/",
-  "Issuer": "http://machinecartsystem.identityserver:80/",
   "AuthenticationProviderKey": "mykey",
+  "Gateway": {
+    "Url": "http://host.docker.internal:5000/",
+    "Scopes": [],
+    "Audiences": [],
+    "PrivateKey": "MySecretKey"
+  },
   "Identity": {
+    "Url": "http://localhost:2000/",
+    "Authority": "http://identityserver:80/",
+    "Issuer": "http://identityserver:80/",
+    "Scopes": [],
+    "Audiences": [],
     "PrivateKey": "MySecretKey"
   },
   "Basket": {
-    "Url": "http://machinecartsystem.basket.api:2001/",
-    "Scopes": "basket.read",
-    "Audiences": "basket",
+    "Url": "http://basket.api:2001/",
+    "Scopes": [ "basket.read" ],
+    "Audiences": [ "basket" ],
     "PrivateKey": "MySecretKey"
   },
   "Order": {
-    "Url": "http://machinecartsystem.order.api:2001/",
-    "Scopes": "order.read",
-    "Audiences": "order",
+    "Url": "http://order.api:2001/",
+    "Scopes": [ "order.read" ],
+    "Audiences": [ "order" ],
     "PrivateKey": "MySecretKey"
   },
   "Catalog": {
-    "Url": "http://machinecartsystem.catalog.api:2001/",
-    "Scopes": "catalog.read",
-    "Audiences": "catalog",
+    "Url": "http://catalog.api:2001/",
+    "Scopes": [ "catalog.read" ],
+    "Audiences": [ "catalog" ],
     "PrivateKey": "MySecretKey"
   },
   "ClientConfiguration": {
-    "IsAuthWellKnownEndpointsRequired": true,
+    "Url": "http://localhost:4200",
     "OpenIdConfiguration": {
-      "StsServer": "http://host.docker.internal:5000",
-      "RedirectUrl": "http://localhost:4200/auth-callback",
-      "PostLogoutRedirectUri": "http://localhost:4200/login",
+      "StsServer": "{Gateway.Url}",
+      "RedirectUrl": "/auth-callback",
+      "PostLogoutRedirectUri": "/login",
       "ClientId": "angular",
-      "Scope": "openid basket.read order.read catalog.read",
+      "Scope": "{all-scope}",
       "ResponseType": "code",
       "SilentRenew": true,
-      "SilentRenewUrl": "http://localhost:4200/silent-refresh",
-      //"SilentRenewTimeoutInSeconds": 60,
+      "SilentRenewUrl": "/silent-refresh",
       "LogLevel": "Warn",
-      // startCheckSession: true,
-      // historyCleanupOff: false,
       "PostLoginRoute": "/",
       "ForbiddenRoute": "/forbidden",
       "unauthorizedRoute": "/unauthorized",
-      //maxIdTokenIatOffsetAllowedInSeconds: 40,
       "RenewTimeBeforeTokenExpiresInSeconds": 10,
       "AutoUserinfo": true,
       "UseRefreshToken": false
+      // startCheckSession: true,
+      //maxIdTokenIatOffsetAllowedInSeconds: 40,
+      // historyCleanupOff: false,
+      //"SilentRenewTimeoutInSeconds": 60,
       //  "TriggerAuthorizationResultEvent": true,
       //"IgnoreNonceAfterRefresh": true
       //"CustomParams": {
@@ -60,7 +67,7 @@
       //"Storage": 
     },
     "AuthWellKnownEndpoints": {
-      "Issuer": "http://machinecartsystem.identityserver:80/",
+      "Issuer": "http://identityserver:80/",
       "JwksUri": "http://localhost:2000/.well-known/openid-configuration/jwks",
       "AuthorizationEndpoint": "http://localhost:2000/connect/authorize",
       "TokenEndpoint": "http://localhost:2000/connect/token",
@@ -70,6 +77,7 @@
       "RevocationEndpoint": "http://localhost:2000/connect/revocation",
       "IntrospectionEndpoint": "http://localhost:2000/connect/introspect",
       "DeviceAuthorizationEndpoint": "http://localhost:2000/connect/deviceauthorization"
-    }
+    },
+    "IsAuthWellKnownEndpointsRequired": true
   }
 }

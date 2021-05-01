@@ -1,15 +1,17 @@
 ﻿using AutoWrapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Ocelot.Middleware;
+using System.Net;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public static class MiddlewareInitializer
+    public abstract class MiddlewareInitializer
     {
-        public static void InitializeAllMiddleware(this IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration)
+        public static void Initialize<T>(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration) where T : IApplicationBuilder
         {
             if (env.IsDevelopment())
             {
@@ -47,7 +49,7 @@ namespace MachineCartSystem.Gateway.Web.Initializer
             {
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
-                //endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                // endpoints.MapControllerRoute("default",pattern: "{controller=Configuration}/{action=Get}",);
                 //{
                 //    Predicate = _ => true,
                 //    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse

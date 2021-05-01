@@ -4,7 +4,7 @@
       "DownstreamPathTemplate": "/api/Account",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machinecartsystem.order.api",
+          "Host": "order.api",
           "Port": 80
         }
       ],

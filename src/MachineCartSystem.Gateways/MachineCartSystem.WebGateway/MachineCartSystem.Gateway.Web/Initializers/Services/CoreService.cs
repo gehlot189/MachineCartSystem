@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class CoreService : IServiceInitializer
+    public class CoreService : ServiceInitializer
     {
-        public void Initialize(IServiceCollection services, IConfiguration configuration)
+        public override void Initialize(IServiceCollection services)
         {
             services.AddCors(p =>
                {

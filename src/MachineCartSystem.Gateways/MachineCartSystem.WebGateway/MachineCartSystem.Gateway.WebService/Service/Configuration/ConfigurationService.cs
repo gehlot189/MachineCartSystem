@@ -1,20 +1,29 @@
 ﻿using AutoMapper;
 using MachineCartSystem.Configuration;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MachineCartSystem.Gateway.WebService.Service
 {
-    public class ConfigurationService : IConfigurationService
+    public class ConfigurationService : BaseConfiguration, IConfigurationService
     {
-        private readonly ClientConfiguration _clientConfiguration;
         private readonly GlobalConfiguration _globalConfiguration;
         private readonly IMapper _mapper;
+        private ClientConfiguration _clientConfiguration;
 
-        public ConfigurationService(IMapper mapper, ClientConfiguration clientConfiguration, GlobalConfiguration globalConfiguration)
+        public ConfigurationService(IMapper mapper, IConfiguration configuration, ClientConfiguration clientConfiguration,
+            GlobalConfiguration globalConfiguration) : base(configuration)
         {
-            _globalConfiguration = globalConfiguration;
-            _clientConfiguration = clientConfiguration;
             _mapper = mapper;
+            _globalConfiguration = _mapper.Map<GlobalConfiguration>(globalConfiguration);
+            _clientConfiguration = clientConfiguration;
+        }
+
+        public async Task RefreshGatewayConfiguration()
+        {
+            await GetApiConfiguration(ApiName.Gateway);
         }
 
         public async Task<object> GetApiConfiguration(ApiName apiName)
@@ -23,33 +32,27 @@ namespace MachineCartSystem.Gateway.WebService.Service
 
             switch (apiName)
             {
-                case ApiName.Identity:
-                    data = _mapper.Map<IdentityConfig>(_globalConfiguration, p => p.AfterMap((q, r) =>
+                case ApiName.Gateway:
                     {
-                        r.Name = apiName.ToString();
-                        r.Description = apiName.GetDescription();
-                    }));
+                        var gatewayConfig = _mapper.Map<GatewayConfig>(_globalConfiguration);
+                        foreach (var item in gatewayConfig.GetType().GetProperties().Where(p => !new string[] { "Scopes", "Audiences" }.Any(q => q == p.Name)))
+                        {
+                            Configuration[item.Name] = item.GetValue(gatewayConfig)?.ToString();
+                        }
+                        Configuration["Audience"] = Configuration["Audiences:0"];
+                    }
+                    break;
+                case ApiName.Identity:
+                    data = _mapper.Map<IdentityConfig>(_globalConfiguration);
                     break;
                 case ApiName.Basket:
-                    data = _mapper.Map<BasketConfig>(_globalConfiguration, p => p.AfterMap((q, r) =>
-                    {
-                        r.Name = apiName.ToString();
-                        r.Description = apiName.GetDescription();
-                    }));
+                    data = _mapper.Map<BasketConfig>(_globalConfiguration);
                     break;
                 case ApiName.Order:
-                    data = _mapper.Map<OrderConfig>(_globalConfiguration, p => p.AfterMap((q, r) =>
-                    {
-                        r.Name = apiName.ToString();
-                        r.Description = apiName.GetDescription();
-                    }));
+                    data = _mapper.Map<OrderConfig>(_globalConfiguration);
                     break;
                 case ApiName.Catalog:
-                    data = _mapper.Map<CatalogConfig>(_globalConfiguration, p => p.AfterMap((q, r) =>
-                    {
-                        r.Name = apiName.ToString();
-                        r.Description = apiName.GetDescription();
-                    }));
+                    data = _mapper.Map<CatalogConfig>(_globalConfiguration);
                     break;
                 default:
                     break;
@@ -59,6 +62,8 @@ namespace MachineCartSystem.Gateway.WebService.Service
 
         public async Task<ClientConfiguration> GetOpenIdConfigurationConfiguration()
         {
+            _clientConfiguration = _mapper.Map(_globalConfiguration, _clientConfiguration);
+            _clientConfiguration.OpenIdConfiguration.Scope = string.Join(" ", GetAllScopesAndAudiences().Item1);
             return await Task.FromResult<ClientConfiguration>(_clientConfiguration);
         }
     }

@@ -6,7 +6,7 @@
     <ProjectGuid>20ac4add-fc22-431d-8cd2-5841d95a15eb</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://host.docker.internal:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>machinecartsystem.gateway.web</DockerServiceName>
+    <DockerServiceName>gateway.web</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

@@ -7,24 +7,27 @@ services:
   # ports:
   #    - "4200:4200"
 
-  machinecartsystem.sql-server:
+  sql-server:
     image: mcr.microsoft.com/mssql/server
-    container_name: MachineCartSystem.SqlServer
+    container_name: SqlServer
     environment:
         - SA_PASSWORD=sa@123456
         - ACCEPT_EULA=Y
     ports:
         - "5433:1433"
 
-  machinecartsystem.gateway.web:
+  gateway.web:
+    container_name: Gateway.Web
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - GatewayUrl=${GatewayUrl}
     ports:
       - "5000:80"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  machinecartsystem.identityserver:
+  identityserver:
+    container_name: IdentityServer
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - GatewayUrl=${GatewayUrl}
@@ -33,9 +36,10 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     depends_on:
-      - machinecartsystem.gateway.web
+      - gateway.web
 
-  machinecartsystem.basket.api:
+  basket.api:
+    container_name: Basket.Api
     environment:    
          - ASPNETCORE_ENVIRONMENT=Development
          - GatewayUrl=${GatewayUrl}
@@ -44,9 +48,10 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     depends_on:
-      - machinecartsystem.gateway.web
+      - gateway.web
 
-  machinecartsystem.order.api:
+  order.api:
+    container_name: Order.Api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - GatewayUrl=${GatewayUrl}
@@ -55,9 +60,10 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     depends_on:
-      - machinecartsystem.gateway.web
+      - gateway.web
 
-  machinecartsystem.catalog.api:
+  catalog.api:
+    container_name: Catalog.Api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - GatewayUrl=${GatewayUrl}
@@ -66,4 +72,4 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     depends_on:
-      - machinecartsystem.gateway.web
+      - gateway.web

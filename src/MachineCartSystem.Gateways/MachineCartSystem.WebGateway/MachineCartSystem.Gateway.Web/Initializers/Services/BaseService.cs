@@ -7,9 +7,9 @@ using Microsoft.Extensions.Options;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class BaseService : IServiceInitializer
+    public class BaseService : ServiceInitializer
     {
-        public void Initialize(IServiceCollection services, IConfiguration configuration)
+        public override void Initialize(IServiceCollection services, IConfiguration configuration)
         {
             services.AddOptions();
             //  services.AddOptions<UrlConfigOptions>().Bind(configuration.GetSection(UrlConfigOptions.Urls));
@@ -22,7 +22,7 @@ namespace MachineCartSystem.Gateway.Web.Initializer
             services.Configure<GlobalConfiguration>(configuration);
             services.AddSingleton(p => p.GetService<IOptions<GlobalConfiguration>>().Value);
 
-            services.AddSingleton<IConfigurationService, ConfigurationService>();
+            services.AddScoped<IConfigurationService, ConfigurationService>();
         }
     }
 }

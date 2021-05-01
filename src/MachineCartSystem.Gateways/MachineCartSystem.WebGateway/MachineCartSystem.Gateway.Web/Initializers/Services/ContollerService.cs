@@ -4,9 +4,9 @@ using System.Text.Json;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class ContollerService : IServiceInitializer
+    public class ContollerService : ServiceInitializer
     {
-        public void Initialize(IServiceCollection services, IConfiguration configuration)
+        public override void Initialize(IServiceCollection services)
         {
             services.AddControllers(p =>
             {

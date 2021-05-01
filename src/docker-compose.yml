@@ -9,31 +9,31 @@ services:
   #    context: .
   #   dockerfile: MachineCartSystem.UI/Dockerfile
 
-  machinecartsystem.gateway.web:
+  gateway.web:
     image: ${DOCKER_REGISTRY-}machinecartsystemgatewayweb
     build:
       context: .
       dockerfile: MachineCartSystem.Gateways/MachineCartSystem.WebGateway/MachineCartSystem.Gateway.Web/Dockerfile
 
-  machinecartsystem.identityserver:
+  identityserver:
     image: ${DOCKER_REGISTRY-}machinecartsystemidentityserver
     build:
       context: .
       dockerfile: MachineCartSystem.Microservices/Identity/MachineCartSystem.IdentityServer/Dockerfile
 
-  machinecartsystem.basket.api:
+  basket.api:
     image: ${DOCKER_REGISTRY-}machinecartsystembasketapi
     build:
       context: .
       dockerfile: MachineCartSystem.Microservices/Basket/MachineCartSystem.Basket.Api/Dockerfile
 
-  machinecartsystem.order.api:
+  order.api:
     image: ${DOCKER_REGISTRY-}machinecartsystemorderapi
     build:
       context: .
       dockerfile: MachineCartSystem.Microservices/Order/MachineCartSystem.Order.Api/Dockerfile
   
-  machinecartsystem.catalog.api:
+  catalog.api:
     image: ${DOCKER_REGISTRY-}machinecartsystemcatalogapi
     build:
       context: .

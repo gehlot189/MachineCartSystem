@@ -12,7 +12,7 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
         public bool Optional { get; set; }
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
-            return new ApiConfigurationProvider(this);
+            return new ApiConfigurationHandler(this);
         }
     }
 

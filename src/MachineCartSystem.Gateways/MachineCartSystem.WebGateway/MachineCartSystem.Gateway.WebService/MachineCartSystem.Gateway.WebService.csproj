@@ -5,9 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Configuration\" />
     <Folder Include="Extension\" />
     <Folder Include="Http\" />
     <Folder Include="Model\" />
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>

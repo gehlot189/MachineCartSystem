@@ -1,3 +1,4 @@
+using MachineCartSystem.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -25,10 +26,11 @@ namespace MachineCartSystem.Gateway.Web
                         p.AddJsonFile("ocelot.json", false, true);
 
                         p.AddJsonFile($"app-url.{q.HostingEnvironment.EnvironmentName}.json", false, true);
-                        p.AddJsonFile($"appsettings.{q.HostingEnvironment.EnvironmentName}.json", false, true);
                         p.AddJsonFile($"global.{q.HostingEnvironment.EnvironmentName}.json", false, true);
-
+                        p.AddJsonFile($"appsettings.{q.HostingEnvironment.EnvironmentName}.json", false, true);
                         p.AddEnvironmentVariables();
+
+                        ApiConfigurationProvider.Add(p, q.HostingEnvironment, ApiName.Gateway, true);
                     });
                     webBuilder.UseSerilog((p, q) =>
                                 {

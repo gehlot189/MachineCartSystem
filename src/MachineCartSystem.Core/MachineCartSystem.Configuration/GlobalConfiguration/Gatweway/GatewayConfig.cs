@@ -1,6 +1,6 @@
 ﻿namespace MachineCartSystem.Configuration
 {
-    public class IdentityConfig : ApiConfiguration, IGlobalConfiguration
+    public class GatewayConfig : ApiConfiguration, IGlobalConfiguration
     {
         public string GatewayUrl { get; set; }
         public string IdentityServerUrl { get; set; }

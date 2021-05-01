@@ -1,20 +1,18 @@
 ﻿using AutoWrapper.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 
 namespace MachineCartSystem.Configuration.Config.FileConfigProvider
 {
-    public class ApiConfigurationProvider : ConfigurationProvider, IDisposable
+    public class ApiConfigurationHandler : ConfigurationProvider, IDisposable
     {
         private readonly ApiConfigurationSource _apiConfigurationSource;
         //private readonly Timer _timer;
 
-        public ApiConfigurationProvider(ApiConfigurationSource apiConfigurationSource)
+        public ApiConfigurationHandler(ApiConfigurationSource apiConfigurationSource)
         {
             _apiConfigurationSource = apiConfigurationSource;
             _apiConfigurationSource.ReqUrl += "api/configuration/getApiConfig";
@@ -31,15 +29,20 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
         {
             try
             {
-                var data = JsonContent.Create<ApiName>(_apiConfigurationSource.ApiName);
-                using (HttpClient client = new HttpClient())
+                if (!_apiConfigurationSource.Optional)
                 {
-                    if (IsSericeReady(client, data, out HttpResponseMessage httpResponse))
+                    var data = JsonContent.Create<ApiName>(_apiConfigurationSource.ApiName);
+                    using (HttpClient client = new HttpClient())
                     {
-                        var res = httpResponse.Content.ReadAsStringAsync().Result;
-                        var response = JsonConvert.DeserializeObject<ApiResponse>(res);
-                        if (!response.IsError.Value)
-                            Data = JObject.Parse(JsonConvert.SerializeObject(response.Result)).ToObject<Dictionary<string, string>>();
+                        if (IsSericeReady(client, data, out HttpResponseMessage httpResponse))
+                        {
+                            var res = httpResponse.Content.ReadAsStringAsync().Result;
+                            var response = JsonConvert.DeserializeObject<ApiResponse>(res);
+                            if (!response.IsError.Value)
+                            {
+                             //   Data = JObject.Parse(JsonConvert.SerializeObject(response.Result)).ToObject<Dictionary<string, string>>();
+                            }
+                        }
                     }
                 }
             }
@@ -67,7 +70,7 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
                     httpResponse = client.PostAsync(_apiConfigurationSource.ReqUrl, data).Result;
                     _isSericeReady = httpResponse.IsSuccessStatusCode;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                 }
             }

@@ -4,6 +4,8 @@ namespace MachineCartSystem.Configuration
 {
     public enum ApiName
     {
+        [Description("Gateway Api")]
+        Gateway,
         [Description("Identity Server")]
         Identity,
         [Description("Basket Api")]

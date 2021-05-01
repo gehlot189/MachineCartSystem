@@ -7,7 +7,7 @@
         {
           "Name": "Gateway",
           "Version": "v1",
-          "Url": "http://machinecartsystem.gateway.web:80/swagger/v1/swagger.json"
+          "Url": "http://gateway.web:80/swagger/v1/swagger.json"
         }
       ]
     },
@@ -17,7 +17,7 @@
         {
           "Name": "Basket API",
           "Version": "v1",
-          "Url": "http://machinecartsystem.basket.api:80/swagger/v1/swagger.json"
+          "Url": "http://basket.api:80/swagger/v1/swagger.json"
         }
       ]
     },
@@ -27,7 +27,7 @@
         {
           "Name": "Order API",
           "Version": "v1",
-          "Url": "http://machinecartsystem.order.api:80/swagger/v1/swagger.json"
+          "Url": "http://order.api:80/swagger/v1/swagger.json"
         }
       ]
     },
@@ -37,7 +37,7 @@
         {
           "Name": "Catalog API",
           "Version": "v1",
-          "Url": "http://machinecartsystem.catalog.api:80/swagger/v1/swagger.json"
+          "Url": "http://catalog.api:80/swagger/v1/swagger.json"
         }
       ]
     }

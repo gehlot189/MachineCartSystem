@@ -25,7 +25,8 @@ namespace MachineCartSystem.Order.Api
                     webBuilder.ConfigureAppConfiguration((q, p) =>
                     {
                         p.SetBasePath(q.HostingEnvironment.ContentRootPath);
-                        AppSettingProvider.Add(p, q.HostingEnvironment, ApiName.Order);
+                        p.AddJsonFile($"appsettings.{q.HostingEnvironment.EnvironmentName}.json", false, true);
+                        ApiConfigurationProvider.Add(p, q.HostingEnvironment, ApiName.Order);
                     });
 
                     webBuilder.UseSerilog((p, q) =>

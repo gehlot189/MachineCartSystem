@@ -17,21 +17,21 @@ namespace MachineCartSystem.Configuration
             {
                 if (configuration.GetSection("Name").Value != ApiName.Identity.ToString())
                 {
-                    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-                    {
-                        Type = SecuritySchemeType.OAuth2,
-                        Flows = new OpenApiOAuthFlows
-                        {
-                            AuthorizationCode = new OpenApiOAuthFlow
-                            {
-                                AuthorizationUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/authorize"),
-                                TokenUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/token"),
-                                Scopes = jwtConfig.Scopes.ToDictionary(p => p),
-                            }
-                        },
-                    });
-                    AuthorizeCheckOperationFilter.Scope = jwtConfig.Scopes.ToList();
-                    c.OperationFilter<AuthorizeCheckOperationFilter>();
+                    //c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                    //{
+                    //    Type = SecuritySchemeType.OAuth2,
+                    //    Flows = new OpenApiOAuthFlows
+                    //    {
+                    //        AuthorizationCode = new OpenApiOAuthFlow
+                    //        {
+                    //            AuthorizationUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/authorize"),
+                    //            TokenUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/token"),
+                    //            Scopes = jwtConfig.Scopes.ToDictionary(p => p),
+                    //        }
+                    //    },
+                    //});
+                    //AuthorizeCheckOperationFilter.Scope = jwtConfig.Scopes.ToList();
+                    //c.OperationFilter<AuthorizeCheckOperationFilter>();
                 }
             });
             return services;

@@ -4,11 +4,11 @@
       "DownstreamPathTemplate": "/{any-route}",
       "DownstreamHostAndPorts": [
         {
-          "Host": "machinecartsystem.identityserver",
+          "Host": "identityserver",
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/{any-route}",
+      "UpstreamPathTemplate": "/q/{any-route}",
       "UpstreamHttpMethod": [ "Get" ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"

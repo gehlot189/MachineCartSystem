@@ -11,7 +11,7 @@ namespace MachineCartSystem.Order.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize()]
+    //[Permissions(Permissions = new[] { Permission.full }, Roles = new[] { Role.buisness_head }, Scopes = new[] { "order.read" })]
     public class AccountController : ControllerBase
     {
         private readonly ILogger<AccountController> _logger;

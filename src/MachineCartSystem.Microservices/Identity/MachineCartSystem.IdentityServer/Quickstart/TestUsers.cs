@@ -36,7 +36,6 @@ namespace IdentityServerHost.Quickstart.UI
                         Claims =
                         {
                             new Claim(JwtClaimTypes.Role,Role.viewer),
-
                             new Claim(JwtClaimTypes.Name, "Alice Smith"),
                             new Claim(JwtClaimTypes.GivenName, "Alice"),
                             new Claim(JwtClaimTypes.FamilyName, "Smith"),

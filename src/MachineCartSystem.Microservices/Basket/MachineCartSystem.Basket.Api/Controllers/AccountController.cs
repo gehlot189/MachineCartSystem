@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MachineCartSystem.BasketApi.Controllers
 {
-    [Authorize()]
     [Route("api/[controller]")]
+    [Permissions(Permissions = new[] { Permission.full }, Roles = new[] { Role.buisness_head }, Scopes = new[] { "basket.read" })]
+
     public class AccountController : BaseController<AccountController>
     {
         public AccountController()

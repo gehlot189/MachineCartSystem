@@ -14,7 +14,7 @@
       "SwaggerKey": "basket",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "api-scheme",
-        "AllowedScopes": [ "basket" ]
+        "AllowedScopes": [ "basket.read" ]
       },
       "Key": "basket",
       "LoadBalancerOptions": {

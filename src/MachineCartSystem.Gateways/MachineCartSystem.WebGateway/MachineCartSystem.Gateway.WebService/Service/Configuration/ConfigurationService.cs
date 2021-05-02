@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MachineCartSystem.Configuration;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,10 +39,10 @@ namespace MachineCartSystem.Gateway.WebService.Service
                         {
                             Configuration[item.Name] = item.GetValue(gatewayConfig)?.ToString();
                         }
-                        Configuration["Audience"] = Configuration["Audiences:0"];
                     }
                     break;
-                case ApiName.Identity:
+                case
+                ApiName.Identity:
                     data = _mapper.Map<IdentityConfig>(_globalConfiguration);
                     break;
                 case ApiName.Basket:
@@ -63,8 +63,10 @@ namespace MachineCartSystem.Gateway.WebService.Service
         public async Task<ClientConfiguration> GetOpenIdConfigurationConfiguration()
         {
             _clientConfiguration = _mapper.Map(_globalConfiguration, _clientConfiguration);
-            _clientConfiguration.OpenIdConfiguration.Scope = string.Join(" ", GetAllScopesAndAudiences().Item1);
+            var scopes = new List<string> { "openid" };
+            scopes.AddRange(GetAllScopesAndAudiences().Item1);
+            _clientConfiguration.OpenIdConfiguration.Scope = string.Join(" ", scopes);
             return await Task.FromResult<ClientConfiguration>(_clientConfiguration);
         }
     }
-}
+}   

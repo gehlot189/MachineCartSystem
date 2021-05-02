@@ -1,4 +1,5 @@
 ﻿using MachineCartSystem.Common;
+using MachineCartSystem.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,7 +11,7 @@ namespace MachineCartSystem.Order.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Policy.Admin)]
+    [Authorize()]
     public class AccountController : ControllerBase
     {
         private readonly ILogger<AccountController> _logger;

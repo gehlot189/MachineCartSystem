@@ -1,7 +1,9 @@
 ﻿using AutoWrapper.Wrappers;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 
@@ -40,7 +42,7 @@ namespace MachineCartSystem.Configuration.Config.FileConfigProvider
                             var response = JsonConvert.DeserializeObject<ApiResponse>(res);
                             if (!response.IsError.Value)
                             {
-                             //   Data = JObject.Parse(JsonConvert.SerializeObject(response.Result)).ToObject<Dictionary<string, string>>();
+                                Data = JObject.Parse(JsonConvert.SerializeObject(response.Result)).ToObject<Dictionary<string, string>>();
                             }
                         }
                     }

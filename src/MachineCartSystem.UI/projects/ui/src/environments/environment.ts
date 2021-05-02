@@ -7,8 +7,7 @@ import { Environment } from 'projects/lib/src/public-api';
 
 export class EnvironmentImp implements Environment {
   production = false;
-  apiUrl = 'http://host.docker.internal:5000/api/';
-  identityServerUrl = 'http://localhost:2000/';
+  gatewayUrl = 'http://host.docker.internal:5000/api/';
 }
 export const environment = new EnvironmentImp();
 

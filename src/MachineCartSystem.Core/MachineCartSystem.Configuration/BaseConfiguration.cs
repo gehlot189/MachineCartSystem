@@ -20,26 +20,15 @@ namespace MachineCartSystem.Configuration
             var lst = Enum.GetNames(typeof(ApiName));
             for (int i = 0; i < lst.Length; i++)
             {
-                for (int j = 0; j < lst.Length; j++)
-                {
-                    var scope = Configuration[lst[i] + ":Scopes:" + j];
-                    if (scope == null)
-                        break;
+                var scope = Configuration[lst[i] + ":Scopes"];
+                if (!string.IsNullOrEmpty(scope))
                     scopes.Add(scope);
-                    Configuration["Scopes:" + i] = scope;
-                }
-
-                for (int j = 0; j < lst.Length; j++)
-                {
-                    var audience = Configuration[lst[i] + ":Audiences:" + j];
-                    if (audience == null)
-                        break;
+                var audience = Configuration[lst[i] + ":Audiences"];
+                if (!string.IsNullOrEmpty(audience))
                     audiences.Add(audience);
-                    Configuration["Audiences:" + i] = audience;
-                }
             }
-            //Configuration["Scopes"] = JsonConvert.SerializeObject(scopes);
-            //Configuration["Audiences"] = JsonConvert.SerializeObject(audiences);
+            Configuration["Scopes"] = string.Join(",", scopes);
+            Configuration["Audiences"] = string.Join(",", audiences);
             return (scopes, audiences);
         }
     }

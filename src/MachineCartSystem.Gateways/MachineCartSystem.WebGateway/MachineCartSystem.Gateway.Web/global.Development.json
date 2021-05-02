@@ -2,34 +2,34 @@
   "AuthenticationProviderKey": "mykey",
   "Gateway": {
     "Url": "http://host.docker.internal:5000/",
-    "Scopes": [],
-    "Audiences": [],
+    "Scopes": "",
+    "Audiences": "",
     "PrivateKey": "MySecretKey"
   },
   "Identity": {
     "Url": "http://localhost:2000/",
     "Authority": "http://identityserver:80/",
     "Issuer": "http://identityserver:80/",
-    "Scopes": [],
-    "Audiences": [],
+    "Scopes": "",
+    "Audiences": "",
     "PrivateKey": "MySecretKey"
   },
   "Basket": {
     "Url": "http://basket.api:2001/",
-    "Scopes": [ "basket.read" ],
-    "Audiences": [ "basket" ],
+    "Scopes": "basket.read",
+    "Audiences": "basket",
     "PrivateKey": "MySecretKey"
   },
   "Order": {
     "Url": "http://order.api:2001/",
-    "Scopes": [ "order.read" ],
-    "Audiences": [ "order" ],
+    "Scopes": "order.read",
+    "Audiences": "order",
     "PrivateKey": "MySecretKey"
   },
   "Catalog": {
     "Url": "http://catalog.api:2001/",
-    "Scopes": [ "catalog.read" ],
-    "Audiences": [ "catalog" ],
+    "Scopes": "catalog.read",
+    "Audiences": "catalog",
     "PrivateKey": "MySecretKey"
   },
   "ClientConfiguration": {

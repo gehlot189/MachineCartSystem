@@ -1,13 +1,13 @@
-﻿using MachineCartSystem.Common;
+﻿using MachineCartSystem.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace MachineCartSystem.BasketApi.Controllers
 {
-    [Authorize(Policy.Admin)]
+    [Authorize()]
     [Route("api/[controller]")]
-
     public class AccountController : BaseController<AccountController>
     {
         public AccountController()

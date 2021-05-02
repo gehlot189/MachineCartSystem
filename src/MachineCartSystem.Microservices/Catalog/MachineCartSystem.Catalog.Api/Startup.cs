@@ -18,10 +18,15 @@ namespace MachineCartSystem.Catalog.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddCustomAuthentication(this.JwtConfig)
-                .AddCustomAuthorization(JwtConfig)
-                .AddCustomSwagger(Configuration, JwtConfig);
+            services
+          //.AddAutoMapper<MachineCartSystemDbContext, AutoMapperConfig>()
+          .AddController()
+          .AddCustomAuthentication(JwtConfig)
+          .AddCustomAuthorization(JwtConfig)
+          //.AddEFCore<MachineCartSystemDbContext>(DbConfig)
+          .AddCustomSwagger(Configuration, JwtConfig)
+          .AddApplicationServices();
+        //  .AddServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +63,7 @@ namespace MachineCartSystem.Catalog.Api
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
             });
         }

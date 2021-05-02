@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.httpClient.get('http://localhost:5000/api/catalog-all').pipe(untilDestroyed(this)).subscribe(p => {
+    this.httpClient.get('catalog-all').pipe(untilDestroyed(this)).subscribe(p => {
     }, err => {
     });
   }

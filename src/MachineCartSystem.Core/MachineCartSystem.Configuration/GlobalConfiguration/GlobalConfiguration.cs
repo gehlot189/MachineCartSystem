@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace MachineCartSystem.Configuration
 {
@@ -28,11 +27,9 @@ namespace MachineCartSystem.Configuration
         [JsonProperty("Url")]
         public string Url { get; set; }
         [JsonProperty("Scopes")]
-        public IEnumerable<string> Scopes { get; set; }
+        public string Scopes { get; set; }
         [JsonProperty("Audiences")]
-        public IEnumerable<string> Audiences { get; set; }
-        [JsonProperty("Audience")]
-        public IEnumerable<string> Audience { get; set; }
+        public string Audiences { get; set; }
         [JsonProperty("PrivateKey")]
         public string PrivateKey { get; set; }
         [JsonProperty("Name")]

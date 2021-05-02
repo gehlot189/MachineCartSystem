@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System.Linq;
 
 namespace MachineCartSystem.Configuration
 {
@@ -12,9 +11,12 @@ namespace MachineCartSystem.Configuration
                 .ForPath(p => p.OpenIdConfiguration.Scope, q => q.MapFrom(r => r.Gateway.Scopes))
                 .AfterMap((p, q) =>
                 {
-                    q.OpenIdConfiguration.RedirectUrl = q.Url + q.OpenIdConfiguration.RedirectUrl;
-                    q.OpenIdConfiguration.PostLogoutRedirectUri = q.Url + q.OpenIdConfiguration.PostLogoutRedirectUri;
-                    q.OpenIdConfiguration.SilentRenewUrl = q.Url + q.OpenIdConfiguration.SilentRenewUrl;
+                    if (!q.OpenIdConfiguration.RedirectUrl.StartsWith(q.Url))
+                        q.OpenIdConfiguration.RedirectUrl = q.Url + q.OpenIdConfiguration.RedirectUrl;
+                    if (!q.OpenIdConfiguration.PostLogoutRedirectUri.StartsWith(q.Url))
+                        q.OpenIdConfiguration.PostLogoutRedirectUri = q.Url + q.OpenIdConfiguration.PostLogoutRedirectUri;
+                    if (!q.OpenIdConfiguration.SilentRenewUrl.StartsWith(q.Url))
+                        q.OpenIdConfiguration.SilentRenewUrl = q.Url + q.OpenIdConfiguration.SilentRenewUrl;
                 });
 
             CreateMap<GlobalConfiguration, GlobalConfiguration>()
@@ -31,7 +33,6 @@ namespace MachineCartSystem.Configuration
 
             CreateMap<GlobalConfiguration, IdentityConfig>()
                 .ForMember(p => p.Audiences, q => q.MapFrom(r => r.Identity.Audiences))
-                .ForMember(p => p.Audience, q => q.MapFrom(r => r.Identity.Audiences.FirstOrDefault()))
                 .ForMember(p => p.Scopes, q => q.MapFrom(r => r.Identity.Scopes))
                 .ForMember(p => p.PrivateKey, q => q.MapFrom(r => r.Identity.PrivateKey))
                 .ForMember(p => p.Url, q => q.MapFrom(r => r.Identity.Url))
@@ -40,7 +41,6 @@ namespace MachineCartSystem.Configuration
 
             CreateMap<GlobalConfiguration, BasketConfig>()
                 .ForMember(p => p.Audiences, q => q.MapFrom(r => r.Basket.Audiences))
-                .ForMember(p => p.Audience, q => q.MapFrom(r => r.Basket.Audiences.FirstOrDefault()))
                 .ForMember(p => p.Scopes, q => q.MapFrom(r => r.Basket.Scopes))
                 .ForMember(p => p.PrivateKey, q => q.MapFrom(r => r.Basket.PrivateKey))
                 .ForMember(p => p.Url, q => q.MapFrom(r => r.Basket.Url))
@@ -49,7 +49,6 @@ namespace MachineCartSystem.Configuration
 
             CreateMap<GlobalConfiguration, CatalogConfig>()
                .ForMember(p => p.Audiences, q => q.MapFrom(r => r.Catalog.Audiences))
-               .ForMember(p => p.Audience, q => q.MapFrom(r => r.Catalog.Audiences.FirstOrDefault()))
                .ForMember(p => p.Scopes, q => q.MapFrom(r => r.Catalog.Scopes))
                .ForMember(p => p.PrivateKey, q => q.MapFrom(r => r.Catalog.PrivateKey))
                .ForMember(p => p.Url, q => q.MapFrom(r => r.Catalog.Url))
@@ -58,7 +57,6 @@ namespace MachineCartSystem.Configuration
 
             CreateMap<GlobalConfiguration, OrderConfig>()
                .ForMember(p => p.Audiences, q => q.MapFrom(r => r.Order.Audiences))
-               .ForMember(p => p.Audience, q => q.MapFrom(r => r.Order.Audiences.FirstOrDefault()))
                .ForMember(p => p.Scopes, q => q.MapFrom(r => r.Order.Scopes))
                .ForMember(p => p.PrivateKey, q => q.MapFrom(r => r.Order.PrivateKey))
                .ForMember(p => p.Url, q => q.MapFrom(r => r.Order.Url))

@@ -16,6 +16,9 @@ namespace MachineCartSystem.Gateway.Web.Initializer
                     x.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidAudiences = jwtConfig.Audiences,
+                        RequireAudience = true, 
+                        ValidateAudience = true,
+                        ValidateIssuer = true,
                         ValidIssuer = jwtConfig.Issuer
                     };
                 })

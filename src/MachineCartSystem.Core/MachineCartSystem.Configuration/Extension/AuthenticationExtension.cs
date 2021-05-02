@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
+using Microsoft.IdentityModel.Tokens;
 
 namespace MachineCartSystem.Configuration
 {
@@ -10,16 +9,20 @@ namespace MachineCartSystem.Configuration
         // TODO : Microsoft.Extensions.Configuration.SecretManager
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, JwtConfig jwtConfig)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(option =>
-                {
-                    option.Authority = jwtConfig.Issuer;
-                    option.RequireHttpsMetadata = false;
-                    option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                    {
-                        ValidAudience = jwtConfig.Audiences.First()
-                    };  
-                });
+            services.AddAuthentication()
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, option =>
+                 {
+                     option.Authority = jwtConfig.Authority;
+                     option.RequireHttpsMetadata = false;
+                     option.TokenValidationParameters = new TokenValidationParameters
+                     {
+                         ValidAudiences = jwtConfig.Audiences,
+                         RequireAudience = true,
+                         ValidateAudience = true,
+                         ValidateIssuer = true,
+                         ValidIssuer = jwtConfig.Issuer
+                     };
+                 });
             return services;
         }
     }

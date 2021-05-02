@@ -26,7 +26,7 @@ namespace MachineCartSystem.IdentityServer
             //const string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;database=IdentityServer4.Quickstart.EntityFramework-2.0.0;trusted_connection=yes;";
             //var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            //IdentityModelEventSource.ShowPII = true; //Add this line
+            IdentityModelEventSource.ShowPII = true; //Add this line
 
             services.AddCustomSwagger(Configuration, JwtConfig);
 

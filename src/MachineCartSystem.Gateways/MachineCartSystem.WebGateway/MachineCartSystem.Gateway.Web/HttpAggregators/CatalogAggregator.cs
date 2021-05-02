@@ -23,9 +23,16 @@ namespace MachineCartSystem.Gateway.Web.HttpAggregators
 
             foreach (var context in responses)
             {
-                var data = await context.Items.DownstreamResponse().Content.ReadAsStringAsync();
-                dcResponse.Add(context.Items.DownstreamRoute().Key,
-                    JsonConvert.DeserializeObject<JObject>(data));
+                try
+                {
+                    var data = await context.Items.DownstreamResponse().Content.ReadAsStringAsync();
+                    dcResponse.Add(context.Items.DownstreamRoute().Key,
+                        JsonConvert.DeserializeObject<JObject>(data));
+                }
+                catch (System.Exception ex)
+                {
+                }
+            
             }
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(dcResponse))

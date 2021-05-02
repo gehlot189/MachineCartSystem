@@ -14,7 +14,7 @@
       "SwaggerKey": "catalog",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "api-scheme",
-        "AllowedScopes": [ "catalog" ]
+        "AllowedScopes": [ "catalog.read" ]
       },
       "Key": "catalog",
       "LoadBalancerOptions": {

@@ -18,24 +18,24 @@ namespace MachineCartSystem.IdentityServer.Service
          {
                 new ApiResource("basket", "Basket Api")
                 {
-                    Scopes=  { "create:events","basket"},
-                    UserClaims ={ JwtClaimTypes.Role }
+                    Scopes=  { "basket.read"},
+                 //   UserClaims ={ JwtClaimTypes.Role }
                 },
                 new ApiResource("order", "Order Api")
                 {
-                    Scopes= { "order" },
-                    UserClaims ={ JwtClaimTypes.Role }
+                    Scopes= { "order.read" },
+                 //   UserClaims ={ JwtClaimTypes.Role }
                    // UserClaims = new List<string> {"family_name" }
                 },
                 new ApiResource("payment", "Payement Api")
                 {
-                    Scopes= { "payment"},
-                    UserClaims ={ JwtClaimTypes.Role }
+                    Scopes= { "payment.read"},
+                 //   UserClaims ={ JwtClaimTypes.Role }
                 },
                 new ApiResource("catalog","Catalog Api")
                 {
-                    Scopes={ "catalog" },
-                    UserClaims ={ JwtClaimTypes.Role },
+                    Scopes={ "catalog.read" },
+                 //   UserClaims ={ JwtClaimTypes.Role },
                   //  ShowInDiscoveryDocument
                 }
          };

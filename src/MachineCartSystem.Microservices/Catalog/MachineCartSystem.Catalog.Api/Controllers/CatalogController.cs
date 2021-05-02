@@ -1,4 +1,5 @@
 ﻿using MachineCartSystem.Common;
+using MachineCartSystem.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -7,14 +8,12 @@ using System.Threading.Tasks;
 namespace MachineCartSystem.Catalog.Api.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [Authorize(Policy.Admin)]
-    public class CatalogController : ControllerBase
+    [Authorize()]
+
+    public class CatalogController : BaseController<CatalogController>
     {
-        private readonly ILogger<CatalogController> _logger;
-        public CatalogController(ILogger<CatalogController> logger)
+        public CatalogController()
         {
-            _logger = logger;
         }
 
         [HttpGet]

@@ -14,9 +14,12 @@
       "SwaggerKey": "order",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "api-scheme",
-        "AllowedScopes": [ "order" ]
+        "AllowedScopes": [ "order.read" ]
       },
-      "Key": "order"
+      "Key": "order",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     }
   ]
 }

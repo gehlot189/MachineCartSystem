@@ -1,12 +1,13 @@
 ﻿using MachineCartSystem.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace MachineCartSystem.Gateway.Web.Initializer
+namespace MachineCartSystem.Configuration
 {
-    public class AuthenticationService : ServiceInitializer
+    public class AuthenticationService : PreServiceInitializer
     {
-        public override void Initialize(IServiceCollection services, JwtConfig jwtConfig)
+        public override void PreInitialize(IServiceCollection services, JwtConfig jwtConfig)
         {
             services.AddAuthentication()
                 .AddJwtBearer(AuthSchemes.ApiScheme, x =>
@@ -33,6 +34,19 @@ namespace MachineCartSystem.Gateway.Web.Initializer
                         RequireSignedTokens = false,
                         ValidateIssuerSigningKey = false,
                         RequireExpirationTime = false,
+                    };
+                })
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, option =>
+                {
+                    option.Authority = jwtConfig.Authority;
+                    option.RequireHttpsMetadata = false;
+                    option.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidAudiences = jwtConfig.Audiences,
+                        RequireAudience = true,
+                        ValidateAudience = true,
+                        ValidateIssuer = true,
+                        ValidIssuer = jwtConfig.Issuer
                     };
                 });
         }

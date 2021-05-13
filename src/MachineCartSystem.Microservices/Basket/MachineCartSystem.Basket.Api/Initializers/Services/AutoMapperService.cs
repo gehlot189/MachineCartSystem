@@ -1,7 +1,9 @@
-﻿using MachineCartSystem.Configuration;
+﻿using MachineCartSystem.Basket.Api.Initializer;
+using MachineCartSystem.BasketApi;
+using MachineCartSystem.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MachineCartSystem.Gateway.Web.Initializer
+namespace MachineCartSystem.Basket.Api.Initializer
 {
     public class AutoMapperService : ServiceInitializer
     {

@@ -1,26 +1,43 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace MachineCartSystem.Configuration
 {
-    public abstract class BaseStartup : BaseConfiguration
+    public abstract class PreStartup : BaseConfiguration
     {
         private readonly string _apiName = null;
+        private readonly IWebHostEnvironment _env;
 
-        public BaseStartup(IConfiguration configuration) : base(configuration)
+        protected PreStartup(IConfiguration configuration, IWebHostEnvironment env) : base(configuration)
         {
             _apiName = null;
+            _env = env;
         }
 
-        public BaseStartup(IConfiguration configuration, ApiName apiName) : base(configuration)
+        protected PreStartup(IConfiguration configuration, IWebHostEnvironment env, ApiName apiName) : base(configuration)
         {
             _apiName = apiName.ToString();
+            _env = env;
         }
 
-        public DbConfig DbConfig => GetDbConfigSetting();
+        protected DbConfig DbConfig => GetDbConfigSetting();
 
-        public JwtConfig JwtConfig => JwtConfigSetting();
+        protected JwtConfig JwtConfig => JwtConfigSetting();
 
+        protected void Initialize<T>(IServiceCollection services)
+        {
+            var instance = (IPreServiceInitializer)Activator.CreateInstance(typeof(T));
+            instance.Initialize<T>(services, Configuration, JwtConfig);
+        }
+
+        protected void Initialize<T>(IApplicationBuilder app)
+        {
+            var instance = (IPreMiddlewareInitializer)Activator.CreateInstance(typeof(T));
+            instance.Initialize<T>(app, _env, Configuration);
+        }
         private DbConfig GetDbConfigSetting()
         {
             var attemptSection = Configuration.GetSection("DbConfiguration:Attempt");

@@ -1,6 +1,6 @@
 ﻿using MachineCartSystem.Configuration;
 
-namespace MachineCartSystem.Gateway.Web.Initializer
+namespace MachineCartSystem.Basket.Api.Initializer
 {
     public class ServiceInitializer : PreServiceInitializer
     {

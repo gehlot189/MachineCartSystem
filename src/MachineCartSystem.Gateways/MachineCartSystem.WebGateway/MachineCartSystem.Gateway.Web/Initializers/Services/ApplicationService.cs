@@ -1,6 +1,5 @@
-﻿using MachineCartSystem.Gateway.WebService;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
+﻿using MachineCartSystem.Configuration;
+using MachineCartSystem.Gateway.WebService;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
@@ -11,9 +10,7 @@ namespace MachineCartSystem.Gateway.Web.Initializer
         {
             ////register delegating handlers
             ///
-            services.AddHttpClient();
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             ////register http services
 

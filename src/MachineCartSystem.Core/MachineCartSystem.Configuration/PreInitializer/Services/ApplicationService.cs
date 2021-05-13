@@ -1,20 +1,21 @@
 ﻿using MachineCartSystem.Configuration.PolicyMaker;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MachineCartSystem.Configuration
 {
-    public static class ApplicationServicesExtension
+    public class ApplicationService : PreServiceInitializer
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        public override void PreInitialize(IServiceCollection services)
         {
-            services.AddSingleton<IAuthorizationPolicyProvider, PermissionsPolicyProvider>();
+            services.AddHttpClient();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddSingleton<IAuthorizationPolicyProvider, PermissionsPolicyProvider>();
             services.AddSingleton<IAuthorizationHandler, PermissionsAuthorizationHandler>();
             services.AddSingleton<IAuthorizationHandler, RolesAuthorizationHandler>();
             services.AddSingleton<IAuthorizationHandler, ScopesAuthorizationHandler>();
-
-            return services;
         }
     }
 }

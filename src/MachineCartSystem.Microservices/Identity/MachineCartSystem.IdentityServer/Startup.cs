@@ -1,5 +1,6 @@
 using IdentityServerHost.Quickstart.UI;
 using MachineCartSystem.Configuration;
+using MachineCartSystem.IdentityServer.Initializer;
 using MachineCartSystem.IdentityServer.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,11 +12,9 @@ using System;
 
 namespace MachineCartSystem.IdentityServer
 {
-    public class Startup : BaseStartup
+    public class Startup : PreStartup
     {
-        public IWebHostEnvironment Environment { get; }
-
-        public Startup(IConfiguration configuration) : base(configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env) : base(configuration, env)
         {
 
         }
@@ -26,9 +25,12 @@ namespace MachineCartSystem.IdentityServer
             //const string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;database=IdentityServer4.Quickstart.EntityFramework-2.0.0;trusted_connection=yes;";
             //var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            IdentityModelEventSource.ShowPII = true; //Add this line
+            //IdentityModelEventSource.ShowPII = true; //Add this line
 
-            services.AddCustomSwagger(Configuration, JwtConfig);
+            Initialize<ServiceInitializer>(services);
+
+
+            //services.AddCustomSwagger(Configuration, JwtConfig);
 
             //services.AddCors(p => p.AddPolicy("AllowOrigin", options =>
             //{
@@ -77,38 +79,40 @@ namespace MachineCartSystem.IdentityServer
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                // app.UseDatabaseErrorPage();
-            }
-            else if (env.IsProduction())
-            {
-                app.UseExceptionHandler("/error");
-                app.UseHsts();
-            }
-            //  app.UseCors("AllowOrigin");
-            app.UseCors(options =>
-            {
-                options.AllowAnyOrigin();
-                options.AllowAnyHeader();
-                options.AllowAnyMethod();
-            });
+            Initialize<MiddlewareInitializer>(app);
+
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //    // app.UseDatabaseErrorPage();
+            //}
+            //else if (env.IsProduction())
+            //{
+            //    app.UseExceptionHandler("/error");
+            //    app.UseHsts();
+            //}
+            ////  app.UseCors("AllowOrigin");
+            //app.UseCors(options =>
+            //{
+            //    options.AllowAnyOrigin();
+            //    options.AllowAnyHeader();
+            //    options.AllowAnyMethod();
+            //});
             app.Use(async (context, next) =>
             {
                 context.Response.Headers.Add("Content-Security-Policy", "script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';img-src 'self' data:;font-src 'self';frame-ancestors 'self' http://localhost:2000;block-all-mixed-content");
                 await next();
             });
-            app.UseStaticFiles();
-            app.UseCustomSwagger(Configuration);
-            app.UseRouting();
-            app.UseIdentityServer();
-            app.UseAuthentication();
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapDefaultControllerRoute();
-            });
+            //app.UseStaticFiles();
+            //app.UseCustomSwagger(Configuration);
+            //app.UseRouting();
+            //app.UseIdentityServer();
+            //app.UseAuthentication();
+            //app.UseAuthorization();
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapDefaultControllerRoute();
+            //});
         }
     }
 }

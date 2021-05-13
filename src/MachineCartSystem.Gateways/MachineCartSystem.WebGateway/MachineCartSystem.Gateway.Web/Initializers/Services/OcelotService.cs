@@ -16,7 +16,6 @@ namespace MachineCartSystem.Gateway.Web.Initializer
                     })
                     .AddTransientDefinedAggregator<BasketOrderAggregator>()
                     .AddTransientDefinedAggregator<CatalogAggregator>();
-
         }
     }
 }

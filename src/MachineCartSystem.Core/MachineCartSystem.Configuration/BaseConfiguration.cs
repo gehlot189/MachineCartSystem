@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace MachineCartSystem.Configuration
 {
-    public abstract class BaseConfiguration
+    public abstract class BaseConfiguration 
     {
-        public BaseConfiguration(IConfiguration configuration)
+        protected BaseConfiguration(IConfiguration configuration)
         {
             Configuration = configuration;
         }

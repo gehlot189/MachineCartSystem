@@ -2,11 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
 
-namespace MachineCartSystem.Gateway.Web.Initializer
+namespace MachineCartSystem.Configuration
 {
-    public class ContollerService : ServiceInitializer
+    public class ContollerService : PreServiceInitializer
     {
-        public override void Initialize(IServiceCollection services)
+        public override void PreInitialize(IServiceCollection services)
         {
             services.AddControllers(p =>
             {

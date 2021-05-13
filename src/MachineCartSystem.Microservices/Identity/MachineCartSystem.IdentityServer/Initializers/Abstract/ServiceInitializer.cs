@@ -1,6 +1,6 @@
 ﻿using MachineCartSystem.Configuration;
 
-namespace MachineCartSystem.Gateway.Web.Initializer
+namespace MachineCartSystem.IdentityServer.Initializer
 {
     public class ServiceInitializer : PreServiceInitializer
     {

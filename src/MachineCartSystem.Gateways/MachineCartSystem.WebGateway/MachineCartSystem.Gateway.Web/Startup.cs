@@ -8,23 +8,26 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MachineCartSystem.Gateway.Web
 {
-    public class Startup : BaseStartup
+    public class Startup : PreStartup
     {
-        public Startup(IConfiguration configuration) : base(configuration, ApiName.Gateway)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env) : base(configuration, env,ApiName.Gateway)
         {
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            ServiceInitializer.Initialize<IServiceCollection>(services, Configuration, JwtConfig);
+            Initialize<ServiceInitializer>(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IConfigurationService configurationService)
         {
-            MiddlewareInitializer.Initialize<IApplicationBuilder>(app, env, Configuration);
             configurationService.RefreshGatewayConfiguration();
+
+            Initialize<MiddlewareInitializer>(app);
+
+            //MiddlewareInitializer.Initialize<IApplicationBuilder>(app, env, Configuration);
         }
     }
 }

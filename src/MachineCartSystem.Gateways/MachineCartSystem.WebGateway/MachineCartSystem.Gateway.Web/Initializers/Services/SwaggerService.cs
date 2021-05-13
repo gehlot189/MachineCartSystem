@@ -5,7 +5,7 @@ using Microsoft.OpenApi.Models;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class SwaggerUIService : ServiceInitializer
+    public class SwaggerService : ServiceInitializer
     {
         public override void Initialize(IServiceCollection services, IConfiguration configuration, JwtConfig jwtConfig)
         {

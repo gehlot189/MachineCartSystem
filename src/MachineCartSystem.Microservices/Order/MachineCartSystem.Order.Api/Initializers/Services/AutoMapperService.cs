@@ -1,7 +1,7 @@
 ﻿using MachineCartSystem.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MachineCartSystem.Gateway.Web.Initializer
+namespace MachineCartSystem.Order.Api.Initializer
 {
     public class AutoMapperService : ServiceInitializer
     {

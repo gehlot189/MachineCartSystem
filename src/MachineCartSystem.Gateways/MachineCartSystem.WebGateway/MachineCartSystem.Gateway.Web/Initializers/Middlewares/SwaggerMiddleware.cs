@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MachineCartSystem.Configuration;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -6,9 +7,9 @@ using Newtonsoft.Json.Linq;
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class SwaggerMiddleware
+    public class SwaggerMiddleware : MiddlewareInitializer
     {
-        public static void UseSwagger(IApplicationBuilder app, IConfiguration configuration)
+        public override void Initialize(IApplicationBuilder app, IConfiguration configuration)
         {
             app.UseSwagger();
             app.UseSwaggerForOcelotUI(p =>
@@ -16,7 +17,7 @@ namespace MachineCartSystem.Gateway.Web.Initializer
                 p.PathToSwaggerGenerator = "/swagger/docs";
                 p.ReConfigureUpstreamSwaggerJson = AlterUpstreamSwaggerJson;
                 p.EnableFilter();
-                
+
                 p.InjectStylesheet("/swagger-ui/custom.css");
                 p.EnableDeepLinking();
 

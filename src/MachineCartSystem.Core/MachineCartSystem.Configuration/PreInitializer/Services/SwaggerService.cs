@@ -11,27 +11,30 @@ namespace MachineCartSystem.Configuration
     {
         public override void PreInitialize(IServiceCollection services, IConfiguration configuration, JwtConfig jwtConfig)
         {
-            services.AddSwaggerGen(c =>
+            if (configuration.GetSection("Name").Value != ApiName.Gateway.ToString())
             {
-                if (configuration.GetSection("Name").Value != ApiName.Identity.ToString())
+                services.AddSwaggerGen(c =>
                 {
-                    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                    if (configuration.GetSection("Name").Value != ApiName.Identity.ToString())
                     {
-                        Type = SecuritySchemeType.OAuth2,
-                        Flows = new OpenApiOAuthFlows
+                        c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                         {
-                            AuthorizationCode = new OpenApiOAuthFlow
+                            Type = SecuritySchemeType.OAuth2,
+                            Flows = new OpenApiOAuthFlows
                             {
-                                AuthorizationUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/authorize"),
-                                TokenUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/token"),
-                                Scopes = jwtConfig.Scopes.ToDictionary(p => p),
-                            }
-                        },
-                    });
-                    AuthorizeCheckOperationFilter.Scope = jwtConfig.Scopes.ToList();
-                    c.OperationFilter<AuthorizeCheckOperationFilter>();
-                }
-            });
+                                AuthorizationCode = new OpenApiOAuthFlow
+                                {
+                                    AuthorizationUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/authorize"),
+                                    TokenUrl = new Uri($"{configuration.GetValue<string>("IdentityServerUrl")}connect/token"),
+                                    Scopes = jwtConfig.Scopes.ToDictionary(p => p),
+                                }
+                            },
+                        });
+                        AuthorizeCheckOperationFilter.Scope = jwtConfig.Scopes.ToList();
+                        c.OperationFilter<AuthorizeCheckOperationFilter>();
+                    }
+                });
+            }
         }
     }
 }

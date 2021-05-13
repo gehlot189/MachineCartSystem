@@ -17,9 +17,9 @@ namespace MachineCartSystem.Configuration
 
             app.UseStaticFiles();
 
-            app.UseCors("CorsPolicy");
+            app.UseSwagger();
 
-            //SwaggerMiddleware.UseSwagger(app, configuration);
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 
@@ -42,24 +42,6 @@ namespace MachineCartSystem.Configuration
 
             app.UseAuthorization();
 
-            if (configuration.GetSection("Name").Value != ApiName.Gateway.ToString())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI(p =>
-                {
-                    p.InjectStylesheet("/swagger-ui/custom.css");
-                    p.SwaggerEndpoint("/swagger/v1/swagger.json", configuration.GetSection("Name").Value);
-                    p.EnableDeepLinking();
-
-                    if (configuration.GetSection("Name").Value != ApiName.Identity.ToString())
-                    {
-                        p.OAuthClientId("angular");
-                        p.OAuthUsePkce();
-                        p.OAuth2RedirectUrl($"{configuration.GetSection("Url").Value }swagger/oauth2-redirect.html");
-                    }
-                });
-            }
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
@@ -74,9 +56,6 @@ namespace MachineCartSystem.Configuration
                 //    Predicate = r => r.Name.Contains("self")
                 //});
             });
-
-
-            
         }
 
     }

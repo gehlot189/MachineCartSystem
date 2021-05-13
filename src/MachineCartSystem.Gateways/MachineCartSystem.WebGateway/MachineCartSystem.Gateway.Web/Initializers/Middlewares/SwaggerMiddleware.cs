@@ -1,5 +1,4 @@
-﻿using MachineCartSystem.Configuration;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -11,7 +10,6 @@ namespace MachineCartSystem.Gateway.Web.Initializer
     {
         public override void Initialize(IApplicationBuilder app, IConfiguration configuration)
         {
-            app.UseSwagger();
             app.UseSwaggerForOcelotUI(p =>
             {
                 p.PathToSwaggerGenerator = "/swagger/docs";

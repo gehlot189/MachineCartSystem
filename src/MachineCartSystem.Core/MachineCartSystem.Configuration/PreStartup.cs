@@ -60,7 +60,8 @@ namespace MachineCartSystem.Configuration
                     Authority = Configuration["Identity:Authority"],
                     Issuer = Configuration["Identity:Issuer"],
                     //Key = Configuration["PrivateKey"]?.ToCharArray(),
-                    Scopes = scope_audiences.Item1
+                    Scopes = scope_audiences.Item1,
+                    ApiName = ApiName.Gateway
                 };
                 return jwtConfig;
             }
@@ -72,6 +73,7 @@ namespace MachineCartSystem.Configuration
                 Issuer = Configuration["Issuer"]?.ToString(),
                 //Key = Configuration["PrivateKey"]?.ToCharArray(),
                 Scopes = Configuration["Scopes"]?.Split(new char[] { ',' }),
+                ApiName = (ApiName)Enum.Parse(typeof(ApiName), Configuration["Name"]?.ToString()),
             };
         }
 

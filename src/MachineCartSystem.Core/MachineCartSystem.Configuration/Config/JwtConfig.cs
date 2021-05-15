@@ -9,6 +9,7 @@ namespace MachineCartSystem.Configuration
         public IEnumerable<string> Audiences { get; set; }
         public string Authority { get; set; }
         public IEnumerable<string> Scopes { get; set; }
+        public ApiName ApiName { get; set; }
     }
 
     public sealed class Signing

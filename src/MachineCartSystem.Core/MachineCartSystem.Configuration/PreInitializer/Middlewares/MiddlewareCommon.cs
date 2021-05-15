@@ -17,8 +17,6 @@ namespace MachineCartSystem.Configuration
 
             app.UseStaticFiles();
 
-            app.UseSwagger();
-
             app.UseCors("CorsPolicy");
 
             app.UseRouting();
@@ -56,7 +54,8 @@ namespace MachineCartSystem.Configuration
                 //    Predicate = r => r.Name.Contains("self")
                 //});
             });
-        }
 
+            app.UseSwagger();
+        }
     }
 }

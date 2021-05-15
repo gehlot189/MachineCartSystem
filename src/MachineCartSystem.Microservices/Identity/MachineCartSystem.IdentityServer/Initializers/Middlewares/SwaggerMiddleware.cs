@@ -7,12 +7,12 @@ namespace MachineCartSystem.IdentityServer.Initializer
     {
         public override void Initialize(IApplicationBuilder app, IConfiguration configuration)
         {
-            app.UseSwaggerUI(p =>
-            {
-                p.InjectStylesheet("/swagger-ui/custom.css");
-                p.SwaggerEndpoint("/swagger/v1/swagger.json", configuration.GetSection("Name").Value);
-                p.EnableDeepLinking();
-            });
+            //app.UseSwaggerUI(p =>
+            //{
+            //    p.InjectStylesheet("/swagger-ui/custom.css");
+            //    p.SwaggerEndpoint("/swagger/v1/swagger.json", configuration.GetSection("Name").Value);
+            //    p.EnableDeepLinking();
+            //});
         }
     }
 }

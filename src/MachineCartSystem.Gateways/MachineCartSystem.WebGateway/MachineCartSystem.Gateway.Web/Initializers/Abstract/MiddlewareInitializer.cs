@@ -2,8 +2,6 @@
 
 namespace MachineCartSystem.Gateway.Web.Initializer
 {
-    public class MiddlewareInitializer : PreMiddlewareInitializer
-    {
-     
-    }
+    [ExecutionSequence(nameof(SwaggerMiddleware), nameof(OcelotMiddleware))]
+    public class MiddlewareInitializer : PreMiddlewareInitializer { }
 }

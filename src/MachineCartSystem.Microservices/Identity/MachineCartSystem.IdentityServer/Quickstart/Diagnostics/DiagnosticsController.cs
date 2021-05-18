@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace IdentityServerHost.Quickstart.UI
 {
     [SecurityHeaders]
-    [Authorize]
+    //[Authorize]
     public class DiagnosticsController : Controller
     {
         public async Task<IActionResult> Index()

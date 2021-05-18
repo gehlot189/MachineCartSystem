@@ -36,7 +36,7 @@ namespace MachineCartSystem.Configuration
         protected void Initialize<T>(IApplicationBuilder app)
         {
             var instance = (IPreMiddlewareInitializer)Activator.CreateInstance(typeof(T));
-            instance.Initialize<T>(app, _env, Configuration);
+            instance.Initialize<T>(app, _env, Configuration, JwtConfig);
         }
         private DbConfig GetDbConfigSetting()
         {

@@ -12,4 +12,8 @@
     <ProjectReference Include="..\..\..\MachineCartSystem.Core\MachineCartSystem.Configuration\MachineCartSystem.Configuration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Initializers\Middlewares\" />
+  </ItemGroup>
+
 </Project>

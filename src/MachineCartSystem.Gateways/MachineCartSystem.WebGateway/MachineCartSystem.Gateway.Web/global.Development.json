@@ -43,7 +43,7 @@
       "ResponseType": "code",
       "SilentRenew": true,
       "SilentRenewUrl": "/silent-refresh",
-      "LogLevel": "Warn",
+      "LogLevel": "Debug",
       "PostLoginRoute": "/",
       "ForbiddenRoute": "/forbidden",
       "unauthorizedRoute": "/unauthorized",

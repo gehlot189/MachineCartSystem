@@ -8,12 +8,12 @@ namespace MachineCartSystem.Configuration
 {
     public interface IPreMiddlewareInitializer
     {
-        public void Initialize<T>(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration);
+        public void Initialize<T>(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration, JwtConfig jwtConfig);
     }
 
     public abstract class PreMiddlewareInitializer : IPreMiddlewareInitializer
     {
-        public void Initialize<T>(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration)
+        public void Initialize<T>(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration, JwtConfig jwtConfig)
         {
             if (!Attribute.IsDefined(typeof(T), typeof(ExecutionSequence)))
                 throw new System.Exception($"ExecutionSequence attribute is missing in class {typeof(T).FullName}");
@@ -28,9 +28,6 @@ namespace MachineCartSystem.Configuration
                                Where(x => typeof(PreMiddlewareInitializer).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract).
                                Select(Activator.CreateInstance).Cast<PreMiddlewareInitializer>().ToList();
 
-            var installers = serviceInstallers.FullOuterJoin(p => p.GetType().Name, preInstallers, p => p.GetType().Name)
-                                .OrderByDescending(p => p.Value).ToList();
-
             executionSequence.ForEach(installer =>
              {
                  var serviceInstaller = serviceInstallers.FirstOrDefault(p => p.GetType().Name == installer);
@@ -38,7 +35,10 @@ namespace MachineCartSystem.Configuration
 
                  if (preInstaller != null)
                  {
-                     preInstaller.PreInitialize(app, env, configuration);
+                     preInstaller.PreInitialize(app);
+                     preInstaller.PreInitialize(app, env);
+                     preInstaller.PreInitialize(app, configuration);
+                     preInstaller.PreInitialize(app, env, configuration, jwtConfig);
                  }
                  if (serviceInstaller != null)
                  {
@@ -50,25 +50,18 @@ namespace MachineCartSystem.Configuration
              });
         }
 
-        public virtual void PreInitialize(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration) { }
+        public virtual void PreInitialize(IApplicationBuilder app) { }
+
+        public virtual void PreInitialize(IApplicationBuilder app, IWebHostEnvironment env) { }
+
+        public virtual void PreInitialize(IApplicationBuilder app, IConfiguration configuration) { }
+
+        public virtual void PreInitialize(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration, JwtConfig jwtConfig) { }
 
         public virtual void Initialize(IApplicationBuilder app) { }
 
         public virtual void Initialize(IApplicationBuilder app, IConfiguration configuration) { }
 
         public virtual void Initialize(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration) { }
-
-        //protected void AddSequence(params Type[] types)
-        //{
-        //    types.ToList().ForEach(p =>
-        //    {
-        //        if (p.IsSubclassOf(typeof(PreMiddlewareInitializer)))
-        //        {
-        //            _executionSequence.Add(p.Name);
-        //            return;
-        //        }
-        //        throw new System.Exception("Invalid type. Type must be PreMiddlewareInitializer");
-        //    });
-        //}
     }
 }

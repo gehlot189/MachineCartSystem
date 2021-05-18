@@ -6,7 +6,7 @@ namespace MachineCartSystem.Configuration
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class ExecutionSequence : Attribute
     {
-        private List<string> _names = new List<string> { nameof(MiddlewareCommon) };
+        private List<string> _names = new List<string> { };
 
         public ExecutionSequence(params string[] name)
         {

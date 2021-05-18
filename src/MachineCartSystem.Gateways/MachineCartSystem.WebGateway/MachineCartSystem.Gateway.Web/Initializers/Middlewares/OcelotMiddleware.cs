@@ -1,5 +1,4 @@
-﻿using MachineCartSystem.Configuration;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Ocelot.Middleware;
 
 namespace MachineCartSystem.Gateway.Web.Initializer

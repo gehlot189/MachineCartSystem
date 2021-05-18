@@ -1,5 +1,4 @@
-﻿using MachineCartSystem.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace MachineCartSystem.Configuration
 {

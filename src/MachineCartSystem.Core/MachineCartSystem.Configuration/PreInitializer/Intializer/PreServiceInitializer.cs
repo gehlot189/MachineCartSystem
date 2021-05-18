@@ -15,6 +15,11 @@ namespace MachineCartSystem.Configuration
     {
         public void Initialize<T>(IServiceCollection services, IConfiguration configuration, JwtConfig jwtConfig)
         {
+            if (!Attribute.IsDefined(typeof(T), typeof(ExecutionSequence)))
+                throw new Exception($"ExecutionSequence attribute is missing in class {typeof(T).FullName}");
+
+            var executionSequence = typeof(T).GetCustomAttributes(typeof(ExecutionSequence), false).Cast<ExecutionSequence>().FirstOrDefault().Sequence;
+
             IdentityModelEventSource.ShowPII = true;
 
             var serviceInstallers = typeof(T).Assembly.ExportedTypes.
@@ -25,12 +30,10 @@ namespace MachineCartSystem.Configuration
                                Where(x => typeof(PreServiceInitializer).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract).
                                Select(Activator.CreateInstance).Cast<PreServiceInitializer>().ToList();
 
-            var installers = serviceInstallers.FullOuterJoin(p => p.GetType().Name, preInstallers, p => p.GetType().Name).ToList();
-
-            installers.ForEach(installer =>
+            executionSequence.ForEach(installer =>
             {
-                var serviceInstaller = serviceInstallers.FirstOrDefault(p => p.GetType().Name == installer.Key?.GetType().Name);
-                var preInstaller = preInstallers.FirstOrDefault(p => p.GetType().Name == installer.Value?.GetType().Name);
+                var serviceInstaller = serviceInstallers.FirstOrDefault(p => p.GetType().Name == installer);
+                var preInstaller = preInstallers.FirstOrDefault(p => p.GetType().Name == installer);
 
                 if (preInstaller != null)
                 {

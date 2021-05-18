@@ -1,9 +1,9 @@
-import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Constant } from '../../configs/constant';
-import { UserService } from './user.service';
 import { DataService } from '../../services/data.service';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AuthService {
@@ -85,5 +85,9 @@ export class AuthService {
   // this.manager.events.addAccessTokenExpiring((p) => {
   //   console.log("access token expiring");
   // });
+
+  // getAuthorizationHeaderValue(): string {
+  //   return `${this.userService.user.token_type} ${this.userService.user.access_token}`;
+  // }
 
 }
